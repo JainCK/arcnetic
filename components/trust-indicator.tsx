@@ -7,36 +7,39 @@ import { Shield, Award, Users, Zap, Globe, TrendingUp } from "lucide-react";
 const indicators = [
   {
     icon: Shield,
-    title: "Business Security",
+    title: "Robust Security",
     description:
-      "Bank-level security protocols protecting your most sensitive business data",
+      "Implementing cutting-edge security protocols to safeguard your vital business data from day one.",
   },
   {
     icon: Award,
-    title: "Industry Recognition",
+    title: "Quality Assurance",
     description:
-      "Award-winning solutions trusted by leading businesses worldwide",
+      "Our commitment to excellence ensures every solution meets the highest industry standards.",
   },
   {
     icon: Users,
-    title: "Expert Team",
+    title: "Core Expertise",
     description:
-      "Senior engineers with 10+ years of business software experience",
+      "Led by senior engineers and strategists with deep experience in business software.",
   },
   {
     icon: Zap,
-    title: "Rapid Delivery",
-    description: "Agile development process with guaranteed project timelines",
+    title: "Agile Delivery",
+    description:
+      "Streamlined agile workflows for efficient development and predictable project progress.",
   },
   {
     icon: Globe,
-    title: "Global Scale",
-    description: "Solutions built to handle millions of users worldwide",
+    title: "Scalable Architecture",
+    description:
+      "Building solutions designed to perform flawlessly from local markets to global demands.",
   },
   {
     icon: TrendingUp,
-    title: "Proven ROI",
-    description: "Average 300% return on investment within first year",
+    title: "Value Driven",
+    description:
+      "Focused on delivering solutions that directly contribute to your business growth and success.",
   },
 ];
 
@@ -72,7 +75,7 @@ export function TrustIndicators() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center p-6 rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/30 transition-all duration-300"
+              className="text-center p-6 rounded-2xl bg-gradient-to-br from-card/50 to-card/90 border border-border hover:border-primary/50 transition-all duration-300"
               whileHover={{ scale: 1.02, y: -5 }}
             >
               <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center mx-auto mb-4">

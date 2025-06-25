@@ -49,7 +49,7 @@ export function SectionDivider({ variant = "waves" }: SectionDividerProps) {
           viewport={{ once: true }}
           transition={{ duration: 1, staggerChildren: 0.1 }}
         >
-          {Array.from({ length: 5 }).map((_, i) => (
+          {Array.from({ length: 10 }).map((_, i) => (
             <motion.div
               key={i}
               className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full"
@@ -68,7 +68,7 @@ export function SectionDivider({ variant = "waves" }: SectionDividerProps) {
     return (
       <div className="relative h-32 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/2 to-transparent"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}

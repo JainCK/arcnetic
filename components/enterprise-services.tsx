@@ -247,33 +247,6 @@ export function EnterpriseServices() {
             </motion.div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <p className="text-lg text-muted-foreground mb-8 font-space-grotesk">
-            Ready to transform your business with cutting-edge software
-            solutions?
-          </p>
-          <motion.button
-            className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-semibold text-lg hover:shadow-xl transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              const element = document.querySelector("#contact");
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            Start Your Transformation
-            <ArrowRight className="ml-2 h-5 w-5 inline" />
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );

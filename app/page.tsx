@@ -47,7 +47,6 @@ export default function Home() {
 
   const heroInView = useInView(heroRef, { once: true });
   const aboutInView = useInView(aboutRef, { once: true });
-  const servicesInView = useInView(servicesRef, { once: true });
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -111,13 +110,12 @@ export default function Home() {
           >
             {/* Extra space above title */}
             <div className="h-20 md:h-32" />
-
             {/* Main Title */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={heroInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="mb-16"
+              className="mb-8"
             >
               <motion.h1
                 className="text-8xl md:text-9xl lg:text-[12rem] font-bold mb-8 bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent leading-none"
@@ -130,32 +128,28 @@ export default function Home() {
                 initial={{ scaleX: 0 }}
                 animate={heroInView ? { scaleX: 1 } : {}}
                 transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
-                className="h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-16 max-w-4xl"
+                className="h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 max-w-4xl"
               />
             </motion.div>
-
             {/* Subtitle - Enterprise Focused */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="mb-12"
+              className="mb-6"
             >
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-8 text-muted-foreground leading-relaxed max-w-5xl mx-auto font-space-grotesk">
-                Elite Software Solutions for
-                <br />
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-semibold">
-                  Forward-Thinking Businesses
+                <span className="bg-primary bg-clip-text text-transparent font-semibold">
+                  Elite Software Solutions for Forward-Thinking Businesses
                 </span>
               </h2>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-md md:text-md text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 We build transformative software that drives measurable business
                 results. From AI-powered automation to business-scale
                 applications, we deliver technology that gives you a competitive
                 advantage.
               </p>
             </motion.div>
-
             {/* Single CTA Button */}
             <motion.div
               className="flex justify-center items-center mb-20"
@@ -166,14 +160,12 @@ export default function Home() {
               <MagneticButton
                 size="lg"
                 onClick={scrollToContact}
-                className="text-xl px-16 py-8 bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-2xl hover:shadow-3xl rounded-2xl font-space-grotesk font-semibold"
+                className="text-xl px-16 py-8 bg-primary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-2xl hover:shadow-3xl rounded-2xl font-space-grotesk font-semibold"
               >
                 Transform Your Business
                 <ArrowRight className="ml-3 h-6 w-6" />
               </MagneticButton>
             </motion.div>
-
-            {/* Trust Indicators */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -193,47 +185,15 @@ export default function Home() {
                 <span>24/7 Expert Support</span>
               </div>
             </motion.div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-              animate={{ y: [0, -15, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10"
-            >
-              <div className="w-6 h-12 border-2 border-primary/30 rounded-full flex justify-center relative overflow-hidden">
-                <motion.div
-                  className="w-1 h-3 bg-primary rounded-full mt-2"
-                  animate={{ y: [0, 16, 0], opacity: [1, 0, 1] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                />
-              </div>
-            </motion.div>
           </motion.div>
         </section>
 
-        {/* Section Divider */}
         <SectionDivider variant="waves" />
-
-        {/* Trust Indicators Section */}
         <TrustIndicators />
-
-        {/* Section Divider */}
         <SectionDivider variant="geometric" />
-
-        {/* Parallax Text Section */}
         <ParallaxText baseVelocity={-3}>
-          Enterprise • Innovation • Excellence • Results
+          Enterprise • Innovation • Excellence • Results •
         </ParallaxText>
-
-        {/* About Section - Enterprise Focused */}
         <section
           ref={aboutRef}
           id="about"
@@ -305,7 +265,7 @@ export default function Home() {
                     {["Innovation", "Security", "Scale"].map((value, index) => (
                       <motion.div
                         key={value}
-                        className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20"
+                        className="text-center p-4 rounded-2xl border border-primary/20"
                         whileHover={{ scale: 1.05, y: -5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -323,9 +283,9 @@ export default function Home() {
                   transition={{ duration: 0.8, delay: 0.6 }}
                   className="relative"
                 >
-                  <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 p-8">
+                  <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 p-1">
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"
+                      className="absolute inset-0 bg-gradient-to-br from-primary to-secondary"
                       animate={{
                         background: [
                           "linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1))",
@@ -341,12 +301,12 @@ export default function Home() {
                       }}
                     />
                     <img
-                      src="/placeholder.svg?height=500&width=500"
+                      src="/images/office.jpg"
                       alt="Arcnetic enterprise software development team"
-                      className="w-full h-full object-cover rounded-2xl relative z-10"
+                      className="w-full h-full object-cover rounded-2xl relative z-0.5"
                     />
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent rounded-2xl z-20"
+                      className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-2xl z-20"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1 }}
@@ -357,11 +317,7 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-
-        {/* Section Divider */}
         <SectionDivider variant="gradient" />
-
-        {/* Services Section */}
         <section
           ref={servicesRef}
           id="services"
@@ -369,11 +325,7 @@ export default function Home() {
         >
           <EnterpriseServices />
         </section>
-
-        {/* Section Divider */}
         <SectionDivider variant="dots" />
-
-        {/* Contact Section */}
         <section id="contact" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-muted/5 to-background" />
 
@@ -460,7 +412,6 @@ export default function Home() {
                     </h4>
                     <div className="flex space-x-4">
                       {[
-                        { icon: Github, label: "GitHub" },
                         { icon: Linkedin, label: "LinkedIn" },
                         { icon: Twitter, label: "Twitter" },
                       ].map((social, index) => (
@@ -515,19 +466,26 @@ export default function Home() {
                         />
                       </motion.div>
                       <motion.div whileFocus={{ scale: 1.02 }}>
+                        <Input
+                          placeholder="Phone Number"
+                          type="number"
+                          className="h-12"
+                        />
+                      </motion.div>
+                      <motion.div whileFocus={{ scale: 1.02 }}>
                         <Input placeholder="Company Name" className="h-12" />
                       </motion.div>
                       <motion.div whileFocus={{ scale: 1.02 }}>
                         <Textarea
                           placeholder="Describe your business challenge and goals..."
-                          className="min-h-[150px] resize-none"
+                          className="min-h-[120px] resize-none"
                         />
                       </motion.div>
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <Button className="w-full h-12 text-lg bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 font-space-grotesk font-semibold">
+                        <Button className="w-full h-12 text-lg bg-primary hover:from-primary/80 hover:to-secondary/80 font-space-grotesk font-semibold">
                           Get Your Strategy Session
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
@@ -540,7 +498,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="py-20 bg-gradient-to-t from-muted/20 to-background border-t border-border/50">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -558,7 +515,7 @@ export default function Home() {
                     business results and competitive advantage.
                   </p>
                   <div className="flex space-x-4">
-                    {[Github, Linkedin, Twitter].map((Icon, index) => (
+                    {[Linkedin, Twitter].map((Icon, index) => (
                       <motion.div
                         key={index}
                         whileHover={{ scale: 1.1, y: -2 }}
@@ -623,8 +580,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
               >
                 <p className="text-muted-foreground font-space-grotesk">
-                  © 2024 Arcnetic. All rights reserved. | Business Software
-                  Solutions
+                  © 2025-26 Arcnetic. All rights reserved. | Software Solutions
                 </p>
               </motion.div>
             </div>
@@ -635,7 +591,7 @@ export default function Home() {
         {isVisible && (
           <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-2xl shadow-2xl z-40 backdrop-blur-sm"
+            className="fixed bottom-8 right-8 p-4 bg-primary text-primary-foreground rounded-2xl shadow-2xl z-40 backdrop-blur-sm"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.1, y: -2 }}

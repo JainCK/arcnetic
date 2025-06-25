@@ -9,7 +9,7 @@ const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
-  { name: "Portfolio", href: "#portfolio" },
+  // { name: "Portfolio", href: "#portfolio" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -82,7 +82,7 @@ export function Navigation() {
           >
             <motion.button
               onClick={() => scrollToSection("#home")}
-              className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:scale-105 transition-transform"
+              className="bg-primary bg-clip-text text-transparent hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
