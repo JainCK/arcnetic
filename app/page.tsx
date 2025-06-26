@@ -8,25 +8,8 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import {
-  ArrowRight,
-  Mail,
-  Phone,
-  Github,
-  Linkedin,
-  Twitter,
-  ChevronUp,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { ArrowRight, ChevronUp } from "lucide-react";
+
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Navigation } from "@/components/navigation";
@@ -37,6 +20,8 @@ import { EnterpriseServices } from "@/components/enterprise-services";
 import { TrustIndicators } from "@/components/trust-indicator";
 import { SectionDivider } from "@/components/section-divider";
 import { MagneticButton } from "@/components/magnetic-button";
+import ContactForm from "@/components/contact-form";
+import Footer from "@/components/footer";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -109,7 +94,7 @@ export default function Home() {
             className="container mx-auto px-4 z-10 text-center relative max-w-7xl"
           >
             {/* Extra space above title */}
-            <div className="h-20 md:h-32" />
+            <div className="h-40 md:h-32" />
             {/* Main Title */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -118,7 +103,7 @@ export default function Home() {
               className="mb-8"
             >
               <motion.h1
-                className="text-8xl md:text-9xl lg:text-[12rem] font-bold mb-8 bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent leading-none"
+                className="text-6xl md:text-xl lg:text-[12rem] font-bold mb-8 bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent leading-none"
                 style={{ y: textY }}
               >
                 Arcnetic
@@ -136,14 +121,14 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="mb-6"
+              className="mb-12"
             >
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-8 text-muted-foreground leading-relaxed max-w-5xl mx-auto font-space-grotesk">
                 <span className="bg-primary bg-clip-text text-transparent font-semibold">
                   Elite Software Solutions for Forward-Thinking Businesses
                 </span>
               </h2>
-              <p className="text-md md:text-md text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-sm md:text-md lg:text-md text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 We build transformative software that drives measurable business
                 results. From AI-powered automation to business-scale
                 applications, we deliver technology that gives you a competitive
@@ -160,7 +145,7 @@ export default function Home() {
               <MagneticButton
                 size="lg"
                 onClick={scrollToContact}
-                className="text-xl px-16 py-8 bg-primary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-2xl hover:shadow-3xl rounded-2xl font-space-grotesk font-semibold"
+                className="text-lg px-10 py-6 bg-primary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-2xl hover:shadow-3xl rounded-2xl font-space-grotesk font-semibold"
               >
                 Transform Your Business
                 <ArrowRight className="ml-3 h-6 w-6" />
@@ -317,7 +302,7 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-        <SectionDivider variant="gradient" />
+
         <section
           ref={servicesRef}
           id="services"
@@ -326,279 +311,21 @@ export default function Home() {
           <EnterpriseServices />
         </section>
         <SectionDivider variant="dots" />
-        <section id="contact" className="py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-muted/5 to-background" />
-
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="text-center mb-20">
-                <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent font-playfair">
-                  Ready to Transform?
-                </h2>
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.3 }}
-                  className="h-px bg-gradient-to-r from-primary to-secondary mx-auto mb-12 max-w-xs"
-                />
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-space-grotesk">
-                  Let's discuss how we can accelerate your business growth with
-                  cutting-edge software solutions. Our enterprise experts are
-                  ready to architect your digital transformation.
-                </p>
-              </div>
-
-              <div className="grid lg:grid-cols-2 gap-20">
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="space-y-10"
-                >
-                  <div>
-                    <h3 className="text-3xl font-bold mb-8 font-playfair">
-                      Let's Connect
-                    </h3>
-                    <div className="space-y-6">
-                      <motion.div
-                        className="flex items-center space-x-4 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
-                        whileHover={{ scale: 1.02, x: 10 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                          <Mail className="h-6 w-6 text-primary" />
-                        </div>
-                        <div>
-                          <div className="font-medium font-space-grotesk">
-                            Business Inquiries
-                          </div>
-                          <div className="text-muted-foreground">
-                            hello@arcnetic.com
-                          </div>
-                        </div>
-                      </motion.div>
-
-                      <motion.div
-                        className="flex items-center space-x-4 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
-                        whileHover={{ scale: 1.02, x: 10 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                          <Phone className="h-6 w-6 text-primary" />
-                        </div>
-                        <div>
-                          <div className="font-medium font-space-grotesk">
-                            Direct Line
-                          </div>
-                          <div className="text-muted-foreground">
-                            +1 (555) 123-4567
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xl font-bold mb-6 font-space-grotesk">
-                      Follow Our Innovation
-                    </h4>
-                    <div className="flex space-x-4">
-                      {[
-                        { icon: Linkedin, label: "LinkedIn" },
-                        { icon: Twitter, label: "Twitter" },
-                      ].map((social, index) => (
-                        <motion.div
-                          key={social.label}
-                          whileHover={{ scale: 1.1, y: -2 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="w-12 h-12 rounded-xl"
-                          >
-                            <social.icon className="h-5 w-5" />
-                          </Button>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  <Card className="border-2 border-primary/20 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm">
-                    <CardHeader>
-                      <CardTitle className="text-2xl font-playfair">
-                        Start Your Transformation
-                      </CardTitle>
-                      <CardDescription className="text-base font-space-grotesk">
-                        Tell us about your vision and we'll provide a
-                        comprehensive solution strategy within 24 hours.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <div className="grid grid-cols-2 gap-4">
-                        <motion.div whileFocus={{ scale: 1.02 }}>
-                          <Input placeholder="First Name" className="h-12" />
-                        </motion.div>
-                        <motion.div whileFocus={{ scale: 1.02 }}>
-                          <Input placeholder="Last Name" className="h-12" />
-                        </motion.div>
-                      </div>
-                      <motion.div whileFocus={{ scale: 1.02 }}>
-                        <Input
-                          placeholder="Business Email"
-                          type="email"
-                          className="h-12"
-                        />
-                      </motion.div>
-                      <motion.div whileFocus={{ scale: 1.02 }}>
-                        <Input
-                          placeholder="Phone Number"
-                          type="number"
-                          className="h-12"
-                        />
-                      </motion.div>
-                      <motion.div whileFocus={{ scale: 1.02 }}>
-                        <Input placeholder="Company Name" className="h-12" />
-                      </motion.div>
-                      <motion.div whileFocus={{ scale: 1.02 }}>
-                        <Textarea
-                          placeholder="Describe your business challenge and goals..."
-                          className="min-h-[120px] resize-none"
-                        />
-                      </motion.div>
-                      <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <Button className="w-full h-12 text-lg bg-primary hover:from-primary/80 hover:to-secondary/80 font-space-grotesk font-semibold">
-                          Get Your Strategy Session
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
-                      </motion.div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <footer className="py-20 bg-gradient-to-t from-muted/20 to-background border-t border-border/50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-4 gap-12 mb-16">
-                <div className="md:col-span-2">
-                  <motion.h3
-                    className="text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-playfair"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    Arcnetic
-                  </motion.h3>
-                  <p className="text-muted-foreground mb-8 max-w-md leading-relaxed font-space-grotesk">
-                    Elite software solutions for forward-thinking businesses. We
-                    build transformative technology that drives measurable
-                    business results and competitive advantage.
-                  </p>
-                  <div className="flex space-x-4">
-                    {[Linkedin, Twitter].map((Icon, index) => (
-                      <motion.div
-                        key={index}
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="w-12 h-12 rounded-xl"
-                        >
-                          <Icon className="h-5 w-5" />
-                        </Button>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-bold mb-6 font-space-grotesk">
-                    Solutions
-                  </h4>
-                  <div className="space-y-3">
-                    {[
-                      "Business Apps",
-                      "AI Solutions",
-                      "Digital Transformation",
-                      "Cloud Infrastructure",
-                    ].map((item) => (
-                      <motion.div
-                        key={item}
-                        className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                        whileHover={{ x: 5 }}
-                      >
-                        {item}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-bold mb-6 font-space-grotesk">Company</h4>
-                  <div className="space-y-3">
-                    {["About", "Careers", "Partners", "Contact"].map((item) => (
-                      <motion.a
-                        key={item}
-                        href={`#${item.toLowerCase()}`}
-                        className="block text-muted-foreground hover:text-primary transition-colors"
-                        whileHover={{ x: 5 }}
-                      >
-                        {item}
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <motion.div
-                className="border-t border-border/50 pt-8 text-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <p className="text-muted-foreground font-space-grotesk">
-                  © 2025-26 Arcnetic. All rights reserved. | Software Solutions
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </footer>
+        <ContactForm />
+        <Footer />
 
         {/* Scroll to Top Button */}
         {isVisible && (
           <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-4 bg-primary text-primary-foreground rounded-2xl shadow-2xl z-40 backdrop-blur-sm"
+            className="fixed bottom-8 right-8 p-4 bg-primary text-primary-foreground rounded-2xl shadow-2xl z-40 backdrop-blur-sm transition-opacity md:opacity-100 opacity-0 md:block hidden"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <ChevronUp className="h-6 w-6" />
+            <ChevronUp className="h-4 w-4" />
           </motion.button>
         )}
 
