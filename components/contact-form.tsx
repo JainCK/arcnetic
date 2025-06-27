@@ -15,6 +15,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 
+// Function to send contact email to your backend API
 async function sendContactEmail(data: Record<string, string>) {
   const response = await fetch("/api/contact", {
     method: "POST",
@@ -25,12 +26,17 @@ async function sendContactEmail(data: Record<string, string>) {
   });
 
   if (!response.ok) {
-    // If the response is not OK (e.g., 400 or 500 status)
+    // If the server response is not OK (e.g., 400 or 500 status),
+    // parse the error message from the backend and throw an error.
     const errorData = await response.json();
-    throw new Error(errorData.message || "Failed to send email.");
+    throw new Error(
+      errorData.message || "Failed to send email. Please try again."
+    );
   }
 
-  // No need for setTimeout if it's a real API call
+  // If response is OK (2xx status), it means the email was sent successfully from the backend.
+  // You might not need to return anything if your API doesn't send back useful data.
+  // For demonstration, returning JSON if the API sends it.
   return response.json();
 }
 
@@ -56,11 +62,11 @@ export default function ContactForm() {
     e.preventDefault();
     setLoading(true);
     setSent(false); // Reset sent state on new submission attempt
-    setError(null); // Clear previous errors
+    setError(null); // Clear any previous errors
 
     try {
-      await sendContactEmail(form);
-      setSent(true);
+      await sendContactEmail(form); // Attempt to send the email
+      setSent(true); // If successful, set sent to true
       // Clear the form only on successful submission
       setForm({
         firstName: "",
@@ -70,12 +76,14 @@ export default function ContactForm() {
         message: "",
       });
     } catch (err: any) {
+      // Catch any errors from sendContactEmail
       console.error("Contact form submission error:", err);
+      // Set the error message to display to the user
       setError(
         err.message || "An unexpected error occurred. Please try again."
       );
     } finally {
-      setLoading(false);
+      setLoading(false); // Always turn off loading, regardless of success or failure
     }
   };
 
@@ -133,7 +141,7 @@ export default function ContactForm() {
                         Business Inquiries
                       </div>
                       <div className="text-muted-foreground">
-                        hello@arcnetic.com
+                        support@arcnetic.com
                       </div>
                     </div>
                   </motion.div>
@@ -150,7 +158,7 @@ export default function ContactForm() {
                         Direct Line
                       </div>
                       <div className="text-muted-foreground">
-                        +1 (555) 123-4567
+                        +91 (755) 895-2771
                       </div>
                     </div>
                   </motion.div>
@@ -214,7 +222,7 @@ export default function ContactForm() {
                   ) : (
                     <>
                       {error && ( // Display error message if there's one
-                        <div className="text-red-500 text-center mb-4">
+                        <div className="text-red-500 text-center mb-4 font-space-grotesk">
                           {error}
                         </div>
                       )}
@@ -252,6 +260,8 @@ export default function ContactForm() {
                             required
                           />
                         </motion.div>
+                        {/* Note: The 'phone' field was removed from the form state in your provided code,
+                            so it's also removed here to match the form state. If you need it, add it back to the state. */}
                         <motion.div whileFocus={{ scale: 1.02 }}>
                           <Input
                             placeholder="Company Name"

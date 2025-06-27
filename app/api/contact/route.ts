@@ -1,35 +1,23 @@
 // app/api/contact/route.ts
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend"; // Import Resend SDK
 
 // --- Configuration from Environment Variables ---
-const SENDER_EMAIL = process.env.EMAIL_SERVER_USER;
-const SENDER_PASSWORD = process.env.EMAIL_SERVER_PASSWORD;
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const RECIPIENT_EMAIL = process.env.CONTACT_FORM_RECIPIENT_EMAIL;
+const RESEND_VERIFIED_SENDER_EMAIL = process.env.RESEND_VERIFIED_SENDER_EMAIL; // This email's domain MUST be verified in Resend
 
-// --- Validate Environment Variables ---
-if (!SENDER_EMAIL || !SENDER_PASSWORD || !RECIPIENT_EMAIL) {
-  console.error(
-    "Missing environment variables for email sending. Please check .env.local."
-  );
-  // In a real application, you might want to throw an error or handle this more gracefully on startup.
-}
-
-// --- Nodemailer Transporter Setup ---
-const transporter = nodemailer.createTransport({
-  service: "gmail", // You can change this to 'Outlook', 'Yahoo', or use a custom SMTP host
-  auth: {
-    user: SENDER_EMAIL,
-    pass: SENDER_PASSWORD,
-  },
-  // Optional: Add logging for debugging
-  // logger: true,
-  // debug: true,
-});
+// --- Resend Client Setup ---
+// Instantiate Resend client outside the handler to avoid re-creating on every request
+const resend = new Resend(RESEND_API_KEY);
 
 // --- POST Handler for Contact Form Submissions ---
 export async function POST(request: Request) {
-  if (!SENDER_EMAIL || !SENDER_PASSWORD || !RECIPIENT_EMAIL) {
+  // Check for critical environment variables at request time
+  if (!RESEND_API_KEY || !RECIPIENT_EMAIL || !RESEND_VERIFIED_SENDER_EMAIL) {
+    console.error(
+      "Missing environment variables for Resend email sending. Please check .env.local."
+    );
     return NextResponse.json(
       { message: "Server email configuration error. Please try again later." },
       { status: 500 }
@@ -41,7 +29,7 @@ export async function POST(request: Request) {
     const { firstName, lastName, email, phone, company, message } =
       await request.json();
 
-    // Basic validation (you can add more robust validation here, e.g., with Zod)
+    // Basic validation
     if (!firstName || !lastName || !email || !message) {
       return NextResponse.json(
         {
@@ -53,7 +41,7 @@ export async function POST(request: Request) {
     }
 
     // Construct the email content
-    const mailContent = `
+    const mailContentHtml = `
       <h1>New Contact Form Submission for Arcnetic</h1>
       <p><strong>Name:</strong> ${firstName} ${lastName}</p>
       <p><strong>Email:</strong> ${email}</p>
@@ -65,20 +53,27 @@ export async function POST(request: Request) {
       <p><em>This email was sent from your Arcnetic website contact form.</em></p>
     `;
 
-    // Define email options
-    const mailOptions = {
-      from: `Arcnetic Website <${SENDER_EMAIL}>`, // Display name for the sender
-      to: RECIPIENT_EMAIL, // The hardcoded recipient
-      replyTo: email, // Set the user's email as reply-to for easy reply
-      subject: `New Arcnetic Inquiry from ${firstName} ${lastName}`,
-      html: mailContent,
-      text: `New Arcnetic Inquiry:\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${
-        phone || "N/A"
-      }\nCompany: ${company || "N/A"}\nMessage:\n${message}`, // Plain text fallback
-    };
+    const mailContentText = `New Arcnetic Inquiry:\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${
+      phone || "N/A"
+    }\nCompany: ${company || "N/A"}\nMessage:\n${message}`; // Plain text fallback
 
-    // Send the email
-    await transporter.sendMail(mailOptions);
+    // Send the email using Resend
+    const { data, error } = await resend.emails.send({
+      from: `Arcnetic Website <${RESEND_VERIFIED_SENDER_EMAIL}>`, // Sender email MUST be from a domain verified in Resend
+      to: [RECIPIENT_EMAIL], // Resend 'to' accepts an array of strings
+      subject: `New Arcnetic Inquiry from ${firstName} ${lastName}`,
+      html: mailContentHtml,
+      text: mailContentText,
+      replyTo: email,
+    });
+
+    if (error) {
+      console.error("Error sending email with Resend:", error);
+      return NextResponse.json(
+        { message: error.message || "Failed to send message via Resend." },
+        { status: 500 }
+      );
+    }
 
     // Return success response to the frontend
     return NextResponse.json(
@@ -86,9 +81,7 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error sending email:", error);
-
-    // Provide a more generic error message to the client for security
+    console.error("Unexpected error in contact form handler:", error);
     return NextResponse.json(
       { message: "Failed to send message. Please try again later." },
       { status: 500 }
