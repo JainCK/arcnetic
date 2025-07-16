@@ -202,7 +202,7 @@ export default function ContactForm() {
                       asChild
                     >
                       <a
-                        href={`https://twitter.com/${config?.social.twitter?.replace("@", "") || "arcnetic"}`}
+                        href={`https://twitter.com/${config?.social.twitter?.replace("@", "")}`}
                         aria-label="Twitter"
                         target="_blank"
                         rel="noopener noreferrer"
