@@ -19,15 +19,29 @@ export function Navigation() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNav, setShowNav] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      setIsScrolled(currentScrollY > 50);
+      setIsScrolled(currentScrollY > 30);
 
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setShowNav(false);
+        // Close mobile menu immediately when scrolling down
+        setIsMenuOpen(false);
       } else {
         setShowNav(true);
       }
@@ -66,12 +80,18 @@ export function Navigation() {
     <motion.nav
       initial={{ y: 0 }}
       animate={{ y: showNav ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      transition={{
+        duration: isMobile ? 0 : 0.3,
+        ease: isMobile ? "linear" : "easeInOut",
+      }}
+      className={`fixed top-0 left-0 right-0 z-50 ${
+        isMobile ? "" : "transition-all duration-500"
+      } ${
         isScrolled
           ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg"
           : "bg-transparent"
       }`}
+      style={isMobile ? { display: showNav ? "block" : "none" } : {}}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
@@ -132,7 +152,7 @@ export function Navigation() {
               >
                 <motion.div
                   animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.1 }}
                 >
                   {isMenuOpen ? (
                     <X className="h-6 w-6" />
@@ -153,7 +173,7 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
             className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
           >
             <div className="container mx-auto px-4 py-6">
