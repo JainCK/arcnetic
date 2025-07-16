@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -20,6 +21,12 @@ export function Navigation() {
   const [showNav, setShowNav] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobile, setIsMobile] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -36,14 +43,24 @@ export function Navigation() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      setIsScrolled(currentScrollY > 30);
+      setIsScrolled(currentScrollY > 5);
 
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setShowNav(false);
-        // Close mobile menu immediately when scrolling down
-        setIsMenuOpen(false);
+      if (isMobile) {
+        // Mobile: Hide nav after any scroll, only show when at top
+        if (currentScrollY > 50) {
+          setShowNav(false);
+          setIsMenuOpen(false);
+        } else {
+          setShowNav(true);
+        }
       } else {
-        setShowNav(true);
+        // Desktop: Original behavior
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setShowNav(false);
+          setIsMenuOpen(false);
+        } else {
+          setShowNav(true);
+        }
       }
 
       setLastScrollY(currentScrollY);
@@ -139,6 +156,35 @@ export function Navigation() {
                 <motion.span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0" />
               </motion.button>
             ))}
+
+            {/* Theme Toggle - Desktop */}
+            {mounted && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                className="ml-4"
+              >
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="w-12 h-12 rounded-xl"
+                >
+                  <motion.div
+                    initial={false}
+                    animate={{ rotate: theme === "dark" ? 0 : 180 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {theme === "dark" ? (
+                      <Sun className="h-5 w-5" />
+                    ) : (
+                      <Moon className="h-5 w-5" />
+                    )}
+                  </motion.div>
+                </Button>
+              </motion.div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -196,6 +242,34 @@ export function Navigation() {
                     {item.name}
                   </motion.button>
                 ))}
+
+                {/* Theme Toggle - Mobile */}
+                {mounted && (
+                  <motion.button
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navItems.length * 0.1 }}
+                    onClick={() =>
+                      setTheme(theme === "dark" ? "light" : "dark")
+                    }
+                    className="text-left py-3 px-4 rounded-xl transition-all duration-300 text-muted-foreground hover:text-foreground hover:bg-muted/50 flex items-center space-x-3"
+                    whileHover={{ x: 10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <motion.div
+                      initial={false}
+                      animate={{ rotate: theme === "dark" ? 0 : 180 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {theme === "dark" ? (
+                        <Sun className="h-5 w-5" />
+                      ) : (
+                        <Moon className="h-5 w-5" />
+                      )}
+                    </motion.div>
+                    <span>Toggle Theme</span>
+                  </motion.button>
+                )}
               </div>
             </div>
           </motion.div>
