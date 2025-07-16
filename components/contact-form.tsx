@@ -14,6 +14,7 @@ import {
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
+import { usePublicConfig } from "@/hooks/usePublicConfig";
 
 // Function to send contact email to your backend API
 async function sendContactEmail(data: Record<string, string>) {
@@ -41,6 +42,7 @@ async function sendContactEmail(data: Record<string, string>) {
 }
 
 export default function ContactForm() {
+  const { config, loading: configLoading } = usePublicConfig();
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -141,7 +143,7 @@ export default function ContactForm() {
                         Business Inquiries
                       </div>
                       <div className="text-muted-foreground">
-                        aswin.p@arcnetic.com
+                        {config?.contact.email || "aswin.p@arcnetic.com"}
                       </div>
                     </div>
                   </motion.div>
@@ -158,7 +160,7 @@ export default function ContactForm() {
                         Direct Line
                       </div>
                       <div className="text-muted-foreground">
-                        +91 (755) 895-2771
+                        {config?.contact.phone || "+91-7558952771"}
                       </div>
                     </div>
                   </motion.div>
@@ -169,32 +171,46 @@ export default function ContactForm() {
                   Follow Our Innovation
                 </h4>
                 <div className="flex space-x-4">
-                  {[
-                    { icon: Linkedin, label: "LinkedIn", href: "#" },
-                    { icon: Twitter, label: "Twitter", href: "#" },
-                  ].map((social) => (
-                    <motion.div
-                      key={social.label}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                  <motion.div
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="w-12 h-12 rounded-xl"
+                      asChild
                     >
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="w-12 h-12 rounded-xl"
-                        asChild
+                      <a
+                        href={`https://linkedin.com/${config?.social.linkedin || "company/arcnetic"}`}
+                        aria-label="LinkedIn"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <a
-                          href={social.href}
-                          aria-label={social.label}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <social.icon className="h-5 w-5" />
-                        </a>
-                      </Button>
-                    </motion.div>
-                  ))}
+                        <Linkedin className="h-5 w-5" />
+                      </a>
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="w-12 h-12 rounded-xl"
+                      asChild
+                    >
+                      <a
+                        href={`https://twitter.com/${config?.social.twitter?.replace("@", "") || "arcnetic"}`}
+                        aria-label="Twitter"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Twitter className="h-5 w-5" />
+                      </a>
+                    </Button>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
