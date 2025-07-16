@@ -1,6 +1,7 @@
 import type React from "react";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Space_Grotesk } from "next/font/google";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,7 +24,10 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://arcnetic.com"),
-  title: "Arcnetic - Elite Software Solutions | Transform Your Business",
+  title: {
+    default: "Arcnetic - Elite Software Solutions | Transform Your Business",
+    template: "%s | Arcnetic - Elite Software Solutions",
+  },
   description:
     "Arcnetic delivers world-class software solutions for businesses. Custom applications, AI systems, and digital transformation services that drive exceptional business results.",
   keywords: [
@@ -37,16 +41,35 @@ export const metadata: Metadata = {
     "scalable solutions",
     "technology consulting",
     "software architecture",
+    "enterprise software",
+    "web applications",
+    "mobile app development",
+    "cloud solutions",
+    "API development",
+    "database design",
+    "DevOps services",
+    "software consulting",
+    "agile development",
+    "full-stack development",
   ].join(", "),
-  authors: [{ name: "Arcnetic", url: "https://arcnetic.com" }],
+  authors: [{ name: "Arcnetic Team", url: "https://arcnetic.com" }],
   creator: "Arcnetic",
   publisher: "Arcnetic",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  category: "Technology",
+  classification: "Business Software Development",
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -58,14 +81,22 @@ export const metadata: Metadata = {
     url: "https://arcnetic.com",
     title: "Arcnetic - Elite Software Solutions",
     description:
-      "Transform your business with world-class software solutions. Business applications and digital transformation services.",
+      "Transform your business with world-class software solutions. Custom applications, AI systems, and digital transformation services that drive exceptional business results.",
     siteName: "Arcnetic",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Arcnetic - Elite Software Solutions",
+        alt: "Arcnetic - Elite Software Solutions for Business Transformation",
+        type: "image/jpeg",
+      },
+      {
+        url: "/og-image-square.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Arcnetic Logo - Elite Software Solutions",
+        type: "image/jpeg",
       },
     ],
   },
@@ -75,10 +106,27 @@ export const metadata: Metadata = {
     description:
       "Transform your business with world-class software solutions and digital transformation services.",
     creator: "@arcnetic",
-    images: ["/twitter-image.jpg"],
+    site: "@arcnetic",
+    images: [
+      {
+        url: "/twitter-image.jpg",
+        alt: "Arcnetic - Elite Software Solutions",
+      },
+    ],
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || "",
   },
   alternates: {
     canonical: "https://arcnetic.com",
+    languages: {
+      "en-US": "https://arcnetic.com",
+    },
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
   },
 };
 
@@ -87,6 +135,67 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://arcnetic.com/#organization",
+    name: "Arcnetic",
+    url: "https://arcnetic.com",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://arcnetic.com/logo.png",
+      width: 600,
+      height: 60,
+    },
+    description:
+      "Elite software solutions for forward-thinking businesses. Custom applications, AI systems, and digital transformation services.",
+    foundingDate: "2024",
+    industry: "Software Development",
+    employees: {
+      "@type": "QuantitativeValue",
+      value: "10-50",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "IND",
+      addressRegion: "Global",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: "aswin.p@arcnetic.com",
+      url: "https://arcnetic.com/#contact",
+    },
+    sameAs: [
+      "https://twitter.com/arcnetic",
+      "https://linkedin.com/company/arcnetic",
+    ],
+    services: [
+      "Custom Software Development",
+      "AI Solutions",
+      "Digital Transformation",
+      "Business Applications",
+      "Cloud Solutions",
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://arcnetic.com/#website",
+    url: "https://arcnetic.com",
+    name: "Arcnetic",
+    description: "Elite software solutions for forward-thinking businesses",
+    publisher: {
+      "@id": "https://arcnetic.com/#organization",
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://arcnetic.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <html
       lang="en"
@@ -105,12 +214,35 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
         <meta name="theme-color" content="#8b5cf6" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="color-scheme" content="dark light" />
+        <meta
+          name="format-detection"
+          content="telephone=no, date=no, email=no, address=no"
+        />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="canonical" href="https://arcnetic.com" />
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
       </head>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   );
 }
