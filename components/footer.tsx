@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter } from "lucide-react";
 
 const solutions = [
-  "Business Apps",
+  "Full-Stack Development",
+  "Business Applications",
   "AI Solutions",
   "Digital Transformation",
-  "Cloud Infrastructure",
+  "Cloud Solutions",
 ];
 
-const company = ["About", "Careers", "Partners", "Contact"];
+const company = ["About", "Careers", "Blog", "Contact"];
 
 const Footer: FC = () => (
   <footer className="py-20 bg-gradient-to-t from-muted/20 to-background border-t border-border/50">
@@ -25,9 +26,7 @@ const Footer: FC = () => (
               Arcnetic
             </motion.h3>
             <p className="text-muted-foreground mb-8 max-w-md leading-relaxed font-space-grotesk">
-              Elite software solutions for forward-thinking businesses. We build
-              transformative technology that drives measurable business results
-              and competitive advantage.
+              Elite software solutions for forward-thinking businesses.
             </p>
             <div className="flex space-x-4">
               {[Linkedin, Twitter].map((Icon, index) => (
