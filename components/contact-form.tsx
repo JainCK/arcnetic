@@ -141,7 +141,7 @@ export default function ContactForm() {
                         Business Inquiries
                       </div>
                       <div className="text-muted-foreground">
-                        support@arcnetic.com
+                        aswin.p@arcnetic.com
                       </div>
                     </div>
                   </motion.div>

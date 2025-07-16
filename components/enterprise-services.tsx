@@ -121,7 +121,7 @@ export function EnterpriseServices() {
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 0, ease: "easeOut" }}
           className="text-center mb-20"
         >
           <motion.div
@@ -140,7 +140,7 @@ export function EnterpriseServices() {
             className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             Our Expertise
           </motion.h2>
@@ -148,7 +148,7 @@ export function EnterpriseServices() {
           <motion.div
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto mb-12 max-w-xs"
           />
 
@@ -156,7 +156,7 @@ export function EnterpriseServices() {
             className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-space-grotesk"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
             We deliver transformative software solutions that drive measurable
             business results. From AI-powered automation to business-scale
@@ -171,7 +171,7 @@ export function EnterpriseServices() {
               key={index}
               initial={{ opacity: 0, y: 100 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: service.delay }}
+              transition={{ duration: 0.5, delay: service.delay }}
               className="group relative"
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
@@ -235,13 +235,13 @@ export function EnterpriseServices() {
                     </ul>
                   </div>
 
-                  <motion.div
+                  {/* <motion.div
                     className="flex items-center text-primary font-medium text-sm pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     whileHover={{ x: 5 }}
                   >
                     Learn More
                     <ArrowRight className="h-4 w-4 ml-2" />
-                  </motion.div>
+                  </motion.div> */}
                 </CardContent>
               </Card>
             </motion.div>
