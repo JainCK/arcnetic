@@ -15,7 +15,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { usePublicConfig } from "@/hooks/usePublicConfig";
-import { useAnalytics } from "@/hooks/useAnalytics";
+import { event } from "@/lib/analytics";
 
 // Function to send contact email to your backend API
 async function sendContactEmail(data: Record<string, string>) {
@@ -44,7 +44,23 @@ async function sendContactEmail(data: Record<string, string>) {
 
 export default function ContactForm() {
   const { config, loading: configLoading } = usePublicConfig();
-  const { trackFormSubmission, trackContactMethod } = useAnalytics();
+
+  // Simple analytics functions
+  const trackFormSubmission = (formName: string, success: boolean = true) => {
+    event({
+      action: success ? "submit_success" : "submit_error",
+      category: "form",
+      label: formName,
+    });
+  };
+
+  const trackContactMethod = (method: "email" | "phone" | "social") => {
+    event({
+      action: "contact_method_used",
+      category: "contact",
+      label: method,
+    });
+  };
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
