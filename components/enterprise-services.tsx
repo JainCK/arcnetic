@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -111,7 +111,17 @@ const services = [
 export function EnterpriseServices() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
+  // Mobile detection
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <section ref={ref} className="py-32 relative overflow-hidden">
@@ -119,16 +129,19 @@ export function EnterpriseServices() {
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 100 }}
+          initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0, ease: "easeOut" }}
+          transition={{ duration: isMobile ? 0.3 : 0.5 }}
           className="text-center mb-20"
         >
           <motion.div
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 rounded-full mb-8"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{
+              duration: isMobile ? 0.2 : 0.4,
+              delay: isMobile ? 0.05 : 0.1,
+            }}
           >
             <Sparkles className="h-5 w-5 text-primary" />
             <span className="text-sm font-medium text-primary">
@@ -154,9 +167,9 @@ export function EnterpriseServices() {
 
           <motion.p
             className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-space-grotesk"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4, delay: 0.2 }}
           >
             We deliver transformative software solutions that drive measurable
             business results. From AI-powered automation to business-scale
@@ -169,31 +182,24 @@ export function EnterpriseServices() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: service.delay }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
               className="group relative"
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
             >
-              <Card className="h-full border-2 border-transparent hover:border-primary/30 transition-all duration-500 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm relative overflow-hidden cursor-pointer">
-                {/* Animated Background */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                  animate={{
-                    scale: hoveredService === index ? [1, 1.05, 1] : 1,
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat:
-                      hoveredService === index ? Number.POSITIVE_INFINITY : 0,
-                  }}
+              <Card className="h-full border-2 border-transparent hover:border-primary/30 transition-all duration-300 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm relative overflow-hidden cursor-pointer">
+                {/* Static Background */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                 />
 
                 <CardHeader className="relative z-10 pb-4">
                   <motion.div
-                    className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                    whileHover={{ rotate: 5 }}
+                    className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200"
+                    whileHover={{ rotate: 2 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <service.icon className="h-8 w-8 text-primary" />
                   </motion.div>

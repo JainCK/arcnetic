@@ -59,12 +59,48 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
 html {
   scroll-behavior: smooth;
+  /* Improve scrolling performance on mobile */
+  -webkit-overflow-scrolling: touch;
+  /* Enable hardware acceleration for smoother animations */
+  transform: translateZ(0);
+}
+
+/* Performance optimizations for mobile */
+* {
+  /* Enable hardware acceleration for all elements */
+  backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Optimize for mobile touch scrolling */
+body {
+  /* Improve touch scrolling momentum */
+  -webkit-overflow-scrolling: touch;
+  /* Disable bounce effect on mobile for smoother scrolling */
+  overscroll-behavior: none;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Font Classes */
@@ -116,9 +152,9 @@ html {
 
 /* Smooth transitions for all interactive elements */
 * {
-  transition-property: color, background-color, border-color,
-    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
-    backdrop-filter;
+  transition-property:
+    color, background-color, border-color, text-decoration-color, fill, stroke,
+    opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -149,7 +185,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
 }
 
 /* Responsive typography */
@@ -272,5 +311,46 @@ h6 {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Mobile animation optimizations */
+@media (max-width: 768px) {
+  /* Disable complex animations on mobile for better performance */
+  .mobile-minimal-animation * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+
+  /* Very subtle mobile animations */
+  .mobile-fade-only {
+    animation: mobile-fade-in 0.3s ease-out;
+  }
+
+  @keyframes mobile-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Disable transform animations on mobile scroll */
+  .mobile-no-transform {
+    transform: none !important;
+  }
+}
+
+/* Smooth scrolling optimizations for mobile */
+@media (max-width: 768px) {
+  body {
+    /* Optimize mobile scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
   }
 }
