@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Space_Grotesk } from "next/font/google";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -241,7 +242,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <GoogleAnalytics />
-        {children}
+        <AnalyticsProvider>{children}</AnalyticsProvider>
       </body>
     </html>
   );

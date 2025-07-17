@@ -15,6 +15,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { usePublicConfig } from "@/hooks/usePublicConfig";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 // Function to send contact email to your backend API
 async function sendContactEmail(data: Record<string, string>) {
@@ -43,6 +44,7 @@ async function sendContactEmail(data: Record<string, string>) {
 
 export default function ContactForm() {
   const { config, loading: configLoading } = usePublicConfig();
+  const { trackFormSubmission, trackContactMethod } = useAnalytics();
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -69,6 +71,7 @@ export default function ContactForm() {
     try {
       await sendContactEmail(form); // Attempt to send the email
       setSent(true); // If successful, set sent to true
+      trackFormSubmission("contact-form", true); // Track successful submission
       // Clear the form only on successful submission
       setForm({
         firstName: "",
@@ -80,6 +83,7 @@ export default function ContactForm() {
     } catch (err: any) {
       // Catch any errors from sendContactEmail
       console.error("Contact form submission error:", err);
+      trackFormSubmission("contact-form", false); // Track failed submission
       // Set the error message to display to the user
       setError(
         err.message || "An unexpected error occurred. Please try again."
@@ -134,6 +138,7 @@ export default function ContactForm() {
                     className="flex items-center space-x-4 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
                     whileHover={{ scale: 1.02, x: 10 }}
                     transition={{ type: "spring", stiffness: 300 }}
+                    onClick={() => trackContactMethod("email")}
                   >
                     <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
                       <Mail className="h-6 w-6 text-primary" />
@@ -151,6 +156,7 @@ export default function ContactForm() {
                     className="flex items-center space-x-4 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
                     whileHover={{ scale: 1.02, x: 10 }}
                     transition={{ type: "spring", stiffness: 300 }}
+                    onClick={() => trackContactMethod("phone")}
                   >
                     <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
                       <Phone className="h-6 w-6 text-primary" />
@@ -166,7 +172,7 @@ export default function ContactForm() {
                   </motion.div>
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <h4 className="text-xl font-bold mb-6 font-space-grotesk">
                   Follow Our Innovation
                 </h4>
@@ -212,7 +218,7 @@ export default function ContactForm() {
                     </Button>
                   </motion.div>
                 </div>
-              </div>
+              </div>*/}
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}

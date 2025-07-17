@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 export function AboutSection() {
   const aboutRef = useRef(null);
@@ -113,10 +114,16 @@ export function AboutSection() {
                     ease: "linear",
                   }}
                 />
-                <img
+                <Image
                   src="/images/office.jpg"
                   alt="Arcnetic enterprise software development team"
-                  className="w-full h-full object-cover rounded-2xl relative z-0.5"
+                  className="object-cover rounded-2xl"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                  quality={85}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAhEQACAQIHAQAAAAAAAAAAAAABAgADBAUGITFRYfDR/9oADAMBAAIRAxEAPwA="
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-2xl z-20"
