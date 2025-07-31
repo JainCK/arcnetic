@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, Space_Grotesk } from "next/font/google";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -144,7 +145,7 @@ export default function RootLayout({
     url: "https://arcnetic.com",
     logo: {
       "@type": "ImageObject",
-      url: "https://arcnetic.com/logo.png",
+      url: "https://arcnetic.com/images/logo1.png",
       width: 600,
       height: 60,
     },
@@ -220,10 +221,13 @@ export default function RootLayout({
           name="format-detection"
           content="telephone=no, date=no, email=no, address=no"
         />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/images/favicon/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/images/favicon/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/images/favicon/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png" />
+        <link rel="icon" href="/images/favicon/android-chrome-192x192.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/images/favicon/android-chrome-512x512.png" sizes="512x512" type="image/png" />
+        <link rel="manifest" href="/images/favicon/site.webmanifest" />
         <link rel="canonical" href="https://arcnetic.com" />
 
         {/* Structured Data */}
@@ -241,8 +245,15 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <GoogleAnalytics />
-        <AnalyticsProvider>{children}</AnalyticsProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <GoogleAnalytics />
+          <AnalyticsProvider>{children}</AnalyticsProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
