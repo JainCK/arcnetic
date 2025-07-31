@@ -3,8 +3,10 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Twitter } from "lucide-react";
+import { Linkedin, Twitter, ArrowRight } from "lucide-react";
 import { usePublicConfig } from "@/hooks/usePublicConfig";
+import Link from "next/link";
+import Image from "next/image";
 
 const solutions = [
   "Full-Stack Development",
@@ -25,12 +27,21 @@ const Footer: FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
-              <motion.h3
-                className="text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-playfair"
+              <motion.div
+                className="flex items-center mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                Arcnetic
-              </motion.h3>
+                <Image
+                  src="/images/logo2.png"
+                  alt="Arcnetic Logo"
+                  width={120}
+                  height={34}
+                  className="h-10 w-auto mr-1"
+                />
+                <h3 className="text-3xl font-bold bg-primary bg-clip-text text-transparent font-playfair">
+                  Arcnetic
+                </h3>
+              </motion.div>
               <p className="text-muted-foreground mb-8 max-w-md leading-relaxed font-space-grotesk">
                 Elite software solutions for forward-thinking businesses.
               </p>
@@ -64,16 +75,7 @@ const Footer: FC = () => {
                     size="icon"
                     className="w-12 h-12 rounded-xl"
                     asChild
-                  >
-                    <a
-                      href={`https://twitter.com/${config?.social.twitter?.replace("@", "") || "arcnetic"}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Twitter"
-                    >
-                      <Twitter className="h-5 w-5" />
-                    </a>
-                  </Button>
+                  ></Button>
                 </motion.div>
               </div>
             </div>
@@ -96,16 +98,36 @@ const Footer: FC = () => {
             <div>
               <h4 className="font-bold mb-6 font-space-grotesk">Company</h4>
               <div className="space-y-3">
-                {company.map((item) => (
-                  <motion.a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
+                <motion.a
+                  href="#about"
+                  className="block text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  About
+                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/careers"
                     className="block text-muted-foreground hover:text-primary transition-colors"
-                    whileHover={{ x: 5 }}
                   >
-                    {item}
-                  </motion.a>
-                ))}
+                    Careers
+                  </Link>
+                </motion.div>
+                <motion.a
+                  href="#contact"
+                  className="block text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  Contact
+                </motion.a>
+                <motion.div className="mt-6">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="/pricing">
+                      View Pricing
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </motion.div>
               </div>
             </div>
           </div>

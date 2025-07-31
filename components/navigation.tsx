@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
-  // { name: "Portfolio", href: "#portfolio" },
+  // { name: "Pricing", href: "/pricing" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -85,11 +87,18 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleNavClick = (href: string) => {
+    if (href.startsWith("#")) {
+      // Internal link - scroll to section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setIsMenuOpen(false);
+      }
+    } else {
+      // External link - navigate to page
       setIsMenuOpen(false);
+      window.location.href = href;
     }
   };
 
@@ -115,15 +124,22 @@ export function Navigation() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold"
+            className="flex items-center"
           >
             <motion.button
-              onClick={() => scrollToSection("#home")}
-              className="bg-primary bg-clip-text text-transparent hover:scale-105 transition-transform"
+              onClick={() => handleNavClick("#home")}
+              className="flex items-center hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Arcnetic
+              <Image
+                src="/images/logo2.png"
+                alt="Arcnetic Logo"
+                width={140}
+                height={40}
+                className="h-12 w-auto"
+                priority
+              />
             </motion.button>
           </motion.div>
 
@@ -135,7 +151,7 @@ export function Navigation() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavClick(item.href)}
                 className={`px-6 py-3 text-sm font-medium transition-all duration-300 rounded-xl relative group ${
                   activeSection === item.href.substring(1)
                     ? "text-primary"
@@ -230,7 +246,7 @@ export function Navigation() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={() => handleNavClick(item.href)}
                     className={`text-left py-3 px-4 rounded-xl transition-all duration-300 ${
                       activeSection === item.href.substring(1)
                         ? "text-primary bg-primary/10 border border-primary/20"
