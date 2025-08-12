@@ -8,10 +8,36 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/static/", "*.js", "*.css"],
+        disallow: [
+          "/api/",
+          "/admin/",
+          "/_next/",
+          "/static/",
+          "*.js",
+          "*.css",
+          "*.json",
+          "/private/",
+          "/internal/",
+        ],
       },
       {
         userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/", "/admin/", "/private/"],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: ["/api/", "/admin/", "/private/"],
+      },
+      // Allow specific crawlers for better SEO
+      {
+        userAgent: "LinkedInBot",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
+      },
+      {
+        userAgent: "facebookexternalhit",
         allow: "/",
         disallow: ["/api/", "/admin/"],
       },
