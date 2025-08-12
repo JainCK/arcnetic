@@ -3,29 +3,85 @@ module.exports = {
   siteUrl: process.env.SITE_URL || "https://arcnetic.com",
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  exclude: ["/api/*", "/admin/*"],
+  exclude: [
+    "/api/*",
+    "/admin/*",
+    "/_next/*",
+    "/static/*",
+    "/private/*",
+    "/internal/*",
+  ],
   changefreq: "weekly",
-  priority: 1.0,
+  priority: 0.7,
   sitemapSize: 7000,
+  autoLastmod: true,
+  additionalPaths: async (config) => {
+    const result = [];
+
+    // Add specific sections with custom priorities
+    const customPages = [
+      { loc: "/#about", priority: 0.8, changefreq: "monthly" },
+      { loc: "/#services", priority: 0.9, changefreq: "monthly" },
+      { loc: "/#contact", priority: 0.7, changefreq: "monthly" },
+      { loc: "/careers", priority: 0.6, changefreq: "monthly" },
+      { loc: "/pricing", priority: 0.7, changefreq: "monthly" },
+    ];
+
+    customPages.forEach((page) => {
+      result.push({
+        loc: page.loc,
+        changefreq: page.changefreq,
+        priority: page.priority,
+        lastmod: new Date().toISOString(),
+      });
+    });
+
+    return result;
+  },
   robotsTxtOptions: {
     policies: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/static/"],
+        disallow: [
+          "/api/",
+          "/admin/",
+          "/_next/",
+          "/static/",
+          "/private/",
+          "/internal/",
+          "*.js",
+          "*.css",
+          "*.json",
+        ],
       },
       {
         userAgent: "Googlebot",
         allow: "/",
+        disallow: ["/api/", "/admin/", "/private/"],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: ["/api/", "/admin/", "/private/"],
+      },
+      {
+        userAgent: "LinkedInBot",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
+      },
+      {
+        userAgent: "facebookexternalhit",
+        allow: "/",
         disallow: ["/api/", "/admin/"],
       },
     ],
-    additionalSitemaps: ["https://arcnetic.com/sitemap.xml"],
+    additionalSitemaps: [],
   },
   transform: async (config, path) => {
     return {
       loc: path,
-      changefreq: config.changefreq,
+      changefreq: getChangeFreqForPath(path),
       priority: getPriorityForPath(path),
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
       alternateRefs: config.alternateRefs ?? [],
@@ -35,8 +91,17 @@ module.exports = {
 
 function getPriorityForPath(path) {
   if (path === "/") return 1.0;
-  if (path.includes("services")) return 0.9;
-  if (path.includes("about")) return 0.8;
-  if (path.includes("contact")) return 0.7;
-  return 0.6;
+  if (path.includes("services") || path === "/#services") return 0.9;
+  if (path.includes("about") || path === "/#about") return 0.8;
+  if (path.includes("pricing") || path === "/pricing") return 0.7;
+  if (path.includes("contact") || path === "/#contact") return 0.7;
+  if (path.includes("careers") || path === "/careers") return 0.6;
+  return 0.5;
+}
+
+function getChangeFreqForPath(path) {
+  if (path === "/") return "weekly";
+  if (path.includes("services") || path === "/#services") return "monthly";
+  if (path.includes("pricing") || path === "/pricing") return "monthly";
+  return "monthly";
 }
