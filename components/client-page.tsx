@@ -119,16 +119,16 @@ export default function ClientHomePage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mb-12"
             >
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-8 text-muted-foreground leading-relaxed max-w-5xl mx-auto font-space-grotesk">
+              <h2 className="text-2xl md:text-3xl lg:text-3xl font-light mb-8 text-muted-foreground leading-relaxed max-w-5xl mx-auto font-space-grotesk">
                 <span className="bg-primary bg-clip-text text-transparent font-semibold">
-                  Elite Software Solutions for Forward-Thinking Businesses
+                  Driving Business Growth with Custom Software & AI Solutions
                 </span>
               </h2>
               <p className="text-sm md:text-md lg:text-md text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                We build transformative software that drives measurable business
-                results. From AI-powered automation to business-scale
-                applications, we deliver technology that gives you a competitive
-                advantage.
+                As a premier software development partner in Kochi, we engineer
+                transformative custom software that delivers measurable results.
+                From AI-powered automation to enterprise-grade applications, we
+                build technology that secures your competitive advantage.
               </p>
             </motion.div>
             {/* Single CTA Button */}
