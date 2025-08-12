@@ -1,7 +1,7 @@
 {
   "name": "Arcnetic - Elite Software Solutions",
   "short_name": "Arcnetic",
-  "description": "Transform your business with world-class software solutions. Custom applications, AI systems, and digital transformation services.",
+  "description": "Transform your business with world-class software solutions. Custom applications, AI systems, and digital transformation services based in Kochi, Kerala, India.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
@@ -10,6 +10,10 @@
   "scope": "/",
   "lang": "en-US",
   "categories": ["business", "productivity", "technology"],
+  "dir": "ltr",
+  "iarc_rating_id": "",
+  "prefer_related_applications": false,
+  "related_applications": [],
   "shortcuts": [
     {
       "name": "Our Services",

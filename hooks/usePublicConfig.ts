@@ -40,7 +40,7 @@ export function usePublicConfig() {
           },
           contact: {
             email: "aswin.p@arcnetic.com", // Fallback
-            phone: "+91-7558952771", // Fallback
+            phone: "+91-9995007616", // Fallback
           },
           site: {
             publicUrl:
