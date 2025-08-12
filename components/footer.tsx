@@ -3,7 +3,7 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { Linkedin, Twitter, ArrowRight, MapPin } from "lucide-react";
 import { usePublicConfig } from "@/hooks/usePublicConfig";
 import Link from "next/link";
 import Image from "next/image";
@@ -28,11 +28,11 @@ const Footer: FC = () => {
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
               <motion.div
-                className="flex items-center mb-6"
+                className="flex items-center mb-2"
                 whileHover={{ scale: 1.05 }}
               >
                 <Image
-                  src="/images/logo2.png"
+                  src="/images/arcnetic-logo.png"
                   alt="Arcnetic Logo"
                   width={120}
                   height={34}
@@ -42,9 +42,26 @@ const Footer: FC = () => {
                   Arcnetic
                 </h3>
               </motion.div>
-              <p className="text-muted-foreground mb-8 max-w-md leading-relaxed font-space-grotesk">
+              <p className="text-muted-foreground mb-6 max-w-md leading-relaxed font-space-grotesk">
                 Elite software solutions for forward-thinking businesses.
               </p>
+
+              {/* Address Section */}
+              <div className="mb-6">
+                <div className="flex items-center mb-3">
+                  <MapPin className="h-5 w-5 text-primary mr-2" />
+                  <span className="text-muted-foreground text-sm font-medium">
+                    Location
+                  </span>
+                </div>
+                <address className="text-muted-foreground text-sm leading-relaxed not-italic">
+                  Beyond Co-working, VS-08, 90 A, South,
+                  <br />
+                  Canal Rd, Giri Nagar, Kadavanthra,
+                  <br />
+                  Kochi, Kerala 682020, India
+                </address>
+              </div>
               <div className="flex space-x-4">
                 <motion.div
                   whileHover={{ scale: 1.1, y: -2 }}
