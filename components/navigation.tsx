@@ -133,7 +133,7 @@ export function Navigation() {
               whileTap={{ scale: 0.95 }}
             >
               <Image
-                src="/images/logo2.png"
+                src="/images/arcnetic-logo.png"
                 alt="Arcnetic Logo"
                 width={140}
                 height={40}
