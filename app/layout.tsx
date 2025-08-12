@@ -27,32 +27,27 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://arcnetic.com"),
   title: {
-    default: "Arcnetic - Elite Software Solutions | Transform Your Business",
-    template: "%s | Arcnetic - Elite Software Solutions",
+    default:
+      "Custom Software Development in Kochi - Arcnetic | Business & AI Solutions",
+    template: "%s | Arcnetic - Software Solutions",
   },
   description:
-    "Arcnetic delivers world-class software solutions for businesses. Custom applications, AI systems, and digital transformation services that drive exceptional business results.",
+    "Arcnetic is a leading software development company in Kochi, Kerala, specializing in custom business software, AI-powered solutions, and digital transformation. We build scalable enterprise applications that drive growth and efficiency.",
   keywords: [
-    "business software",
-    "digital transformation",
-    "custom software development",
-    "AI solutions",
-    "business automation",
-    "software consultancy",
-    "business applications",
-    "scalable solutions",
-    "technology consulting",
-    "software architecture",
-    "enterprise software",
-    "web applications",
-    "mobile app development",
+    "custom software development Kochi",
+    "enterprise software solutions",
+    "AI development company India",
+    "digital transformation services",
+    "business automation software",
+    "software consultancy Kerala",
+    "scalable web applications",
+    "technology consulting Kochi",
+    "enterprise software developers India",
     "cloud solutions",
+    "SaaS platform development",
     "API development",
-    "database design",
-    "DevOps services",
-    "software consulting",
-    "agile development",
-    "full-stack development",
+    "full-stack development company",
+    "IT services Kochi",
   ].join(", "),
   authors: [{ name: "Arcnetic Team", url: "https://arcnetic.com" }],
   creator: "Arcnetic",
@@ -81,9 +76,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://arcnetic.com",
-    title: "Arcnetic - Elite Software Solutions",
+    title: "Arcnetic: Elite Custom Software & AI Solutions in Kochi",
     description:
-      "Transform your business with world-class software solutions. Custom applications, AI systems, and digital transformation services that drive exceptional business results.",
+      "Partner with Arcnetic to build transformative business software. We deliver scalable applications, AI systems, and digital transformation strategies that produce measurable results.",
     siteName: "Arcnetic",
     images: [
       {
@@ -104,9 +99,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arcnetic - Elite Software Solutions",
+    title: "Arcnetic: Elite Custom Software & AI Solutions in Kochi",
     description:
-      "Transform your business with world-class software solutions and digital transformation services.",
+      "Partner with Arcnetic to build transformative business software. We deliver scalable applications, AI systems, and digital transformation strategies that produce measurable results.",
     creator: "@arcnetic",
     site: "@arcnetic",
     images: [
@@ -145,7 +140,7 @@ export default function RootLayout({
     url: "https://arcnetic.com",
     logo: {
       "@type": "ImageObject",
-      url: "https://arcnetic.com/images/logo1.png",
+      url: "https://arcnetic.com/images/arcnetic-logo.png",
       width: 600,
       height: 60,
     },
@@ -159,14 +154,21 @@ export default function RootLayout({
     },
     address: {
       "@type": "PostalAddress",
-      addressCountry: "IND",
-      addressRegion: "Global",
+      streetAddress:
+        "Beyond Co-working, VS-08, 90 A, South, Canal Rd, Giri Nagar, Kadavanthra",
+      addressLocality: "Kochi",
+      addressRegion: "Kerala",
+      postalCode: "682020",
+      addressCountry: "India",
     },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
       email: "aswin.p@arcnetic.com",
+      telephone: "+91-9995007616",
       url: "https://arcnetic.com/#contact",
+      areaServed: "Worldwide",
+      availableLanguage: "English",
     },
     sameAs: [
       "https://twitter.com/arcnetic",
@@ -221,7 +223,7 @@ export default function RootLayout({
           name="format-detection"
           content="telephone=no, date=no, email=no, address=no"
         />
-        <link rel="icon" href="/images/favicon/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="icon"
           href="/images/favicon/favicon-16x16.png"

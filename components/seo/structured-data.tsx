@@ -109,7 +109,7 @@ export function OrganizationStructuredData() {
     name: serverConfig.business.name,
     legalName: serverConfig.business.legalName,
     url: "https://arcnetic.com",
-    logo: "https://arcnetic.com/logo.png",
+    logo: "https://arcnetic.com/arcnetic-logo.png",
     description:
       "Elite software solutions for forward-thinking businesses. Custom applications, AI systems, and digital transformation services.",
     address: {

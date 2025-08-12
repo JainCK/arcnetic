@@ -18,90 +18,90 @@ import {
 const services = [
   {
     icon: Brain,
-    title: "AI-Powered Solutions",
-    subtitle: "Intelligent Business Automation",
+    title: "AI & Machine Learning Development",
+    subtitle: "Intelligent Solutions for Business Growth",
     description:
-      "Transform your operations with cutting-edge artificial intelligence. From predictive analytics to automated decision-making, we build AI systems that give your business a competitive edge.",
+      "We build custom AI and ML solutions for predictive analytics, NLP, and automation to drive efficiency and give your business a competitive edge.",
     benefits: [
-      "Reduce operational costs by 40%",
-      "Automate complex workflows",
-      "Predictive business insights",
-      "24/7 intelligent monitoring",
+      "AI-driven operational cost reduction",
+      "Automate complex business workflows",
+      "Gain predictive insights for forecasting",
+      "Implement 24/7 intelligent data monitoring",
     ],
     gradient: "from-purple-500/20 to-pink-500/20",
     delay: 0,
   },
   {
     icon: Rocket,
-    title: "Business Applications",
-    subtitle: "Mission-Critical Software",
+    title: "Custom Enterprise Software Development",
+    subtitle: "Scalable & Secure Business Applications",
     description:
-      "Custom business applications built for scale, security, and performance. We create software that grows with your business and handles millions of users seamlessly.",
+      "We build high-performance, secure, and scalable custom enterprise software to streamline operations and support millions of users.",
     benefits: [
-      "99.9% uptime guarantee",
-      "Business-grade security",
-      "Unlimited scalability",
-      "24/7 expert support",
+      "Guaranteed 99.9% application uptime",
+      "Enterprise-grade multi-layer security",
+      "Architecture built for unlimited scalability",
+      "Dedicated 24/7 technical support",
     ],
     gradient: "from-blue-500/20 to-cyan-500/20",
     delay: 0.1,
   },
   {
     icon: TrendingUp,
-    title: "Digital Transformation",
-    subtitle: "Complete Business Evolution",
+    title: "Digital Transformation Services",
+    subtitle: "Modernize Your Legacy Systems & Infrastructure",
     description:
-      "Modernize your entire business infrastructure with our comprehensive digital transformation services. From legacy system migration to cloud-native architectures.",
+      "Modernize your business with our digital transformation services. We migrate legacy systems, re-architect apps for the cloud, and optimize IT infrastructure.",
     benefits: [
-      "Increase efficiency by 60%",
-      "Reduce IT costs significantly",
-      "Future-proof technology",
-      "Seamless integration",
+      "Boost operational efficiency up to 60%",
+      "Achieve significant IT cost reduction",
+      "Adopt future-proof cloud-native technology",
+      "Ensure seamless system and data integration",
     ],
     gradient: "from-green-500/20 to-emerald-500/20",
     delay: 0.2,
   },
   {
     icon: Shield,
-    title: "Secure Cloud Solutions",
-    subtitle: "Enterprise-Grade Infrastructure",
+    title: "Secure Cloud Infrastructure & DevOps",
+    subtitle: "Managed Cloud Solutions for Enterprises",
     description:
-      "Build robust, secure, and scalable cloud infrastructure that protects your data while enabling rapid business growth and global accessibility.",
+      "We design, build, and manage secure, scalable cloud infrastructures on AWS, Azure, and GCP, ensuring data protection and business continuity.",
     benefits: [
-      "Bank-level security",
-      "Global CDN deployment",
-      "Auto-scaling infrastructure",
-      "Disaster recovery",
+      "Multi-layered, bank-grade security protocols",
+      "High-performance global CDN deployment",
+      "Automated scaling for optimal performance & cost",
+      "Comprehensive disaster recovery planning",
     ],
     gradient: "from-orange-500/20 to-red-500/20",
     delay: 0.3,
   },
   {
     icon: Layers,
-    title: "SaaS Platforms",
-    subtitle: "Revenue-Generating Software",
+    title: "SaaS Application Development",
+    subtitle: "From MVP to Scalable SaaS Platforms",
     description:
-      "Launch your own SaaS platform with our end-to-end development services. From MVP to enterprise-scale platforms that generate recurring revenue.",
+      "We build and launch your SaaS platform, from MVP to enterprise-grade, multi-tenant solutions designed for recurring revenue.",
     benefits: [
-      "Multi-tenant architecture",
-      "Subscription management",
-      "Advanced analytics",
-      "Global payment processing",
+      "Secure multi-tenant architecture design",
+      "Integrated subscription billing & management",
+      "In-depth user & business analytics dashboards",
+      "Support for global payment gateways",
     ],
     gradient: "from-indigo-500/20 to-purple-500/20",
     delay: 0.4,
   },
   {
     icon: Zap,
-    title: "API & Integration",
-    subtitle: "Seamless Connectivity",
+    title: "API Development & System Integration",
+    subtitle: "Connecting Your Business-Critical Systems",
     description:
-      "Connect all your business systems with powerful APIs and integrations. Create a unified ecosystem that eliminates data silos and improves efficiency.",
+      "We create unified digital ecosystems with custom, secure, and reliable REST & GraphQL APIs to connect your software, databases, and third-party apps.",
     benefits: [
-      "Real-time data sync",
-      "Third-party integrations",
-      "Custom API development",
-      "Microservices architecture",
+      "Real-time data synchronization across platforms",
+      "Expert third-party service & API integrations",
+      "Custom REST & GraphQL API development",
+      "Scalable microservices-based architecture",
     ],
     gradient: "from-yellow-500/20 to-orange-500/20",
     delay: 0.5,
@@ -150,7 +150,7 @@ export function EnterpriseServices() {
           </motion.div>
 
           <motion.h2
-            className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair"
+            className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -171,10 +171,10 @@ export function EnterpriseServices() {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
-            We deliver transformative software solutions that drive measurable
-            business results. From AI-powered automation to business-scale
-            applications, we build technology that gives you a competitive
-            advantage.
+            Our expertise covers the full spectrum of enterprise technology. We
+            architect and deliver robust software solutions designed to solve
+            complex challenges, enhance efficiency, and create new opportunities
+            for your business.
           </motion.p>
         </motion.div>
 
@@ -197,38 +197,38 @@ export function EnterpriseServices() {
 
                 <CardHeader className="relative z-10 pb-4">
                   <motion.div
-                    className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200"
+                    className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200"
                     whileHover={{ rotate: 2 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <service.icon className="h-8 w-8 text-primary" />
+                    <service.icon className="h-6 w-6 text-primary" />
                   </motion.div>
 
                   <div className="space-y-2">
+                    <CardTitle className="text-lg mb-1 group-hover:text-primary transition-colors duration-300 font-playfair">
+                      {service.title}
+                    </CardTitle>
                     <Badge
                       variant="secondary"
-                      className="text-xs font-space-grotesk"
+                      className="text-xs font-sans font-normal"
                     >
                       {service.subtitle}
                     </Badge>
-                    <CardTitle className="text-2xl mb-2 group-hover:text-primary transition-colors duration-300 font-playfair">
-                      {service.title}
-                    </CardTitle>
                   </div>
                 </CardHeader>
 
-                <CardContent className="relative z-10 space-y-6">
-                  <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                <CardContent className="relative z-10 space-y-4">
+                  <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300 text-sm mb-8">
                     {service.description}
                   </p>
 
-                  <div className="space-y-2">
+                  <div className="space-y-2 mb-4">
                     <h4 className="font-semibold text-sm text-primary">
                       Key Benefits:
                     </h4>
                     <ul className="space-y-1">
                       {service.benefits
-                        .slice(0, 2)
+                        .slice(0, 4)
                         .map((benefit, benefitIndex) => (
                           <li
                             key={benefitIndex}

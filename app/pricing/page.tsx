@@ -12,7 +12,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"; // New Import for FAQ
+} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import {
   Check,
@@ -22,148 +22,158 @@ import {
   Zap,
   Users,
   Scaling,
-} from "lucide-react"; // New Icons
+} from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/footer";
 
+// SEO Optimized Metadata
 export const metadata: Metadata = {
-  title: "Pricing - Elite Software Solutions | Arcnetic",
+  title: "Affordable Software Development Pricing in India | Arcnetic",
   description:
-    "Transparent pricing for our elite software development services in India. Custom applications, AI solutions, and digital transformation.",
+    "Get transparent pricing for custom software, AI/ML solutions, and enterprise applications in India. Explore our flexible packages for startups and businesses.",
   openGraph: {
-    title: "Pricing - Elite Software Solutions | Arcnetic",
+    title: "Affordable Software Development Pricing in India | Arcnetic",
     description:
-      "Transparent pricing for our elite software development services in India. Custom applications, AI solutions, and digital transformation.",
+      "Get transparent pricing for custom software, AI/ML solutions, and enterprise applications in India. Explore our flexible packages for startups and businesses.",
     type: "website",
+    url: "https://www.arcnetic.com/pricing", // Assuming this is the URL
   },
+  keywords: [
+    "software development pricing india",
+    "custom software cost",
+    "enterprise software pricing",
+    "ai development cost",
+    "saas development pricing",
+    "arcnetic pricing",
+  ],
 };
 
-// --- CURRENCY UPDATED ---
 const pricingTiers = [
   {
     name: "Startup Package",
     price: "Starting at ₹25,000*",
     description:
-      "Perfect for startups and small businesses looking to establish their digital presence",
+      "Ideal for new businesses and startups needing a professional web application to launch their MVP.",
     features: [
-      "Custom Web Application",
-      "Responsive Design",
+      "Custom Web Application Development",
+      "Mobile-Responsive Design",
       "Basic Database Integration",
-      "User Authentication",
-      "API Development",
-      "3 Months Support",
-      "Documentation",
+      "Secure User Authentication",
+      "Custom API Development",
+      "3 Months of Technical Support",
+      "Full Project Documentation",
     ],
     popular: false,
-    ctaText: "Get Quote",
+    ctaText: "Get a Quote",
   },
   {
     name: "Business Solution",
     price: "Starting at ₹50,000*",
     description:
-      "Comprehensive business applications with advanced features and integrations",
+      "A comprehensive software solution for growing businesses requiring advanced features and integrations.",
     features: [
-      "Full-Stack Development",
-      "Advanced Database Design",
-      "Third-party Integrations",
-      "Admin Dashboard",
-      "Analytics & Reporting",
-      "6 Months Support",
-      "Performance Optimization",
-      "Security Implementation",
+      "Full-Stack Application Development",
+      "Advanced Database Architecture",
+      "Third-Party API Integrations",
+      "Custom Admin Dashboard",
+      "Analytics & Reporting Suite",
+      "6 Months of Priority Support",
+      "Application Performance Optimization",
+      "Enhanced Security Implementation",
     ],
     popular: true,
-    ctaText: "Get Quote",
+    ctaText: "Get a Quote",
   },
   {
     name: "Enterprise Solution",
     price: "Custom Quote",
     description:
-      "Large-scale enterprise applications with AI integration and custom requirements",
+      "Bespoke, large-scale applications with AI/ML integration and dedicated infrastructure for enterprises.",
     features: [
-      "Enterprise Architecture",
-      "AI/ML Integration",
-      "Microservices Design",
-      "Cloud Infrastructure",
-      "Advanced Security",
-      "12 Months Support",
-      "DevOps Setup",
-      "Performance Monitoring",
-      "Custom Integrations",
-      "Dedicated Team",
+      "Scalable Enterprise Architecture",
+      "Custom AI/ML Model Integration",
+      "Microservices-Based Design",
+      "Managed Cloud Infrastructure (AWS/GCP)",
+      "Advanced Security & Compliance",
+      "12 Months of Dedicated Support",
+      "Full DevOps & CI/CD Setup",
+      "Real-time Performance Monitoring",
+      "Unlimited Custom Integrations",
+      "Dedicated Development Team",
     ],
     popular: false,
-    ctaText: "Schedule Consultation",
+    ctaText: "Schedule a Consultation",
   },
 ];
 
-// --- CURRENCY UPDATED ---
 const additionalServices = [
   {
-    name: "AI Implementation",
+    name: "AI & ML Implementation",
     price: "Quote Based",
-    description: "Custom AI solutions, machine learning models, and automation",
+    description:
+      "Develop custom AI solutions, machine learning models, and process automation.",
   },
   {
-    name: "Digital Transformation",
+    name: "Digital Transformation Strategy",
     price: "Quote Based",
-    description: "Complete business digitization and process automation",
+    description:
+      "End-to-end business digitization, legacy system modernization, and process automation.",
   },
   {
-    name: "Maintenance & Support",
+    name: "Ongoing Maintenance & Support",
     price: "Starting at ₹10,000*/month",
-    description: "Ongoing maintenance, updates, and technical support",
+    description:
+      "Proactive maintenance, security updates, and dedicated technical support plans.",
   },
   {
-    name: "Cloud Migration",
+    name: "Cloud Migration Services",
     price: "Starting at ₹50,000*",
-    description: "Migration to cloud platforms with optimization",
+    description:
+      "Seamless migration of your applications and data to cloud platforms like AWS or GCP.",
   },
 ];
 
-// --- NEW SECTION DATA: Why Choose Us ---
 const whyChooseUsData = [
   {
     icon: <Zap className="h-8 w-8 text-primary mb-4" />,
-    title: "Agile & Fast Delivery",
+    title: "Agile & On-Time Delivery",
     description:
-      "We employ agile methodologies to ensure your project is delivered on time without compromising on quality.",
+      "Our agile development process ensures your software project is delivered on schedule without sacrificing quality.",
   },
   {
     icon: <Users className="h-8 w-8 text-primary mb-4" />,
     title: "Expert In-House Team",
     description:
-      "Our team consists of dedicated, in-house experts in design, development, and project management.",
+      "Our team consists of dedicated, in-house software experts in design, development, and project management.",
   },
   {
     icon: <Scaling className="h-8 w-8 text-primary mb-4" />,
-    title: "Scalable Solutions",
+    title: "Scalable & Future-Proof Solutions",
     description:
-      "We build future-proof applications that can scale seamlessly as your business grows.",
+      "We build robust applications that can scale seamlessly as your business operations grow.",
   },
 ];
 
-// --- NEW SECTION DATA: FAQ ---
 const faqData = [
   {
-    question: "What does the '*' on the pricing mean?",
+    question: "What does the '*' on the software pricing mean?",
     answer:
-      "The asterisk indicates that the prices are estimates. The final cost can vary depending on the project's complexity, scope, and specific technological requirements. We provide a detailed, fixed-price quote after our initial consultation.",
+      "The asterisk indicates that these are starting prices. The final cost of a software project depends on its complexity, feature scope, and specific technology stack. We provide a detailed, fixed-price quote after an in-depth project discovery call.",
   },
   {
-    question: "What is included in the support period?",
+    question: "What is included in the post-launch support period?",
     answer:
-      "Our support period includes bug fixes, security patches, and technical assistance to ensure your application runs smoothly post-launch. It does not include new feature development, which would be scoped separately.",
+      "Our support period covers bug fixes, security patches, and technical assistance to ensure your application runs smoothly. It does not include the development of new features, which would be scoped and quoted as a separate project.",
   },
   {
-    question: "Can we provide our own UI/UX designs?",
+    question: "Can we use our own UI/UX designs for the project?",
     answer:
-      "Absolutely! We are happy to work with your existing design team and Figma files. We can also provide our own expert UI/UX design services if needed.",
+      "Absolutely. Our development team is happy to collaborate with your design team and work with your existing Figma files. We can also offer our expert UI/UX design services if you need them.",
   },
   {
-    question: "What is the typical project timeline?",
+    question: "What is the typical timeline for a software project?",
     answer:
-      "A Startup Package typically takes 2-4 months, a Business Solution 4-8 months, and Enterprise Solutions vary greatly. We will provide a detailed project timeline and roadmap after the discovery phase.",
+      "A Startup Package project typically takes 2-4 months, a Business Solution 4-8 months, and Enterprise Solutions timelines vary based on complexity. We provide a detailed project timeline and roadmap after the initial discovery phase.",
   },
 ];
 
@@ -171,74 +181,76 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* Header */}
-      <div className="container mx-auto px-4 pt-8">
+      <header className="container mx-auto px-4 pt-8">
         <Link href="/">
           <Button variant="ghost" className="mb-8">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
         </Link>
-      </div>
+      </header>
 
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text font-playfair">
-            Transparent Pricing
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-space-grotesk">
-            Choose the perfect solution for your business needs. All packages
-            include premium development, testing, deployment, and comprehensive
-            documentation.
-          </p>
-        </div>
+      <main className="container mx-auto px-4">
+        {/* Hero Section */}
+        <section className="py-16">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text font-playfair">
+              Software Development Pricing
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-space-grotesk">
+              We offer clear, upfront pricing for our software development
+              services in India. Choose the perfect plan for your business, from
+              startups to large enterprises.
+            </p>
+          </div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {pricingTiers.map((tier) => (
-            <Card
-              key={tier.name}
-              className={`flex flex-col ${tier.popular ? "border-2 border-primary shadow-lg scale-105" : "border-border"}`}
-            >
-              {tier.popular && (
-                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
-                  Most Popular
-                </Badge>
-              )}
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl font-playfair">
-                  {tier.name}
-                </CardTitle>
-                <div className="text-3xl font-bold text-primary mb-2">
-                  {tier.price}
-                </div>
-                <CardDescription className="font-space-grotesk">
-                  {tier.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col flex-grow">
-                <ul className="space-y-3 mb-8 flex-grow">
-                  {tier.features.map((feature) => (
-                    <li key={feature} className="flex items-center">
-                      <Check className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
-                      <span className="font-space-grotesk">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  className="w-full mt-auto"
-                  variant={tier.popular ? "default" : "outline"}
-                  asChild
-                >
-                  <Link href="#contact">{tier.ctaText}</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            {pricingTiers.map((tier) => (
+              <Card
+                key={tier.name}
+                className={`flex flex-col ${tier.popular ? "border-2 border-primary shadow-lg scale-105" : "border-border"}`}
+              >
+                {tier.popular && (
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
+                    Most Popular
+                  </Badge>
+                )}
+                <CardHeader className="text-center">
+                  <h2 className="text-2xl font-playfair font-bold">
+                    {tier.name}
+                  </h2>
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    {tier.price}
+                  </div>
+                  <CardDescription className="font-space-grotesk">
+                    {tier.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col flex-grow">
+                  <ul className="space-y-3 mb-8 flex-grow">
+                    {tier.features.map((feature) => (
+                      <li key={feature} className="flex items-center">
+                        <Check className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+                        <span className="font-space-grotesk">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className="w-full mt-auto"
+                    variant={tier.popular ? "default" : "outline"}
+                    asChild
+                  >
+                    <Link href="#contact">{tier.ctaText}</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-        {/* --- NEW SECTION: Why Choose Us --- */}
-        <div className="mb-20">
+        {/* Why Choose Us Section */}
+        <section className="mb-20">
           <h2 className="text-4xl font-bold text-center mb-12 font-playfair">
             Why Partner With Arcnetic?
           </h2>
@@ -258,20 +270,20 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Additional Services */}
-        <div className="mb-20">
+        {/* Additional Services Section */}
+        <section className="mb-20">
           <h2 className="text-4xl font-bold text-center mb-12 font-playfair">
-            Additional Services
+            Custom Software & Add-on Services
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {additionalServices.map((service) => (
               <Card key={service.name} className="border-border">
                 <CardHeader>
-                  <CardTitle className="text-xl font-playfair">
+                  <h3 className="text-xl font-playfair font-bold">
                     {service.name}
-                  </CardTitle>
+                  </h3>
                   <div className="text-2xl font-bold text-primary">
                     {service.price}
                   </div>
@@ -284,12 +296,12 @@ export default function PricingPage() {
               </Card>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* --- NEW SECTION: FAQ --- */}
-        <div className="mb-20 max-w-4xl mx-auto">
+        {/* FAQ Section */}
+        <section className="mb-20 max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 font-playfair">
-            Frequently Asked Questions
+            Frequently Asked Questions (FAQ)
           </h2>
           <Accordion type="single" collapsible className="w-full">
             {faqData.map((faq, index) => (
@@ -303,18 +315,18 @@ export default function PricingPage() {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </section>
 
         {/* Contact Section */}
-        <div
+        <section
           id="contact"
           className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-3xl p-12"
         >
           <h2 className="text-4xl font-bold mb-6 font-playfair">
-            Ready to Get Started?
+            Ready to Build Your Software?
           </h2>
           <p className="text-xl text-muted-foreground mb-8 font-space-grotesk">
-            Contact us for a detailed quote tailored to your specific
+            Contact our experts for a detailed quote tailored to your project
             requirements.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -331,7 +343,7 @@ export default function PricingPage() {
               </a>
             </Button>
           </div>
-        </div>
+        </section>
 
         {/* Disclaimer */}
         <div className="text-center mt-12 text-sm text-muted-foreground font-space-grotesk">
@@ -343,7 +355,7 @@ export default function PricingPage() {
             deployment, and documentation.
           </p>
         </div>
-      </div>
+      </main>
       <Footer />
     </div>
   );

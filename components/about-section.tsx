@@ -71,7 +71,7 @@ export function AboutSection() {
           transition={containerVariants.transition}
           className="max-w-6xl mx-auto"
         >
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <motion.h2
               className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent font-playfair"
               initial={titleVariants.initial}
@@ -103,11 +103,11 @@ export function AboutSection() {
                   Our Mission
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed font-space-grotesk">
-                  We partner with visionary businesses to build software that
-                  doesn't just solve today's challenges—it creates tomorrow's
-                  opportunities. Our mission is to deliver transformative
-                  technology solutions that drive measurable business growth and
-                  competitive advantage.
+                  Our mission is to forge long-term partnerships with visionary
+                  businesses. Through expert custom software development, we
+                  build solutions that not only solve today’s challenges but
+                  also unlock tomorrow's opportunities for measurable growth and
+                  a distinct competitive advantage.
                 </p>
               </div>
 
@@ -116,10 +116,11 @@ export function AboutSection() {
                   Our Approach
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed font-space-grotesk">
-                  Every solution we build is architected for business scale,
-                  security, and performance. We combine cutting-edge technology
-                  with proven business strategy to deliver software that
-                  transforms operations and accelerates growth.
+                  We architect every solution for enterprise-level scale,
+                  security, and performance. Our approach fuses cutting-edge
+                  technology with proven business strategy, delivering robust
+                  software that optimizes operations and accelerates your path
+                  to market leadership.
                 </p>
               </div>
 
@@ -161,8 +162,8 @@ export function AboutSection() {
               <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 p-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
                 <Image
-                  src="/images/office.jpg"
-                  alt="Arcnetic enterprise software development team"
+                  src="/images/arcnetic-office.jpg"
+                  alt="The Arcnetic enterprise software development team in Kochi collaborating on a project."
                   className="object-cover rounded-2xl"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

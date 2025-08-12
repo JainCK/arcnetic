@@ -7,39 +7,39 @@ import { Shield, Award, Users, Zap, Globe, TrendingUp } from "lucide-react";
 const indicators = [
   {
     icon: Shield,
-    title: "Robust Security",
+    title: "Security by Design",
     description:
-      "Implementing cutting-edge security protocols to safeguard your vital business data from day one.",
+      "Security isn't an afterthought. We integrate industry-leading security protocols into every stage of the development lifecycle to protect your data, users, and infrastructure.",
   },
   {
     icon: Award,
-    title: "Quality Assurance",
+    title: "Commitment to Quality",
     description:
-      "Our commitment to excellence ensures every solution meets the highest industry standards.",
+      "Our rigorous Quality Assurance (QA) and testing processes ensure every solution we deliver is reliable, bug-free, and meets the highest standards of performance.",
   },
   {
     icon: Users,
-    title: "Core Expertise",
+    title: "Expert-Led Teams",
     description:
-      "Led by senior engineers and strategists with deep experience in business software.",
+      "Your project is led by senior software engineers, cloud architects, and AI specialists with years of proven experience building successful enterprise-grade systems.",
   },
   {
     icon: Zap,
-    title: "Agile Delivery",
+    title: "Transparent Agile Process",
     description:
-      "Streamlined agile workflows for efficient development and predictable project progress.",
+      "We employ an agile development methodology that ensures transparency, flexibility, and predictable delivery. You get regular updates and a final product that truly meets your goals.",
   },
   {
     icon: Globe,
-    title: "Scalable Architecture",
+    title: "Built for Future Growth",
     description:
-      "Building solutions designed to perform flawlessly from local markets to global demands.",
+      "We architect software with scalability at its core. Our solutions are designed to handle increasing user loads and data volumes, ensuring they grow seamlessly with your business.",
   },
   {
     icon: TrendingUp,
-    title: "Value Driven",
+    title: "Focused on Business ROI",
     description:
-      "Focused on delivering solutions that directly contribute to your business growth and success.",
+      "Our ultimate goal is to deliver tangible business value. We create technology solutions that drive revenue, increase efficiency, and provide a clear return on your investment.",
   },
 ];
 
@@ -63,8 +63,9 @@ export function TrustIndicators() {
             Why Leading Businesses Choose Arcnetic
           </h3>
           <p className="text-muted-foreground max-w-2xl mx-auto font-space-grotesk">
-            We deliver business-grade solutions with the reliability and
-            expertise your company demands.
+            We deliver enterprise-grade software solutions engineered with the
+            reliability, security, and deep technical expertise your business
+            can depend on.
           </p>
         </motion.div>
 
