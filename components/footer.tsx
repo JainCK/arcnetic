@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter, ArrowRight, MapPin } from "lucide-react";
 import { usePublicConfig } from "@/hooks/usePublicConfig";
+import { FEATURE_FLAGS } from "@/lib/feature-flags";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -137,14 +138,16 @@ const Footer: FC = () => {
                 >
                   Contact
                 </motion.a>
-                <motion.div className="mt-6">
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/pricing">
-                      View Pricing
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </motion.div>
+                {FEATURE_FLAGS.PRICING_ENABLED && (
+                  <motion.div className="mt-6">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href="/pricing">
+                        View Pricing
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </motion.div>
+                )}
               </div>
             </div>
           </div>

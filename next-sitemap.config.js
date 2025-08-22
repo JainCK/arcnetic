@@ -24,7 +24,7 @@ module.exports = {
       { loc: "/#services", priority: 0.9, changefreq: "monthly" },
       { loc: "/#contact", priority: 0.7, changefreq: "monthly" },
       { loc: "/careers", priority: 0.6, changefreq: "monthly" },
-      { loc: "/pricing", priority: 0.7, changefreq: "monthly" },
+      // { loc: "/pricing", priority: 0.7, changefreq: "monthly" }, // Temporarily disabled
     ];
 
     customPages.forEach((page) => {
@@ -93,7 +93,7 @@ function getPriorityForPath(path) {
   if (path === "/") return 1.0;
   if (path.includes("services") || path === "/#services") return 0.9;
   if (path.includes("about") || path === "/#about") return 0.8;
-  if (path.includes("pricing") || path === "/pricing") return 0.7;
+  // if (path.includes("pricing") || path === "/pricing") return 0.7; // Temporarily disabled
   if (path.includes("contact") || path === "/#contact") return 0.7;
   if (path.includes("careers") || path === "/careers") return 0.6;
   return 0.5;
@@ -102,6 +102,6 @@ function getPriorityForPath(path) {
 function getChangeFreqForPath(path) {
   if (path === "/") return "weekly";
   if (path.includes("services") || path === "/#services") return "monthly";
-  if (path.includes("pricing") || path === "/pricing") return "monthly";
+  // if (path.includes("pricing") || path === "/pricing") return "monthly"; // Temporarily disabled
   return "monthly";
 }

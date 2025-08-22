@@ -35,11 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
+    // Temporarily disabled pricing page
+    // {
+    //   url: `${baseUrl}/pricing`,
+    //   lastModified: currentDate,
+    //   changeFrequency: "monthly",
+    //   priority: 0.7,
+    // },
   ];
 }

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { FEATURE_FLAGS } from "@/lib/feature-flags";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,7 +13,7 @@ const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
-  { name: "Pricing", href: "/pricing" },
+  ...(FEATURE_FLAGS.PRICING_ENABLED ? [{ name: "Pricing", href: "/pricing" }] : []),
   { name: "Contact", href: "#contact" },
 ];
 
