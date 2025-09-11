@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  // Fix framer-motion ESM issues
+  transpilePackages: ["framer-motion"],
+
   // SEO and Performance Optimizations
   trailingSlash: false,
   compress: true,
