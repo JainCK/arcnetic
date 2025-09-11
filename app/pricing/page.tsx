@@ -24,7 +24,7 @@ import {
   Scaling,
 } from "lucide-react";
 import Link from "next/link";
-import Footer from "@/components/footer";
+import Footer from "@/components/common/footer";
 
 // SEO Optimized Metadata
 export const metadata: Metadata = {
