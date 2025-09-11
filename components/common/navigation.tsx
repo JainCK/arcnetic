@@ -105,7 +105,9 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-2">
-            <NavItem onClick={() => handleScrollTo("#home")}>Home</NavItem>
+            <NavItem href="/" onClick={() => handleScrollTo("#home")}>
+              Home
+            </NavItem>
 
             <HoverNavItem title="About">
               <div className="p-2 w-64">
