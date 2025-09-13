@@ -79,7 +79,7 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="flex justify-center items-center mb-20"
+          className="flex justify-center items-center mb-10"
           initial={{ opacity: 0, y: 30 }}
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -87,7 +87,7 @@ export function HeroSection() {
           <Button
             size="lg"
             onClick={scrollToContact}
-            className="text-lg px-10 py-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-2xl hover:shadow-primary/40 rounded-2xl font-space-grotesk font-semibold"
+            className="text-lg px-15 py-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-2xl hover:shadow-primary/40 rounded-2xl font-space-grotesk font-semibold"
           >
             Transform Your Business
             <ArrowRight className="ml-3 h-6 w-6" />

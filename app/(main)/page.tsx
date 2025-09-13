@@ -5,6 +5,8 @@ import { OrganizationStructuredData } from "@/components/seo/structured-data";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSummary } from "@/components/sections/AboutSummary";
 import { ServicesSummary } from "@/components/sections/ServicesSummary";
+import { StrategySummary } from "@/components/sections/strategy-summary";
+import { FaqPreview } from "@/components/sections/FaqPreview";
 import { ContactSummary } from "@/components/sections/ContactSummary";
 import { TrustIndicators } from "@/components/sections/trust-indicator";
 import { SectionDivider } from "@/components/section-divider";
@@ -65,7 +67,11 @@ export default function HomePage() {
         <SectionDivider variant="geometric" />
         <AboutSummary />
         <ServicesSummary />
-        <SectionDivider variant="dots" />
+        <SectionDivider variant="geometric" />
+        <StrategySummary />
+        <SectionDivider variant="geometric" />
+        <FaqPreview />
+        <SectionDivider variant="waves" />
         <ContactSummary />
       </main>
     </>
