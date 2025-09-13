@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import ContactForm from "@/components/forms/contact-form";
+import { SimpleContactForm } from "@/components/forms/simple-contact-form";
 import { MapPin, Phone, Mail, Clock, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -42,7 +42,7 @@ export default function ContactPage() {
 
       {/* Contact Form */}
       <section className="pb-16 px-4">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <Card className="shadow-lg border bg-card">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-card-foreground">
@@ -54,7 +54,7 @@ export default function ContactPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ContactForm />
+              <SimpleContactForm />
             </CardContent>
           </Card>
         </div>
@@ -175,7 +175,7 @@ export default function ContactPage() {
             <CardContent>
               <div className="aspect-video rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.9064734086!2d77.49085452148635!3d12.954069466482117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1652345678901!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4998.9443487481985!2d76.29866968062858!3d9.962951712250177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08733b6ee513b3%3A0x50318f647a0c9b6d!2sArcnetic!5e0!3m2!1sen!2sin!4v1757759832372!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -186,7 +186,7 @@ export default function ContactPage() {
                 />
               </div>
               <p className="text-sm text-muted-foreground mt-3 text-center">
-                Electronic City, Bangalore - Our technology hub in India
+                Kochi, Kerala - Our technology hub in India
               </p>
             </CardContent>
           </Card>
