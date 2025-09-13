@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun, ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { QuoteFormPopup } from "@/components/forms/quote-form-popup";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -54,6 +55,7 @@ const serviceCategories = [
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -154,7 +156,9 @@ export function Navigation() {
                   <Moon className="h-5 w-5" />
                 ))}
             </Button>
-            <Button>Get a Quote</Button>
+            <Button onClick={() => setIsQuoteFormOpen(true)}>
+              Get a Quote
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -216,7 +220,15 @@ export function Navigation() {
                 className="w-full text-left p-3 font-semibold"
               />
               <div className="border-t border-border mt-4 pt-4 flex justify-between items-center">
-                <Button className="flex-1">Get a Quote</Button>
+                <Button
+                  className="flex-1"
+                  onClick={() => {
+                    setIsQuoteFormOpen(true);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Get a Quote
+                </Button>
                 <Button
                   variant="ghost"
                   size="icon"
@@ -235,6 +247,12 @@ export function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Quote Form Popup */}
+      <QuoteFormPopup
+        isOpen={isQuoteFormOpen}
+        onClose={() => setIsQuoteFormOpen(false)}
+      />
     </header>
   );
 }
