@@ -1,44 +1,49 @@
 import type { Metadata } from "next";
+import { StrategyHeroSection } from "@/components/strategy/strategy-hero-section";
+import { StrategyApproachSection } from "@/components/strategy/strategy-approach-section";
+import { StrategyCaseStudiesSection } from "@/components/strategy/strategy-case-studies-section";
+import { SectionDivider } from "@/components/section-divider";
 
 export const metadata: Metadata = {
-  title: "Our Strategies | Arcnetic - Technology Excellence Framework",
+  title:
+    "Strategic Innovation | Arcnetic - Transforming Business Through Technology",
   description:
-    "Discover Arcnetic's proven strategies for delivering exceptional software solutions, digital transformation, and technology innovation for businesses worldwide.",
+    "Discover Arcnetic's proven strategic methodologies for delivering exceptional digital solutions. Our comprehensive approach transforms business vision into measurable results.",
   keywords: [
-    "strategies",
-    "technology",
+    "strategic innovation",
+    "business strategy",
     "digital transformation",
-    "software development",
-    "innovation",
-    "Arcnetic",
+    "technology strategy",
+    "strategic planning",
+    "innovation methodology",
+    "business transformation",
+    "strategic consulting",
+    "technology roadmap",
+    "strategic excellence",
   ],
+  openGraph: {
+    title: "Strategic Innovation That Transforms - Arcnetic",
+    description:
+      "Experience our proven 5-phase strategic process that transforms vision into measurable results through data-driven insights and innovative solutions.",
+    type: "website",
+    url: "/strategies",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Strategic Innovation - Arcnetic",
+    description:
+      "Discover how our strategic approach creates sustainable competitive advantages through technology innovation.",
+  },
 };
 
 export default function StrategiesPage() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent mb-6">
-            Technology Excellence Strategies
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Discover the proven methodologies and strategic approaches that
-            enable us to deliver exceptional software solutions and drive
-            digital transformation for businesses worldwide.
-          </p>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="pb-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-muted-foreground text-center">
-            Our comprehensive strategies coming soon...
-          </p>
-        </div>
-      </section>
-    </div>
+    <main className="min-h-screen bg-background text-foreground p-20">
+      <StrategyHeroSection />
+      <SectionDivider variant="geometric" />
+      <StrategyApproachSection />
+      <SectionDivider variant="geometric" />
+      <StrategyCaseStudiesSection />
+    </main>
   );
 }
