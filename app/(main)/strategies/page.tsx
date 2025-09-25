@@ -38,12 +38,12 @@ export const metadata: Metadata = {
 
 export default function StrategiesPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground p-20">
+    <main className="min-h-screen bg-background text-foreground p-5">
       <StrategyHeroSection />
       <SectionDivider variant="geometric" />
       <StrategyApproachSection />
-      <SectionDivider variant="geometric" />
-      <StrategyCaseStudiesSection />
+      {/* <SectionDivider variant="geometric" />
+      <StrategyCaseStudiesSection /> */}
     </main>
   );
 }

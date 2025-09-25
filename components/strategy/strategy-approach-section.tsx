@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion"; // Added motion and useInView imports
 import {
   Search,
   Lightbulb,
@@ -9,10 +9,11 @@ import {
   BarChart3,
   CheckCircle,
   ArrowRight,
+  ArrowLeft,
   Brain,
   Target,
   Rocket,
-} from "lucide-react";
+} from "lucide-react"; // Added all missing lucide-react imports
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -20,6 +21,16 @@ export function StrategyApproachSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
   const [activePhase, setActivePhase] = useState(0);
+
+  const nextPhase = () => {
+    setActivePhase((prev) => (prev + 1) % strategyPhases.length);
+  };
+
+  const prevPhase = () => {
+    setActivePhase(
+      (prev) => (prev - 1 + strategyPhases.length) % strategyPhases.length
+    );
+  };
 
   const strategicPillars = [
     {
@@ -115,7 +126,7 @@ export function StrategyApproachSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-muted/30 relative">
+    <section id="strategy-approach" ref={ref} className="py-20  relative">
       <div className="container mx-auto px-4 relative z-10">
         {/* Strategic Pillars */}
         <motion.div
@@ -177,98 +188,239 @@ export function StrategyApproachSection() {
         </motion.div>
 
         {/* Interactive Process Timeline */}
-        <div className="max-w-6xl mx-auto">
-          {/* Phase Navigation */}
-          <div className="flex justify-center mb-12 overflow-x-auto">
-            <div className="flex gap-2 bg-background/80 backdrop-blur-sm rounded-2xl p-2 border border-border/50">
-              {strategyPhases.map((phase, index) => (
-                <button
-                  key={phase.phase}
-                  onClick={() => setActivePhase(index)}
-                  className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-300 whitespace-nowrap ${
-                    activePhase === index
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  }`}
-                >
-                  {React.createElement(phase.icon, { className: "h-4 w-4" })}
-                  <span className="font-medium">Phase {phase.phase}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Active Phase Details */}
-          <motion.div
-            key={activePhase}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="grid md:grid-cols-2 gap-8 items-center"
-          >
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                  {React.createElement(strategyPhases[activePhase].icon, {
-                    className: "h-6 w-6 text-primary",
-                  })}
-                </div>
-                <div>
-                  <div className="text-sm text-primary font-medium">
-                    Phase {strategyPhases[activePhase].phase}
-                  </div>
-                  <h4 className="text-2xl font-bold text-foreground font-playfair">
-                    {strategyPhases[activePhase].title}
-                  </h4>
-                </div>
-              </div>
-
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                {strategyPhases[activePhase].description}
-              </p>
-
-              <div className="space-y-3 mb-6">
-                {strategyPhases[activePhase].details.map((detail, index) => (
-                  <motion.div
-                    key={detail}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">{detail}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span className="font-medium">Duration:</span>
-                <span>{strategyPhases[activePhase].duration}</span>
-              </div>
-            </div>
-
-            <div className="relative">
-              <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
-                <CardContent className="p-8">
-                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl flex items-center justify-center">
+        <div className="max-w-7xl mx-auto relative">
+          {/* Mobile Layout */}
+          <div className="md:hidden">
+            {/* Mobile Phase Navigation */}
+            <div className="mb-8">
+              <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
                     {React.createElement(strategyPhases[activePhase].icon, {
-                      className: "h-16 w-16 text-primary/70",
+                      className: "h-5 w-5 text-primary",
+                    })}
+                    <div>
+                      <div className="font-medium text-sm">
+                        Phase {strategyPhases[activePhase].phase}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {strategyPhases[activePhase].title}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={prevPhase}
+                      className="w-8 h-8 p-0"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={nextPhase}
+                      className="w-8 h-8 p-0"
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                {/* Progress indicator */}
+                <div className="mt-3 flex gap-1">
+                  {strategyPhases.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`h-1 flex-1 rounded-full transition-all duration-300 ${
+                        index === activePhase ? "bg-primary" : "bg-border"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Phase Details */}
+            <motion.div
+              key={activePhase}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="grid gap-6"
+            >
+              {/* Phase Content */}
+              <div>
+                <div className="flex items-start gap-3 mb-6">
+                  <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    {React.createElement(strategyPhases[activePhase].icon, {
+                      className: "h-5 w-5 text-primary",
                     })}
                   </div>
-                  <div className="mt-6 text-center">
-                    <div className="text-lg font-bold text-foreground mb-2">
-                      Interactive Process Visualization
+                  <div className="flex-1">
+                    <div className="text-sm text-primary font-medium mb-1">
+                      Phase {strategyPhases[activePhase].phase}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      Phase {strategyPhases[activePhase].phase} of{" "}
-                      {strategyPhases.length}
+                    <h4 className="text-xl font-bold text-foreground font-playfair leading-tight">
+                      {strategyPhases[activePhase].title}
+                    </h4>
+                  </div>
+                </div>
+
+                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                  {strategyPhases[activePhase].description}
+                </p>
+
+                <div className="space-y-3 mb-6">
+                  {strategyPhases[activePhase].details.map((detail, index) => (
+                    <motion.div
+                      key={detail}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-sm text-foreground leading-relaxed">
+                        {detail}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span className="font-medium">Duration:</span>
+                  <span>{strategyPhases[activePhase].duration}</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Desktop Layout with Content Between Arrows */}
+          <div className="hidden md:flex items-start gap-6">
+            {/* Left Arrow */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={prevPhase}
+              className="w-12 h-12 rounded-xl hover:bg-primary/10 bg-background/80 backdrop-blur-sm flex-shrink-0 mt-60"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+
+            {/* Center Content Area */}
+            <div className="flex-1 max-w-6xl ">
+              {/* Phase Navigation Tabs */}
+              <div className="flex justify-center mb-16">
+                <div className="flex gap-2 bg-background/80 backdrop-blur-sm rounded-2xl p-2">
+                  {strategyPhases.map((phase, index) => (
+                    <button
+                      key={phase.phase}
+                      onClick={() => setActivePhase(index)}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 whitespace-nowrap text-sm ${
+                        activePhase === index
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                    >
+                      {React.createElement(phase.icon, {
+                        className: "h-4 w-4",
+                      })}
+                      <span className="font-medium">Phase {phase.phase}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Active Phase Content */}
+              <motion.div
+                key={activePhase}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-2 gap-2 items-start"
+              >
+                {/* Phase Details */}
+                <div className="ml-25">
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      {React.createElement(strategyPhases[activePhase].icon, {
+                        className: "h-6 w-6 text-primary",
+                      })}
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-xs text-primary font-medium mb-1">
+                        Phase {strategyPhases[activePhase].phase}
+                      </div>
+                      <h4 className="text-xl font-bold text-foreground font-playfair leading-tight">
+                        {strategyPhases[activePhase].title}
+                      </h4>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+
+                  <p className="text-md text-muted-foreground mb-4 leading-relaxed">
+                    {strategyPhases[activePhase].description}
+                  </p>
+
+                  <div className="space-y-2 mb-4">
+                    {strategyPhases[activePhase].details.map(
+                      (detail, index) => (
+                        <motion.div
+                          key={detail}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: index * 0.1 }}
+                          className="flex items-start gap-2"
+                        >
+                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground leading-relaxed">
+                            {detail}
+                          </span>
+                        </motion.div>
+                      )
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="font-medium">Duration:</span>
+                    <span>{strategyPhases[activePhase].duration}</span>
+                  </div>
+                </div>
+
+                {/* Phase Visualization - Smaller for Desktop */}
+                <div>
+                  <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 max-w-lg">
+                    <CardContent className="p-12">
+                      <div className="w-25 h-25 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center mx-auto">
+                        {React.createElement(strategyPhases[activePhase].icon, {
+                          className: "h-10 w-10 text-primary/70",
+                        })}
+                      </div>
+                      <div className="mt-4 text-center">
+                        <div className="text-sm font-bold text-foreground mb-1">
+                          Phase Visualization
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {strategyPhases[activePhase].phase} of{" "}
+                          {strategyPhases.length}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+
+            {/* Right Arrow */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={nextPhase}
+              className="w-12 h-12 rounded-xl hover:bg-primary/10 bg-background/80 backdrop-blur-sm flex-shrink-0 mt-60"
+            >
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>

@@ -43,10 +43,27 @@ export function StrategySummary() {
   ];
 
   const achievements = [
-    { metric: "500+", label: "Strategic Projects" },
-    { metric: "98%", label: "Success Rate" },
-    { metric: "150%", label: "Average ROI" },
-    { metric: "15+", label: "Industries" },
+    {
+      metric: "100%",
+      label: "Commitment to Success",
+      description:
+        "We are fully invested in your project's outcome from day one.",
+    },
+    {
+      metric: "ROI-Driven",
+      label: "Development Process",
+      description: "Every feature is built with your business goals in mind.",
+    },
+    {
+      metric: "Expert-Led",
+      label: "Strategic Planning",
+      description: "Leveraging decades of combined team experience.",
+    },
+    {
+      metric: "Future-Proof",
+      label: "Technology Stack",
+      description: "Building scalable solutions that grow with you.",
+    },
   ];
 
   return (
@@ -134,7 +151,7 @@ export function StrategySummary() {
               transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
               className="text-center"
             >
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2 font-playfair">
+              <div className="text-xl md:text-xl font-bold text-primary mb-2 font-playfair">
                 {achievement.metric}
               </div>
               <div className="text-sm text-muted-foreground font-medium">
