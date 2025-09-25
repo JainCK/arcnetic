@@ -12,6 +12,12 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export function AboutFaqPreview() {
   const ref = useRef(null);
@@ -22,7 +28,7 @@ export function AboutFaqPreview() {
       icon: Building,
       question: "When was Arcnetic founded?",
       answer:
-        "Arcnetic was founded in 2018 with a vision to revolutionize digital solutions through innovative technology and exceptional user experiences.",
+        "Arcnetic was founded in 2025 with a vision to revolutionize digital solutions through innovative technology and exceptional user experiences.",
       category: "Company History",
     },
     {
@@ -77,37 +83,45 @@ export function AboutFaqPreview() {
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-          {aboutFaqs.map((faq, index) => (
-            <motion.div
-              key={faq.question}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-            >
-              <Card className="h-full hover:shadow-lg transition-all duration-300 border-primary/20 group">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <faq.icon className="h-6 w-6 text-primary" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="max-w-6xl mx-auto mb-12"
+        >
+          <Accordion type="single" collapsible className="border-none">
+            {aboutFaqs.map((faq, index) => (
+              <AccordionItem
+                key={faq.question}
+                value={`item-${index}`}
+                className="border-b border-border/50 last:border-b-0"
+              >
+                <AccordionTrigger className="hover:no-underline py-6 text-left">
+                  <div className="flex items-center gap-4 w-full">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <faq.icon className="h-5 w-5 text-primary" />
                     </div>
-                    <div className="flex-1">
-                      <div className="text-xs text-primary font-medium mb-2 uppercase tracking-wide">
+                    <div className="flex-1 text-left">
+                      <div className="text-xs text-primary font-medium mb-1 uppercase tracking-wide">
                         {faq.category}
                       </div>
-                      <h3 className="text-lg font-bold text-foreground mb-3 font-playfair leading-tight">
+                      <div className="text-lg font-medium text-foreground">
                         {faq.question}
-                      </h3>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 pt-2">
+                  <div className="ml-14">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
 
         {/* Learn More Section */}
         <motion.div

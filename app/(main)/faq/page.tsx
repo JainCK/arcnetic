@@ -147,56 +147,62 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <HelpCircle className="w-12 h-12 text-primary" />
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent">
-              FAQ
+      <section className="pt-32 pb-20 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center">
+              <HelpCircle className="w-8 h-8 text-primary" />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair">
+              Frequently Asked Questions
             </h1>
           </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get answers to frequently asked questions about our services,
-            processes, and how we can help your business succeed.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Get comprehensive answers to commonly asked questions about our
+            software development services, processes, pricing, and how we can
+            help transform your business through technology.
           </p>
         </div>
       </section>
 
       {/* FAQ Content */}
       <section className="pb-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="space-y-12">
             {faqData.map((category, categoryIndex) => (
-              <Card key={categoryIndex} className="shadow-lg border bg-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-2xl font-bold text-card-foreground">
-                    <Badge
-                      variant="outline"
-                      className="text-primary border-border bg-secondary"
+              <div key={categoryIndex} className="space-y-6">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-px bg-border flex-1"></div>
+                  <Badge
+                    variant="outline"
+                    className="text-primary border-primary/30 bg-primary/5 px-4 py-2 text-sm font-semibold uppercase tracking-wide"
+                  >
+                    {category.category}
+                  </Badge>
+                  <div className="h-px bg-border flex-1"></div>
+                </div>
+
+                <Accordion
+                  type="single"
+                  collapsible
+                  className="border-none space-y-1"
+                >
+                  {category.questions.map((faq, faqIndex) => (
+                    <AccordionItem
+                      key={faqIndex}
+                      value={`${categoryIndex}-${faqIndex}`}
+                      className="border-b border-border/30 last:border-b-0"
                     >
-                      {category.category}
-                    </Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Accordion type="single" collapsible className="space-y-2">
-                    {category.questions.map((faq, faqIndex) => (
-                      <AccordionItem
-                        key={faqIndex}
-                        value={`${categoryIndex}-${faqIndex}`}
-                        className="border border-border rounded-lg px-4"
-                      >
-                        <AccordionTrigger className="text-left font-medium text-card-foreground hover:text-primary">
-                          {faq.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground pb-4">
-                          {faq.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </CardContent>
-              </Card>
+                      <AccordionTrigger className="text-left font-medium text-foreground hover:text-primary hover:no-underline py-6 text-lg">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground pb-6 pt-2 leading-relaxed text-base">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
             ))}
           </div>
         </div>

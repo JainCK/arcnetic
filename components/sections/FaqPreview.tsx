@@ -85,37 +85,33 @@ export function FaqPreview() {
         </motion.div>
 
         <motion.div
-          className="max-w-4xl mx-auto"
+          className="max-w-6xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Card className="shadow-lg border bg-card">
-            <CardContent className="p-8">
-              <Accordion type="single" collapsible className="space-y-4">
-                {featuredFaqs.map((faq, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  >
-                    <AccordionItem
-                      value={`faq-${index}`}
-                      className="border border-border/50 rounded-lg px-6 py-2"
-                    >
-                      <AccordionTrigger className="text-left font-medium text-card-foreground hover:text-primary">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground pb-4 leading-relaxed">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  </motion.div>
-                ))}
-              </Accordion>
-            </CardContent>
-          </Card>
+          <Accordion type="single" collapsible className="border-none">
+            {featuredFaqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+              >
+                <AccordionItem
+                  value={`faq-${index}`}
+                  className="border-b border-border/50 last:border-b-0"
+                >
+                  <AccordionTrigger className="text-left font-medium text-card-foreground hover:text-primary hover:no-underline py-6">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-6 pt-2 leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
         </motion.div>
 
         {/* Simple Learn More Link */}
