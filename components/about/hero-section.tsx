@@ -73,14 +73,14 @@ export function HeroSection() {
                 Our Mission <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button
+            {/* <Button
               asChild
               variant="outline"
               size="lg"
               className="text-lg px-8 py-6"
             >
               <Link href="#team">Meet the Team</Link>
-            </Button>
+            </Button> */}
           </motion.div>
 
           {/* Stats */}
@@ -94,24 +94,26 @@ export function HeroSection() {
               <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">50+</div>
+              <div className="text-xl font-bold text-foreground mb-2">5+</div>
               <div className="text-muted-foreground">Expert Team Members</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Target className="h-8 w-8 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">
-                200+
+              <div className="text-xl font-bold text-foreground mb-2">
+                Agile
               </div>
-              <div className="text-muted-foreground">Projects Delivered</div>
+              <div className="text-muted-foreground">Transparent Process</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="h-8 w-8 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">5+</div>
-              <div className="text-muted-foreground">Years of Excellence</div>
+              <div className="text-xl font-bold text-foreground mb-2">
+                Modern
+              </div>
+              <div className="text-muted-foreground">Scalable Solutions</div>
             </div>
           </motion.div>
         </div>

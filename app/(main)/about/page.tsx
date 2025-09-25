@@ -36,16 +36,16 @@ export default function AboutPage() {
       <ValuesSection />
       <SectionDivider variant="dots" />
 
-      <JourneySection />
-      <SectionDivider variant="waves" />
+      {/* <JourneySection />
+      <SectionDivider variant="waves" /> */}
 
       <CultureSection />
       <SectionDivider variant="geometric" />
 
-      <section id="team">
+      {/* <section id="team">
         <TeamSection />
       </section>
-      <SectionDivider variant="dots" />
+      <SectionDivider variant="dots" /> */}
 
       <AboutFaqPreview />
     </div>

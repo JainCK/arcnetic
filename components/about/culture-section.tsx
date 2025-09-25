@@ -117,7 +117,7 @@ export function CultureSection() {
         </div>
 
         {/* Interactive Gallery Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.6 }}
@@ -130,10 +130,10 @@ export function CultureSection() {
             <p className="text-muted-foreground">
               Explore different aspects of our workplace culture
             </p>
-          </div>
+          </div> */}
 
-          {/* Tab Navigation */}
-          <div className="flex justify-center mb-8">
+        {/* Tab Navigation */}
+        {/* <div className="flex justify-center mb-8">
             <div className="bg-muted/50 rounded-xl p-1 flex">
               {tabs.map((tab) => (
                 <button
@@ -148,11 +148,11 @@ export function CultureSection() {
                   {tab.label}
                 </button>
               ))}
-            </div>
-          </div>
+            </div> */}
+      </div>
 
-          {/* Gallery Grid */}
-          <motion.div
+      {/* Gallery Grid */}
+      {/* <motion.div
             key={activeTab}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -174,9 +174,9 @@ export function CultureSection() {
                 </div>
               </div>
             ))}
-          </motion.div>
-        </motion.div>
-      </div>
+          </motion.div> */}
+      {/* </motion.div>
+      </div> */}
     </section>
   );
 }
