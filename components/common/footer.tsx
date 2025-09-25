@@ -10,20 +10,19 @@ import Link from "next/link";
 import Image from "next/image";
 
 const solutions = [
-  "Full-Stack Development",
-  "Business Applications",
-  "AI Solutions",
-  "Digital Transformation",
-  "Cloud Solutions",
+  { name: "Web & Full-Stack Development", slug: "web-development" },
+  { name: "Mobile Development", slug: "mobile-development" },
+  { name: "AI Solutions", slug: "ai-solutions" },
+  { name: "Cloud Infrastructure", slug: "cloud-infrastructure" },
+  { name: "Maintenance & Support", slug: "maintenance-support" },
+  { name: "Digital Transformation", slug: "digital-transformation" },
 ];
-
-const company = ["About", "Careers", "Blog", "Contact"];
 
 const Footer: FC = () => {
   const { config } = usePublicConfig();
 
   return (
-    <footer className="py-20 bg-gradient-to-t from-muted/20 to-background border-t border-border/50">
+    <footer className="py-10 bg-gradient-to-t from-muted/20 to-background border-t border-border/50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
@@ -80,7 +79,7 @@ const Footer: FC = () => {
                       rel="noopener noreferrer"
                       aria-label="LinkedIn"
                     >
-                      <Linkedin className="h-5 w-5" />
+                      <Linkedin className="h-3 w-3" />
                     </a>
                   </Button>
                 </motion.div>
@@ -91,7 +90,7 @@ const Footer: FC = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="w-12 h-12 rounded-xl"
+                    className="w-8 h-8 rounded-xl"
                     asChild
                   ></Button>
                 </motion.div>
@@ -99,45 +98,56 @@ const Footer: FC = () => {
             </div>
 
             <div>
-              <h4 className="font-bold mb-6 font-space-grotesk">Solutions</h4>
-              <div className="space-y-3">
-                {solutions.map((item) => (
-                  <motion.div
-                    key={item}
-                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                    whileHover={{ x: 5 }}
-                  >
-                    {item}
+              <h4 className="font-bold mb-5 font-space-grotesk">Solutions</h4>
+              <div className="space-y-2">
+                {solutions.map((service) => (
+                  <motion.div key={service.slug} whileHover={{ x: 5 }}>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                    >
+                      {service.name}
+                    </Link>
                   </motion.div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h4 className="font-bold mb-6 font-space-grotesk">Company</h4>
-              <div className="space-y-3">
-                <motion.a
-                  href="#about"
-                  className="block text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  About
-                </motion.a>
+              <h4 className="font-bold mb-5 font-space-grotesk">Company</h4>
+              <div className="space-y-2">
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/about"
+                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                  >
+                    About
+                  </Link>
+                </motion.div>
                 <motion.div whileHover={{ x: 5 }}>
                   <Link
                     href="/careers"
-                    className="block text-muted-foreground hover:text-primary transition-colors"
+                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     Careers
                   </Link>
                 </motion.div>
-                <motion.a
-                  href="#contact"
-                  className="block text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  Contact
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/faq"
+                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                  >
+                    FAQ
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/contact"
+                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                  >
+                    Contact
+                  </Link>
+                </motion.div>
                 {FEATURE_FLAGS.PRICING_ENABLED && (
                   <motion.div className="mt-6">
                     <Button variant="outline" size="sm" asChild>
@@ -153,7 +163,7 @@ const Footer: FC = () => {
           </div>
 
           <motion.div
-            className="border-t border-border/50 pt-8 text-center"
+            className="border-t border-border/50 pt-4 text-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
