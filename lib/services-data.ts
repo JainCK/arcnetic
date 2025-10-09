@@ -59,7 +59,7 @@ export const servicesData: ServiceData[] = [
         description:
           "Modern, responsive user interfaces that engage and convert",
         features: [
-          "React, Next.js, Vue.js Development",
+          "React, Next.js, Svelte Development",
           "Mobile-First Responsive Design",
           "Interactive UI/UX Implementation",
           "Performance Optimization",
@@ -93,7 +93,7 @@ export const servicesData: ServiceData[] = [
       { name: "React", logo: "/images/tech/react.svg", category: "frontend" },
       {
         name: "Next.js",
-        logo: "/images/tech/nextjs.svg",
+        logo: "/images/tech/next.js.svg",
         category: "frontend",
       },
       {
@@ -101,10 +101,24 @@ export const servicesData: ServiceData[] = [
         logo: "/images/tech/typescript.svg",
         category: "frontend",
       },
-      { name: "Node.js", logo: "/images/tech/nodejs.svg", category: "backend" },
+      {
+        name: "Node.js",
+        logo: "/images/tech/node.js.svg",
+        category: "backend",
+      },
       {
         name: "Express",
         logo: "/images/tech/express.svg",
+        category: "backend",
+      },
+      {
+        name: "Python",
+        logo: "/images/tech/python.svg",
+        category: "backend",
+      },
+      {
+        name: "FASTAPI",
+        logo: "/images/tech/fastapi.svg",
         category: "backend",
       },
       {
@@ -113,11 +127,21 @@ export const servicesData: ServiceData[] = [
         category: "database",
       },
       {
+        name: "mySQL",
+        logo: "/images/tech/mysql.svg",
+        category: "database",
+      },
+      {
         name: "MongoDB",
         logo: "/images/tech/mongodb.svg",
         category: "database",
       },
       { name: "AWS", logo: "/images/tech/aws.svg", category: "cloud" },
+      {
+        name: "Cloudflare",
+        logo: "/images/tech/cloudflare.svg",
+        category: "cloud",
+      },
       { name: "Docker", logo: "/images/tech/docker.svg", category: "tools" },
     ],
     pricing: {
@@ -206,7 +230,6 @@ export const servicesData: ServiceData[] = [
         description: "Single codebase for both iOS and Android platforms",
         features: [
           "React Native Development",
-          "Flutter Applications",
           "Code Sharing Strategies",
           "Platform-Specific Optimizations",
           "Unified User Experience",
@@ -216,12 +239,7 @@ export const servicesData: ServiceData[] = [
     techStack: [
       {
         name: "React Native",
-        logo: "/images/tech/react-native.svg",
-        category: "frontend",
-      },
-      {
-        name: "Flutter",
-        logo: "/images/tech/flutter.svg",
+        logo: "/images/tech/react.svg",
         category: "frontend",
       },
       { name: "Swift", logo: "/images/tech/swift.svg", category: "frontend" },
@@ -231,13 +249,13 @@ export const servicesData: ServiceData[] = [
         logo: "/images/tech/firebase.svg",
         category: "backend",
       },
+      {
+        name: "Appwrite",
+        logo: "/images/tech/appwrite.svg",
+        category: "backend",
+      },
       { name: "SQLite", logo: "/images/tech/sqlite.svg", category: "database" },
       { name: "AWS Mobile", logo: "/images/tech/aws.svg", category: "cloud" },
-      {
-        name: "Fastlane",
-        logo: "/images/tech/fastlane.svg",
-        category: "tools",
-      },
     ],
     pricing: {
       starter: {
@@ -335,24 +353,22 @@ export const servicesData: ServiceData[] = [
     techStack: [
       { name: "Python", logo: "/images/tech/python.svg", category: "backend" },
       {
+        name: "FASTAPI",
+        logo: "/images/tech/fastapi.svg",
+        category: "backend",
+      },
+      {
         name: "TensorFlow",
         logo: "/images/tech/tensorflow.svg",
         category: "tools",
       },
       { name: "PyTorch", logo: "/images/tech/pytorch.svg", category: "tools" },
-      { name: "OpenAI", logo: "/images/tech/openai.svg", category: "tools" },
-      {
-        name: "Hugging Face",
-        logo: "/images/tech/huggingface.svg",
-        category: "tools",
-      },
       { name: "AWS AI", logo: "/images/tech/aws.svg", category: "cloud" },
       {
         name: "Google AI",
         logo: "/images/tech/google-cloud.svg",
         category: "cloud",
       },
-      { name: "MLflow", logo: "/images/tech/mlflow.svg", category: "tools" },
     ],
     pricing: {
       starter: {
@@ -448,7 +464,6 @@ export const servicesData: ServiceData[] = [
     ],
     techStack: [
       { name: "AWS", logo: "/images/tech/aws.svg", category: "cloud" },
-      { name: "Azure", logo: "/images/tech/azure.svg", category: "cloud" },
       {
         name: "Google Cloud",
         logo: "/images/tech/google-cloud.svg",
@@ -562,29 +577,11 @@ export const servicesData: ServiceData[] = [
       },
     ],
     techStack: [
-      {
-        name: "New Relic",
-        logo: "/images/tech/newrelic.svg",
-        category: "tools",
-      },
-      { name: "Datadog", logo: "/images/tech/datadog.svg", category: "tools" },
       { name: "Grafana", logo: "/images/tech/grafana.svg", category: "tools" },
       {
         name: "Prometheus",
         logo: "/images/tech/prometheus.svg",
         category: "tools",
-      },
-      { name: "Sentry", logo: "/images/tech/sentry.svg", category: "tools" },
-      { name: "CloudWatch", logo: "/images/tech/aws.svg", category: "cloud" },
-      {
-        name: "Azure Monitor",
-        logo: "/images/tech/azure.svg",
-        category: "cloud",
-      },
-      {
-        name: "Google Operations",
-        logo: "/images/tech/google-cloud.svg",
-        category: "cloud",
       },
     ],
     pricing: {
@@ -683,7 +680,11 @@ export const servicesData: ServiceData[] = [
     ],
     techStack: [
       { name: "React", logo: "/images/tech/react.svg", category: "frontend" },
-      { name: "Node.js", logo: "/images/tech/nodejs.svg", category: "backend" },
+      {
+        name: "Node.js",
+        logo: "/images/tech/node.js.svg",
+        category: "backend",
+      },
       { name: "Python", logo: "/images/tech/python.svg", category: "backend" },
       {
         name: "PostgreSQL",
@@ -692,6 +693,11 @@ export const servicesData: ServiceData[] = [
       },
       { name: "Redis", logo: "/images/tech/redis.svg", category: "database" },
       { name: "AWS", logo: "/images/tech/aws.svg", category: "cloud" },
+      {
+        name: "Cloudflare",
+        logo: "/images/tech/cloudflare.svg",
+        category: "cloud",
+      },
       { name: "Docker", logo: "/images/tech/docker.svg", category: "tools" },
       {
         name: "Kubernetes",
@@ -748,4 +754,51 @@ export function getServiceBySlug(slug: string): ServiceData | undefined {
 
 export function getAllServiceSlugs(): string[] {
   return servicesData.map((service) => service.slug);
+}
+
+// Helper function for service highlights
+export function getServiceHighlight(serviceTitle: string): string {
+  const highlights: { [key: string]: string } = {
+    "Frontend Development":
+      "Create stunning, responsive interfaces that engage users and drive conversions across all devices and platforms.",
+    "Backend Development":
+      "Build robust, scalable server infrastructure that handles growth and ensures data security with enterprise-grade reliability.",
+    "Full-Stack Solutions":
+      "End-to-end development that seamlessly integrates frontend and backend for optimal performance and user experience.",
+    "iOS Development":
+      "Native iOS apps that leverage Apple's latest technologies and design principles for superior performance and user satisfaction.",
+    "Android Development":
+      "Optimized Android applications following Material Design guidelines with maximum compatibility across device ecosystems.",
+    "Cross-Platform Development":
+      "Efficient development approach that reaches both iOS and Android users with native performance and platform-specific optimizations.",
+    "Machine Learning Development":
+      "Transform your data into actionable insights with custom ML models that learn and improve business outcomes over time.",
+    "Natural Language Processing":
+      "Unlock the power of text and speech data with advanced NLP solutions that understand context and intent.",
+    "Computer Vision":
+      "Advanced image and video analysis capabilities that automate visual tasks and provide intelligent insights from visual data.",
+    "Cloud Migration":
+      "Seamless transition to cloud infrastructure with zero downtime and optimized performance for enhanced scalability and cost efficiency.",
+    "Infrastructure Management":
+      "Comprehensive cloud infrastructure solutions that scale automatically and maintain high availability with enterprise security.",
+    "DevOps & CI/CD":
+      "Streamlined development workflows that accelerate deployment cycles while maintaining code quality and system reliability.",
+    "Proactive Monitoring":
+      "Advanced monitoring systems that predict and prevent issues before they impact your users or business operations.",
+    "Security Maintenance":
+      "Comprehensive security management that protects against evolving threats with proactive updates and vulnerability assessments.",
+    "Performance Optimization":
+      "Continuous performance improvements that enhance user experience and reduce operational costs through intelligent optimization.",
+    "Legacy Modernization":
+      "Strategic transformation of outdated systems while preserving valuable business logic and ensuring smooth operational continuity.",
+    "Process Automation":
+      "Intelligent automation solutions that eliminate manual tasks and reduce errors while accelerating business process efficiency.",
+    "Digital Strategy":
+      "Comprehensive digital transformation roadmaps that align technology investments with business objectives for maximum ROI.",
+  };
+
+  return (
+    highlights[serviceTitle] ||
+    "Expertly crafted solutions that deliver measurable results and drive business growth through innovative technology applications."
+  );
 }
