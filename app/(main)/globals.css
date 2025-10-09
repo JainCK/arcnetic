@@ -365,3 +365,13 @@ h6 {
   z-index: 9999 !important;
   transform: translate3d(0, 0, 0) !important;
 }
+
+/* Line clamp utilities for blog excerpts */
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
