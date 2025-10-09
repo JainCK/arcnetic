@@ -3,17 +3,20 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { TechStackDisplay } from "@/components/services/TechStackDisplay";
-import { getServiceBySlug, getAllServiceSlugs } from "@/lib/services-data";
-import { ArrowRight, Check, Star, Users, Clock, Shield } from "lucide-react";
+import {
+  getServiceBySlug,
+  getAllServiceSlugs,
+  getServiceHighlight,
+} from "@/lib/services-data";
+import { ArrowRight, Check, Users, Shield, Code } from "lucide-react";
 
 interface ServicePageProps {
   params: Promise<{
@@ -87,40 +90,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-8 py-6">
+                <Button size="lg" className="text-md px-6 py-4">
                   Get Started
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-1 h-3 w-3" />
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-lg px-8 py-6"
-                >
-                  View Portfolio
-                </Button>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="flex items-center gap-6 pt-4">
-                <div className="flex items-center gap-2">
-                  <Users className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium">50+ Projects</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium">5.0 Rating</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium">Fast Delivery</span>
-                </div>
               </div>
             </div>
 
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 p-8">
                 <Image
-                  src={service.heroImage}
+                  src={service.heroImage || "/placeholder.svg"}
                   alt={service.title}
                   width={600}
                   height={600}
@@ -136,30 +116,34 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-left mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Why Choose Our {service.title}?
+                {"Why Choose Our "}
+                {service.title}
+                {"?"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {service.longDescription}
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {service.features.map((feature, index) => (
-                <div
-                  key={feature}
-                  className="flex items-start gap-3 p-4 rounded-lg bg-card border"
-                >
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">{feature}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Professional {feature.toLowerCase()} services tailored to
-                      your needs.
-                    </p>
+            {/* Minimal feature list with dividers instead of boxed cards */}
+            <div className="divide-y divide-border">
+              {service.features.map((feature) => (
+                <div key={feature} className="py-4">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      {/* Using same Check icon already imported at top of file */}
+                      <Check className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-medium leading-tight">{feature}</h4>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {"Professional "}
+                        {feature.toLowerCase()}
+                        {" services tailored to your needs."}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -168,38 +152,100 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      {/* Sub-Services */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Our Service Offerings
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Comprehensive solutions designed to meet all your{" "}
-              {service.title.toLowerCase()} needs.
-            </p>
-          </div>
+      {/* Sub-Services - Proper Accordion */}
+      <section className="py-24 bg-gradient-to-br from-muted/20 via-background to-muted/10 relative">
+        {/* Background decoration */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {service.subServices.map((subService, index) => (
-              <Card key={subService.title} className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-xl">{subService.title}</CardTitle>
-                  <CardDescription>{subService.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {subService.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            {/* Left-aligned header */}
+            <div className="mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+                Our Service Offerings
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
+                Comprehensive solutions designed to meet all your{" "}
+                {service.title.toLowerCase()} needs. Each offering is crafted
+                with precision and delivered with excellence.
+              </p>
+            </div>
+
+            {/* Accordion with proper collapsible functionality */}
+            <Accordion type="single" collapsible className="space-y-6">
+              {service.subServices.map((subService, index) => (
+                <AccordionItem
+                  key={subService.title}
+                  value={`item-${index}`}
+                  className="border-l-4 border-primary/20 hover:border-primary/40 transition-all duration-300 border-b-0"
+                >
+                  <div className="pl-8 relative">
+                    {/* Connector dot */}
+                    <div className="absolute -left-2 top-6 w-4 h-4 bg-primary/20 group-hover:bg-primary/40 rounded-full border-4 border-background transition-colors duration-300" />
+
+                    <AccordionTrigger className="hover:no-underline pb-0 pt-4">
+                      <div className="flex items-center gap-3 text-left w-full">
+                        <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <div className="flex-1">
+                          <h3 className="text-2xl md:text-3xl font-bold text-foreground hover:text-primary transition-colors duration-300">
+                            {subService.title}
+                          </h3>
+                          <p className="text-lg text-muted-foreground leading-relaxed mt-2 text-left">
+                            {subService.description}
+                          </p>
+                        </div>
+                      </div>
+                    </AccordionTrigger>
+
+                    <AccordionContent className="pb-8 pt-4">
+                      <div className="space-y-6 ml-4">
+                        {/* Features grid */}
+                        <div className="grid md:grid-cols-2 gap-4">
+                          {subService.features.map((feature) => (
+                            <div
+                              key={feature}
+                              className="flex items-start gap-3 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/20 hover:bg-primary/5 transition-all duration-300"
+                            >
+                              <div className="w-6 h-6 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <Check className="h-4 w-4 text-primary" />
+                              </div>
+                              <span className="text-sm font-medium text-foreground leading-relaxed">
+                                {feature}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Service highlight */}
+                        <div className="p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl border border-primary/10">
+                          <p className="text-sm text-muted-foreground">
+                            <span className="font-medium text-primary">
+                              Why choose this service:
+                            </span>
+                            {" " + getServiceHighlight(subService.title)}
+                          </p>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </div>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            {/* Bottom accent */}
+            <div className="mt-16 pt-8 border-t border-gradient-to-r from-transparent via-primary/20 to-transparent">
+              <p className="text-center text-muted-foreground">
+                Need a custom solution?
+                <Link
+                  href="/contact"
+                  className="text-primary hover:underline font-medium ml-1"
+                >
+                  Let's discuss your requirements
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -209,71 +255,21 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Technologies We Use
+              {"Technologies We Use"}
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              We leverage cutting-edge technologies and industry best practices
-              to deliver exceptional results.
+              {
+                "We leverage cutting-edge technologies and industry best practices to deliver exceptional results."
+              }
             </p>
           </div>
 
-          <TechStackDisplay
-            techStack={service.techStack}
-            showCategories={true}
-          />
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Transparent Pricing
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Choose the package that best fits your project requirements and
-              budget.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {Object.entries(service.pricing).map(([tier, details]) => (
-              <Card
-                key={tier}
-                className={`relative ${tier === "professional" ? "border-primary shadow-lg scale-105" : ""}`}
-              >
-                {tier === "professional" && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground px-4 py-1">
-                      Most Popular
-                    </Badge>
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-xl capitalize">{tier}</CardTitle>
-                  <div className="text-3xl font-bold text-primary">
-                    {details.price}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {details.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    className="w-full"
-                    variant={tier === "professional" ? "default" : "outline"}
-                  >
-                    Choose {tier}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Using the minimal, subtle group display */}
+          <div className="max-w-5xl mx-auto">
+            <TechStackDisplay
+              techStack={service.techStack}
+              showCategories={true}
+            />
           </div>
         </div>
       </section>
@@ -294,47 +290,52 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="text-lg px-8 py-6">
+                <Button size="lg" className="text-md px-6 py-4">
                   {service.cta.buttonText}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link href="/portfolio">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-lg px-8 py-6"
-                >
-                  View Our Work
-                </Button>
-              </Link>
             </div>
 
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">100+</div>
-                <div className="text-sm text-muted-foreground">
-                  Projects Completed
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                {
+                  number: "10+",
+                  label: "Years of Combined Expertise",
+                  desc: "Led by seasoned industry professionals",
+                },
+                {
+                  icon: Users,
+                  label: "Client-Centric Process",
+                  desc: "Collaborative, transparent, and agile",
+                },
+                {
+                  icon: Code,
+                  label: "Modern Tech Stack",
+                  desc: "Leveraging cutting-edge technologies",
+                },
+                {
+                  number: "24/7",
+                  label: "Support Available",
+                  desc: "Round-the-clock assistance",
+                },
+              ].map((stat, index) => (
+                <div key={index} className="text-center space-y-2">
+                  <div className="text-xl md:text-md font-bold text-primary">
+                    {stat.number ? (
+                      stat.number
+                    ) : stat.icon ? (
+                      <stat.icon className="mx-auto h-6 w-6 text-primary" />
+                    ) : null}
+                  </div>
+                  <div className="text-sm font-semibold text-foreground">
+                    {stat.label}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {stat.desc}
+                  </div>
                 </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">5.0</div>
-                <div className="text-sm text-muted-foreground">
-                  Client Rating
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">24/7</div>
-                <div className="text-sm text-muted-foreground">
-                  Support Available
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">99%</div>
-                <div className="text-sm text-muted-foreground">
-                  Client Satisfaction
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
