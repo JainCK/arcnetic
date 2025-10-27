@@ -36,12 +36,12 @@ export default async function BlogPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto mt-10 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair">
               Our Blog
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Insights, tutorials, and updates from our team. Stay updated with
               the latest trends in technology, development best practices, and
               digital innovation.
@@ -51,7 +51,7 @@ export default async function BlogPage() {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-20">
+      <section className="pb-20">
         <div className="container mx-auto px-4">
           {posts.length === 0 ? (
             <div className="text-center py-20">
