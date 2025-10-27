@@ -77,7 +77,7 @@ export function Navigation() {
 
   return (
     <header
-      className="fixed-nav fixed top-0 left-0 right-0 w-full z-[9999] bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-md"
+      className="fixed-nav fixed top-0 left-0 right-0 w-full z-[9999] bg-gradient-to-br from-primary/.5 via-background to-secondary/5 "
       style={{
         position: "fixed !important" as any,
         top: "0 !important" as any,
@@ -182,9 +182,10 @@ export function Navigation() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
             className="md:hidden absolute top-full left-0 w-full bg-background border-t border-border shadow-lg"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
