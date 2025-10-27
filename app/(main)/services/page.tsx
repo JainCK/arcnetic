@@ -65,8 +65,8 @@ export default function ServicesPage() {
     <div className="py-16 sm:py-24">
       <div className="container mx-auto px-4">
         {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto mb-20">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent font-playfair">
+        <div className="text-center max-w-4xl mx-auto mb-20 mt-10">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text font-playfair">
             Our Core Capabilities
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">

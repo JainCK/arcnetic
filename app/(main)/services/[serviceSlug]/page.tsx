@@ -67,38 +67,44 @@ export default async function ServicePage({ params }: ServicePageProps) {
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center ">
             <div className="space-y-6">
               <div className="space-y-4">
                 <Badge variant="outline" className="w-fit">
                   Professional Service
                 </Badge>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-primary">
                   {service.title}
                 </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   {service.shortDescription}
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
                 {service.features.slice(0, 3).map((feature) => (
-                  <Badge key={feature} variant="secondary">
+                  <Badge
+                    key={feature}
+                    variant="secondary"
+                    className="text-sm p-2"
+                  >
                     {feature}
                   </Badge>
                 ))}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-md px-6 py-4">
-                  Get Started
-                  <ArrowRight className="ml-1 h-3 w-3" />
-                </Button>
+                <Link href="/contact">
+                  <Button size="lg" className="text-md px-6 py-4">
+                    Get Started
+                    <ArrowRight className="ml-1 h-3 w-3" />
+                  </Button>
+                </Link>
               </div>
             </div>
 
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 p-8">
+              <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 p-8 mt-15">
                 <Image
                   src={service.heroImage || "/placeholder.svg"}
                   alt={service.title}
