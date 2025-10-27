@@ -109,7 +109,7 @@ export function ContactSummary() {
             {/* --- NEW CTA LINK --- */}
             <div className="mt-4">
               <Link href="/contact" className="text-primary hover:underline">
-                Or, view our full contact details and locations
+                view our full contact details and locations
               </Link>
             </div>
           </div>
@@ -125,39 +125,88 @@ export function ContactSummary() {
                 <h3 className="text-3xl font-bold mb-8 font-playfair">
                   Let's Connect
                 </h3>
-                <div className="space-y-6">
-                  <motion.div
-                    className="flex items-center space-x-4 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
-                    whileHover={isMobile ? {} : { scale: 1.01 }}
-                  >
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                      <Mail className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-medium font-space-grotesk">
-                        Business Inquiries
+                <div className="space-y-8">
+                  {/* India Section */}
+                  <div>
+                    <h4 className="text-xl font-semibold text-primary font-playfair mb-4">
+                      India
+                    </h4>
+                    <motion.div
+                      className="p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
+                      whileHover={isMobile ? {} : { scale: 1.01 }}
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div className="flex items-center space-x-3">
+                          {/* <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                            <Mail className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <div className="font-medium font-space-grotesk text-sm">
+                              Email
+                            </div>
+                            <div className="text-muted-foreground text-sm">
+                              {config?.contact.email || "support@arcnetic.com"}
+                            </div>
+                          </div> */}
+                        </div>
+                        {/* <div className="w-px h-8 bg-border hidden sm:block"></div> */}
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                            <Phone className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <div className="font-medium font-space-grotesk text-sm">
+                              Phone
+                            </div>
+                            <div className="text-muted-foreground text-sm">
+                              {config?.contact.phone || "+91-7558952771"}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-muted-foreground">
-                        {config?.contact.email || "aswin.p@arcnetic.com"}
+                    </motion.div>
+                  </div>
+
+                  {/* Canada Section */}
+                  <div>
+                    <h4 className="text-xl font-semibold text-primary font-playfair mb-4">
+                      Canada
+                    </h4>
+                    <motion.div
+                      className="p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
+                      whileHover={isMobile ? {} : { scale: 1.01 }}
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div className="flex items-center space-x-3">
+                          {/* <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                            <Mail className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <div className="font-medium font-space-grotesk text-sm">
+                              Email
+                            </div>
+                            <div className="text-muted-foreground text-sm">
+                              {config?.contact.email || "support@arcnetic.com"}
+                            </div>
+                          </div> */}
+                        </div>
+                        {/* <div className="w-px h-8 bg-border hidden sm:block"></div> */}
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                            <Phone className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <div className="font-medium font-space-grotesk text-sm">
+                              Phone
+                            </div>
+                            <div className="text-muted-foreground text-sm">
+                              Coming Soon
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                  <motion.div
-                    className="flex items-center space-x-4 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20"
-                    whileHover={isMobile ? {} : { scale: 1.01 }}
-                  >
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                      <Phone className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-medium font-space-grotesk">
-                        Direct Line
-                      </div>
-                      <div className="text-muted-foreground">
-                        {config?.contact.phone || "+91-7558952771"}
-                      </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </motion.div>

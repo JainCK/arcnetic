@@ -86,7 +86,7 @@ export function StrategySummary() {
           </motion.div>
 
           <motion.h2
-            className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair"
+            className="text-3xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -102,9 +102,9 @@ export function StrategySummary() {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
-            We don't just build solutions—we craft comprehensive strategies that
-            align technology with your business vision to create sustainable
-            competitive advantages.
+            We don't just build solutions, we craft comprehensive strategies
+            that align technology with your business vision to create
+            sustainable competitive advantages.
           </motion.p>
         </motion.div>
 
