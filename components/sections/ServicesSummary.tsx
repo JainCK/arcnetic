@@ -135,7 +135,7 @@ export function ServicesSummary() {
             </span>
           </motion.div>
           <motion.h2
-            className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair"
+            className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text  font-playfair"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -143,15 +143,13 @@ export function ServicesSummary() {
             Comprehensive Technology Solutions
           </motion.h2>
           <motion.p
-            className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-space-grotesk"
+            className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed font-space-grotesk"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             From cutting-edge AI solutions to robust cloud infrastructure, we
             deliver end-to-end technology services that transform businesses.
-            Our expert team combines innovation with proven methodologies to
-            build scalable, secure, and future-ready solutions.
           </motion.p>
         </motion.div>
 

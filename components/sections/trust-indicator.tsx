@@ -59,7 +59,7 @@ export function TrustIndicators() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h3 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">
+          <h3 className="text-3xl md:text-6xl font-bold mb-4 font-playfair ">
             Why Leading Businesses Choose Arcnetic
           </h3>
           <p className="text-muted-foreground max-w-2xl mx-auto font-space-grotesk">
