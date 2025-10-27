@@ -3,12 +3,12 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  Coffee,
-  Gamepad2,
-  Music,
   BookOpen,
-  Dumbbell,
-  Camera,
+  Puzzle,
+  TrendingUp,
+  Shield,
+  Target,
+  Users,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -19,40 +19,40 @@ export function CultureSection() {
 
   const cultureAspects = [
     {
-      icon: Coffee,
-      title: "Work-Life Balance",
+      icon: Target,
+      title: "Client-Centric Focus",
       description:
-        "Flexible hours, remote work options, and wellness programs to keep our team happy and productive.",
+        "Our success is measured by yours. We dive deep into your goals to ensure our solutions deliver real business value.",
     },
     {
-      icon: Gamepad2,
-      title: "Fun & Games",
+      icon: Puzzle,
+      title: "Collaborative Problem-Solving",
       description:
-        "Regular team building activities, game nights, and hackathons to foster creativity and collaboration.",
+        "We function as an extension of your team, combining our expertise with your vision to build powerful, effective solutions.",
     },
     {
-      icon: Music,
-      title: "Creative Environment",
+      icon: Shield,
+      title: "Ownership & Accountability",
       description:
-        "Open spaces designed to inspire innovation, with music, art, and comfortable work areas.",
+        "Our team takes full responsibility for their work, ensuring high-quality, reliable, and robust code from end to end.",
     },
     {
       icon: BookOpen,
-      title: "Learning Culture",
+      title: "Continuous Learning",
       description:
-        "Continuous learning opportunities, conferences, certifications, and knowledge sharing sessions.",
+        "We are committed to professional growth, staying ahead of tech trends to deliver modern, future-proof solutions.",
     },
     {
-      icon: Dumbbell,
-      title: "Health & Wellness",
+      icon: TrendingUp,
+      title: "Pragmatic Innovation",
       description:
-        "Gym memberships, mental health support, and wellness programs for our team's well-being.",
+        "We apply cutting-edge technology in practical ways, focusing on innovation that drives efficiency and growth.",
     },
     {
-      icon: Camera,
-      title: "Memorable Moments",
+      icon: Users,
+      title: "Transparent Partnership",
       description:
-        "Team outings, celebration events, and creating lasting memories together as one family.",
+        "We believe in open, honest, and proactive communication, keeping you informed and involved at every stage.",
     },
   ];
 

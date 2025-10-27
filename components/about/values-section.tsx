@@ -21,7 +21,7 @@ export function ValuesSection() {
       icon: Zap,
       title: "Innovation",
       description:
-        "We embrace cutting-edge technologies and creative solutions to solve complex challenges.",
+        "We embrace cutting-edge technologies to solve complex challenges.",
       color: "text-yellow-500",
       bg: "bg-yellow-500/10",
     },
@@ -114,7 +114,7 @@ export function ValuesSection() {
         </div>
 
         {/* Interactive Element */}
-        <motion.div
+        {/* <motion.div
           className="mt-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -140,7 +140,7 @@ export function ValuesSection() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

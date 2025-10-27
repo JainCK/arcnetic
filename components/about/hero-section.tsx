@@ -52,7 +52,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12"
+            className="text-xl md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -84,7 +84,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Stats */}
-          <motion.div
+          {/* <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -115,7 +115,7 @@ export function HeroSection() {
               </div>
               <div className="text-muted-foreground">Scalable Solutions</div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
