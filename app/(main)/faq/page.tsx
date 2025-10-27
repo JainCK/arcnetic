@@ -153,14 +153,13 @@ export default function FAQPage() {
             <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center">
               <HelpCircle className="w-8 h-8 text-primary" />
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair">
+            <h1 className="text-xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair">
               Frequently Asked Questions
             </h1>
           </div>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Get comprehensive answers to commonly asked questions about our
-            software development services, processes, pricing, and how we can
-            help transform your business through technology.
+          <p className="text-sm md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Get comprehensive answers to commonly asked questions about how we
+            can help transform your business through technology.
           </p>
         </div>
       </section>
