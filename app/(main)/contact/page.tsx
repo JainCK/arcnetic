@@ -28,11 +28,11 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-full mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent mb-6">
             Get in Touch
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
             Ready to transform your business with cutting-edge technology? Let's
             discuss your project and explore how we can help you achieve your
             goals.
@@ -42,7 +42,7 @@ export default function ContactPage() {
 
       {/* Contact Form */}
       <section className="pb-16 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <Card className="shadow-lg border bg-card">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-card-foreground">
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
       {/* Office Locations */}
       <section className="pb-16 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               Our Offices
@@ -86,26 +86,30 @@ export default function ContactPage() {
                   <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-card-foreground">
-                      Arcnetic Technologies Pvt Ltd
+                      {process.env.BUSINESS_LEGAL_NAME || "Arcnetic PVT LTD"}
                     </p>
                     <p className="text-muted-foreground">
-                      123 Tech Park, Sector 5<br />
-                      Electronic City, Bangalore
+                      {process.env.BUSINESS_ADDRESS ||
+                        "Beyond Co-working, VS-08, 90 A, South, Canal Rd, Giri Nagar, Kadavanthra"}
                       <br />
-                      Karnataka 560100, India
+                      {process.env.BUSINESS_CITY || "Kochi"},{" "}
+                      {process.env.BUSINESS_STATE || "Kerala"}{" "}
+                      {process.env.BUSINESS_ZIP || "682020"}
+                      <br />
+                      {process.env.BUSINESS_COUNTRY || "India"}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-muted-foreground">
-                    +91 80 4567 8900
+                    {process.env.PHONE || "+91-7558952771"}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-muted-foreground">
-                    india@arcnetic.com
+                    support@arcnetic.com
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -133,29 +137,25 @@ export default function ContactPage() {
                       Arcnetic Technologies Inc
                     </p>
                     <p className="text-muted-foreground">
-                      456 Innovation Drive, Suite 200
+                      Coming Soon
                       <br />
-                      Toronto Tech Hub
-                      <br />
-                      Toronto, ON M5V 3A8, Canada
+                      Canada
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">+1 416 123 4567</span>
+                  <span className="text-muted-foreground">Coming Soon</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-muted-foreground">
-                    canada@arcnetic.com
+                    support@arcnetic.com
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Mon - Fri: 9:00 AM - 5:00 PM EST
-                  </span>
+                  <span className="text-muted-foreground">Coming Soon</span>
                 </div>
               </CardContent>
             </Card>
@@ -165,7 +165,7 @@ export default function ContactPage() {
 
       {/* Google Map */}
       <section className="pb-20 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <Card className="shadow-lg border bg-card">
             <CardHeader className="pb-4">
               <CardTitle className="text-xl font-bold text-card-foreground">
@@ -186,7 +186,9 @@ export default function ContactPage() {
                 />
               </div>
               <p className="text-sm text-muted-foreground mt-3 text-center">
-                Kochi, Kerala - Our technology hub in India
+                {process.env.BUSINESS_CITY || "Kochi"},{" "}
+                {process.env.BUSINESS_STATE || "Kerala"} - Our technology hub in
+                India
               </p>
             </CardContent>
           </Card>
@@ -195,23 +197,23 @@ export default function ContactPage() {
 
       {/* CTA Section */}
       <section className="bg-primary py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
             Ready to Start Your Project?
           </h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/80 mb-8 max-w-3xl mx-auto">
             Join hundreds of businesses that trust Arcnetic to deliver
             exceptional technology solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:hello@arcnetic.com"
+              href="mailto:support@arcnetic.com"
               className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary bg-primary-foreground rounded-lg hover:bg-primary-foreground/90 transition-colors"
             >
               Email Us Directly
             </a>
             <a
-              href="tel:+918045678900"
+              href={`tel:${process.env.PHONE || "+917558952771"}`}
               className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary-foreground border-2 border-primary-foreground rounded-lg hover:bg-primary-foreground hover:text-primary transition-colors"
             >
               Call Now
