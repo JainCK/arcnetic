@@ -13,17 +13,19 @@ import { SectionDivider } from "@/components/section-divider";
 
 export const metadata: Metadata = homeMetadata;
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com";
+
 // Home page structured data from your original file
 const homePageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": "https://arcnetic.com/#webpage",
-  url: "https://arcnetic.com",
+  "@id": `${baseUrl}/#webpage`,
+  url: baseUrl,
   name: "Arcnetic - Elite Software Solutions",
   description:
     "Transform your business with world-class software solutions. Custom applications, AI systems, and digital transformation services.",
   isPartOf: {
-    "@id": "https://arcnetic.com/#website",
+    "@id": `${baseUrl}/#website`,
   },
 };
 
@@ -35,7 +37,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://arcnetic.com",
+      item: baseUrl,
     },
   ],
 };

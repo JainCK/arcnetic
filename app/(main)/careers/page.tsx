@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description:
       "Explore software engineering, AI/ML, and UI/UX design careers at Arcnetic. We're hiring for remote and hybrid tech jobs in India. Join our innovative team!",
     type: "website",
-    url: "https://www.arcnetic.com/careers", // Assuming this is the URL
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com"}/careers`,
   },
   keywords: [
     "software developer jobs india",

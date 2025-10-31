@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { contactMetadata } from "@/lib/metadata";
 import {
   Card,
   CardContent,
@@ -9,19 +10,7 @@ import {
 import { SimpleContactForm } from "@/components/forms/simple-contact-form";
 import { MapPin, Phone, Mail, Clock, Globe } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Arcnetic - Get in Touch",
-  description:
-    "Contact Arcnetic for your software development and technology consulting needs. We have offices in India and Canada to serve you better.",
-  keywords: [
-    "contact",
-    "Arcnetic",
-    "software development",
-    "technology consulting",
-    "India",
-    "Canada",
-  ],
-};
+export const metadata: Metadata = contactMetadata;
 
 export default function ContactPage() {
   return (

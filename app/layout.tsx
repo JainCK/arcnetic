@@ -24,8 +24,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  // Your metadata remains the same
-  metadataBase: new URL("https://arcnetic.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com"
+  ),
   title: {
     default:
       "Custom Software Development in Kochi - Arcnetic | Business & AI Solutions",
@@ -33,6 +34,9 @@ export const metadata: Metadata = {
   },
   description:
     "Arcnetic is a leading software development company in Kochi, Kerala, specializing in custom business software, AI-powered solutions, and digital transformation.",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
