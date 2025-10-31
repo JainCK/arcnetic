@@ -1,7 +1,7 @@
 import { type MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://arcnetic.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com";
   const currentDate = new Date();
 
   return [
@@ -11,6 +11,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/careers`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/pricing`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    // Section anchors for better SEO
     {
       url: `${baseUrl}/#about`,
       lastModified: currentDate,
@@ -23,24 +42,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/careers`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    // Temporarily disabled pricing page
-    // {
-    //   url: `${baseUrl}/pricing`,
-    //   lastModified: currentDate,
-    //   changeFrequency: "monthly",
-    //   priority: 0.7,
-    // },
   ];
 }

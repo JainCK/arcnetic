@@ -70,10 +70,11 @@ interface ServiceStructuredDataProps {
 }
 
 export function ServiceStructuredData({ service }: ServiceStructuredDataProps) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com";
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `https://arcnetic.com/#${service.name.toLowerCase().replace(/\s+/g, "-")}`,
+    "@id": `${baseUrl}/#${service.name.toLowerCase().replace(/\s+/g, "-")}`,
     ...service,
   };
 
@@ -102,14 +103,15 @@ export function FAQStructuredData({
 }
 
 export function OrganizationStructuredData() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com";
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://arcnetic.com/#organization",
+    "@id": `${baseUrl}/#organization`,
     name: serverConfig.business.name,
     legalName: serverConfig.business.legalName,
-    url: "https://arcnetic.com",
-    logo: "https://arcnetic.com/arcnetic-logo.png",
+    url: baseUrl,
+    logo: `${baseUrl}/images/arcnetic-logo.png`,
     description:
       "Elite software solutions for forward-thinking businesses. Custom applications, AI systems, and digital transformation services.",
     address: {

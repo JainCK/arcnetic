@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { serverConfig } from "./config";
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com";
+
 export const homeMetadata: Metadata = {
   title: "Arcnetic - Elite Software Solutions | Transform Your Business",
   description:
@@ -11,7 +13,7 @@ export const homeMetadata: Metadata = {
     title: "Arcnetic - Elite Software Solutions",
     description:
       "Transform your business with world-class software solutions. Custom applications, AI systems, and digital transformation services.",
-    url: "https://arcnetic.com",
+    url: baseUrl,
     type: "website",
     images: [
       {
@@ -32,7 +34,7 @@ export const homeMetadata: Metadata = {
     images: ["/twitter-image.jpg"],
   },
   alternates: {
-    canonical: "https://arcnetic.com",
+    canonical: baseUrl,
   },
 };
 
@@ -46,7 +48,7 @@ export const servicesMetadata: Metadata = {
     title: "Our Services - Custom Software Development | Arcnetic",
     description:
       "Discover our comprehensive software development services for business transformation.",
-    url: "https://arcnetic.com#services",
+    url: `${baseUrl}#services`,
     type: "website",
   },
 };
@@ -61,7 +63,7 @@ export const aboutMetadata: Metadata = {
     title: "About Arcnetic - Elite Software Development Team",
     description:
       "Learn about our mission to deliver transformative software solutions for businesses.",
-    url: "https://arcnetic.com#about",
+    url: `${baseUrl}#about`,
     type: "website",
   },
 };
@@ -76,7 +78,7 @@ export const contactMetadata: Metadata = {
     title: "Contact Arcnetic - Get Your Software Project Started",
     description:
       "Ready to transform your business? Contact us for a consultation.",
-    url: "https://arcnetic.com#contact",
+    url: `${baseUrl}/contact`,
     type: "website",
   },
 };
