@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Users, Code, Lightbulb, Globe } from "lucide-react";
 import Link from "next/link";
-import Footer from "@/components/common/footer";
+
 
 // SEO Optimized Metadata
 export const metadata: Metadata = {
@@ -157,7 +157,6 @@ export default function CareersPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }
