@@ -30,35 +30,35 @@ const PortableTextComponents = {
     ),
     // Paragraphs
     normal: ({ children }: any) => (
-      <p className="text-lg leading-relaxed mb-6 text-muted-foreground">
+      <p className="text-lg leading-relaxed mb-6 text-foreground/90 font-inter">
         {children}
       </p>
     ),
     // Block quote
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-primary pl-6 my-8 italic text-lg text-muted-foreground bg-muted/20 py-4 rounded-r-lg">
+      <blockquote className="border-l-4 border-primary pl-6 my-8 italic text-lg text-foreground/80 bg-muted/20 py-4 rounded-r-lg font-inter">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-6 space-y-2 text-muted-foreground">
+      <ul className="list-disc list-inside mb-6 space-y-3 text-foreground/90 font-inter">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-6 space-y-2 text-muted-foreground">
+      <ol className="list-decimal list-inside mb-6 space-y-3 text-foreground/90 font-inter">
         {children}
       </ol>
     ),
   },
   listItem: {
     bullet: ({ children }: any) => (
-      <li className="text-lg leading-relaxed">{children}</li>
+      <li className="text-lg leading-relaxed pl-2">{children}</li>
     ),
     number: ({ children }: any) => (
-      <li className="text-lg leading-relaxed">{children}</li>
+      <li className="text-lg leading-relaxed pl-2">{children}</li>
     ),
   },
   marks: {
@@ -102,7 +102,7 @@ const PortableTextComponents = {
             className="rounded-xl w-full object-cover"
           />
           {value.alt && (
-            <p className="text-sm text-muted-foreground text-center mt-2 italic">
+            <p className="text-sm text-foreground/70 text-center mt-3 italic font-inter">
               {value.alt}
             </p>
           )}
