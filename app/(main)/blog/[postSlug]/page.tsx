@@ -6,7 +6,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 import { CalendarDays, User, ArrowLeft, Clock } from "lucide-react";
-import { client, blogPostBySlugQuery, BlogPost, urlFor } from "@/lib/sanity";
+import {
+  previewClient,
+  blogPostBySlugQuery,
+  BlogPost,
+  urlFor,
+} from "@/lib/sanity";
+
+// Revalidate every 60 seconds for fresh content
+export const revalidate = 60;
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -16,7 +24,7 @@ interface BlogPostPageProps {
 
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    return await client.fetch(blogPostBySlugQuery, { slug });
+    return await previewClient.fetch(blogPostBySlugQuery, { slug });
   } catch (error) {
     console.error("Error fetching blog post:", error);
     return null;
@@ -84,7 +92,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="min-h-screen">
       {/* Back to Blog */}
-      <div className="border-b border-border/50">
+      {/* <div className="border-b border-border/50">
         <div className="container mx-auto px-4 py-4">
           <Link href="/blog">
             <Button variant="ghost" size="sm" className="gap-2">
@@ -93,7 +101,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </Button>
           </Link>
         </div>
-      </div>
+      </div> */}
 
       {/* Hero Section */}
       <section className="py-12 md:py-20">
@@ -116,11 +124,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </h1>
 
             {/* Excerpt */}
-            {post.excerpt && (
+            {/* {post.excerpt && (
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
                 {post.excerpt}
               </p>
-            )}
+            )} */}
 
             {/* Meta Information */}
             <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-8">
@@ -175,7 +183,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Blog Content */}
       <section className="pb-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <div className="max-w-4xl mx-auto">
             {post.body && <PortableTextRenderer content={post.body} />}
           </div>

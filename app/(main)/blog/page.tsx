@@ -4,7 +4,10 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays, Clock, User, ArrowRight } from "lucide-react";
-import { client, blogPostsQuery, BlogPost, urlFor } from "@/lib/sanity";
+import { previewClient, blogPostsQuery, BlogPost, urlFor } from "@/lib/sanity";
+
+// Revalidate every 60 seconds for fresh content
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog - Arcnetic",
@@ -14,7 +17,7 @@ export const metadata: Metadata = {
 
 async function getBlogPosts(): Promise<BlogPost[]> {
   try {
-    return await client.fetch(blogPostsQuery);
+    return await previewClient.fetch(blogPostsQuery);
   } catch (error) {
     console.error("Error fetching blog posts:", error);
     return [];
