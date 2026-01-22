@@ -1,51 +1,45 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/about/hero-section";
 import { MissionSection } from "@/components/about/mission-section";
-import { TeamSection } from "@/components/about/team-section";
+// TeamSection removed as per request
 import { ValuesSection } from "@/components/about/values-section";
-import { JourneySection } from "@/components/about/journey-section";
 import { CultureSection } from "@/components/about/culture-section";
 import { AboutFaqPreview } from "@/components/about/about-faq-preview";
-import { SectionDivider } from "@/components/section-divider";
 
 export const metadata: Metadata = {
-  title: "About Us | Arcnetic - Our Mission, Team & Values",
+  title: "About Us | Arcnetic - Engineering The Inevitable",
   description:
-    "Learn about Arcnetic's mission to deliver world-class software solutions. Meet our expert team and discover the values that drive our innovation.",
+    "Learn about Arcnetic's mission to deliver world-class software solutions. Discover the values and culture that drive our innovation.",
   keywords: [
     "about Arcnetic",
-    "software development team",
-    "company mission",
+    "software development mission",
     "technology experts",
     "innovation",
-    "values",
+    "corporate values",
   ],
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
       <HeroSection />
-      <SectionDivider variant="waves" />
-
+      
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      
       <section id="mission">
         <MissionSection />
       </section>
-      <SectionDivider variant="geometric" />
+      
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <ValuesSection />
-      <SectionDivider variant="dots" />
-
-      {/* <JourneySection />
-      <SectionDivider variant="waves" /> */}
+      
+      
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <CultureSection />
-      <SectionDivider variant="geometric" />
-
-      {/* <section id="team">
-        <TeamSection />
-      </section>
-      <SectionDivider variant="dots" /> */}
+      
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <AboutFaqPreview />
     </div>
