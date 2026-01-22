@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Space_Grotesk } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
-import "./(main)/globals.css"; // Note: Ensure this path is correct, might need to be "./(main)/globals.css"
+import "./(main)/globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,9 +51,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} ${spaceGrotesk.variable} font-inter antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <AnalyticsProvider>{children}</AnalyticsProvider>
-        </ThemeProvider>
+        <AnalyticsProvider>{children}</AnalyticsProvider>
       </body>
     </html>
   );

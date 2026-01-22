@@ -20,7 +20,7 @@ export const serverConfig = {
   // Social Media (safe to expose publicly)
   social: {
     twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE,
-    facebook: process.env.NEXT_PUBLIC_FACEBOOK_PAGE || "arcnetic",
+    facebook: process.env.NEXT_PUBLIC_FACEBOOK_PAGE || "arcneticpvtltd",
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_PAGE || "company/arcnetic",
   },
 

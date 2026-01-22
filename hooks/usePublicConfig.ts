@@ -34,7 +34,7 @@ export function usePublicConfig() {
         setConfig({
           social: {
             twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE || "@arcnetic",
-            facebook: process.env.NEXT_PUBLIC_FACEBOOK_PAGE || "arcnetic",
+            facebook: process.env.NEXT_PUBLIC_FACEBOOK_PAGE || "arcneticpvtltd",
             linkedin:
               process.env.NEXT_PUBLIC_LINKEDIN_PAGE || "company/arcnetic",
           },

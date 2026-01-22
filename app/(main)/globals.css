@@ -70,16 +70,16 @@ html {
   /* Improve scrolling performance on mobile */
   -webkit-overflow-scrolling: touch;
   /* Enable hardware acceleration for smoother animations */
-  transform: translateZ(0);
+  /* transform: translateZ(0); */
 }
 
 /* Performance optimizations for mobile */
 * {
-  /* Enable hardware acceleration for all elements */
-  backface-visibility: hidden;
-  perspective: 1000;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  /* Enable hardware acceleration for all elements - REMOVED to fix stacking context */
+  /* backface-visibility: hidden; */
+  /* perspective: 1000; */
+  /* -webkit-transform: translate3d(0, 0, 0); */
+  /* transform: translate3d(0, 0, 0); */
 }
 
 /* Optimize for mobile touch scrolling */
@@ -346,8 +346,8 @@ h6 {
 @media (max-width: 768px) {
   body {
     /* Optimize mobile scrolling */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    /* -webkit-transform: translateZ(0); */
+    /* transform: translateZ(0); */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     -webkit-perspective: 1000;

@@ -1,5 +1,5 @@
-import { Navigation } from "@/components/common/navigation";
-import Footer from "@/components/common/footer";
+import { NavigationMinimal } from "@/components/common/navigation";
+import { FooterMinimal } from "@/components/common/footer";
 
 export default function MainLayout({
   children,
@@ -8,9 +8,9 @@ export default function MainLayout({
 }) {
   return (
     <div className="min-h-screen">
-      <Navigation />
+      <NavigationMinimal />
       <main>{children}</main>
-      <Footer />
+      <FooterMinimal />
     </div>
   );
 }

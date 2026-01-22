@@ -135,7 +135,7 @@ export function OrganizationStructuredData() {
       `https://www.linkedin.com/${serverConfig.social.linkedin}`,
       `https://facebook.com/${serverConfig.social.facebook}`,
     ],
-    foundingDate: "2024",
+    foundingDate: "2025",
     knowsAbout: [
       "Software Development",
       "AI Solutions",
