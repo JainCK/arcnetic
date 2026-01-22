@@ -1,13 +1,6 @@
 "use client";
 
 import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "@/components/ui/card";
-import {
   ArrowRight,
   Code,
   Smartphone,
@@ -45,35 +38,52 @@ export function ServiceCard({
   href,
   index,
 }: ServiceCardProps) {
-  const IconComponent = iconMap[iconName] || Code; // Fallback to Code icon if not found
+  const IconComponent = iconMap[iconName] || Code;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="h-full"
     >
-      <Link href={href} className="h-full block group">
-        <Card className="h-full border-2 border-transparent hover:border-primary/40 hover:shadow-lg transition-all duration-300 bg-card/50 hover:bg-card transform hover:-translate-y-1">
-          <CardHeader className="flex-row items-center gap-4 pb-4">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
-              <IconComponent className="h-6 w-6 text-primary" />
+      <Link href={href} className="h-full block group relative">
+        <div className="h-full p-6 md:p-8 rounded-2xl border border-white/10 bg-[#0A0A0A] hover:bg-[#111] transition-all duration-500 relative overflow-hidden group-hover:border-white/20 flex flex-col">
+            
+            {/* Hover Glow Gradient - Contained */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col h-full">
+                {/* Header */}
+                <div className="flex justify-between items-start mb-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center bg-black group-hover:scale-110 transition-transform duration-300 shrink-0">
+                        {/* Slightly smaller icon on mobile */}
+                        <IconComponent className="h-4 w-4 md:h-5 md:w-5 text-white/70 group-hover:text-white" />
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-white/20 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
+
+                {/* Content */}
+                <h3 className="font-playfair text-xl md:text-2xl text-white mb-3 group-hover:tracking-wide transition-all leading-tight">
+                    {title}
+                </h3>
+                
+                <p className="font-space-grotesk text-sm text-white/50 leading-relaxed mb-6 flex-grow">
+                    {description}
+                </p>
+
+                {/* Footer Line & CTA */}
+                <div className="mt-auto">
+                   <div className="h-px w-full bg-white/5 group-hover:bg-white/20 transition-colors" />
+                   <div className="pt-4">
+                       <span className="font-space-grotesk text-[10px] md:text-xs uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">
+                           Learn More
+                       </span>
+                   </div>
+                </div>
             </div>
-            <CardTitle className="text-xl font-playfair group-hover:text-primary transition-colors">
-              {title}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription className="leading-relaxed mb-6">
-              {description}
-            </CardDescription>
-            <div className="flex items-center text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Learn More <ArrowRight className="ml-2 h-4 w-4" />
-            </div>
-          </CardContent>
-        </Card>
+        </div>
       </Link>
     </motion.div>
   );
