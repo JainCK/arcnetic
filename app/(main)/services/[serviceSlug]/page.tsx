@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -16,7 +15,7 @@ import {
   getAllServiceSlugs,
   getServiceHighlight,
 } from "@/lib/services-data";
-import { ArrowRight, Check, Users, Shield, Code } from "lucide-react";
+import { ArrowRight, Check, Shield } from "lucide-react";
 
 interface ServicePageProps {
   params: Promise<{
@@ -63,215 +62,197 @@ export default async function ServicePage({ params }: ServicePageProps) {
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center ">
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <Badge variant="outline" className="w-fit">
-                  Professional Service
-                </Badge>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-primary">
-                  {service.title}
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {service.shortDescription}
-                </p>
-              </div>
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      
+      {/* --- HERO SECTION: CINEMATIC VOID --- */}
+      <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center pt-32 pb-16 md:pt-20 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#000000] to-[#000000]" />
+          <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+        </div>
 
-              <div className="flex flex-wrap gap-3">
-                {service.features.slice(0, 3).map((feature) => (
-                  <Badge
-                    key={feature}
-                    variant="secondary"
-                    className="text-sm p-2"
-                  >
-                    {feature}
-                  </Badge>
-                ))}
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 items-end">
+            
+            {/* Left: Text Content */}
+            <div className="lg:col-span-7 space-y-6 md:space-y-8">
+              <div className="flex items-center gap-4">
+                 <div className="h-px w-8 md:w-12 bg-white/20" />
+                 <span className="font-space-grotesk text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/50">
+                   Professional Service
+                 </span>
               </div>
+              
+              <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] md:leading-[0.9] text-white">
+                {service.title}
+              </h1>
+              
+              <p className="font-space-grotesk text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl border-l border-white/10 pl-6">
+                {service.shortDescription}
+              </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="pt-4 md:pt-8 flex flex-wrap gap-4">
                 <Link href="/contact">
-                  <Button size="lg" className="text-md px-6 py-4">
-                    Get Started
-                    <ArrowRight className="ml-1 h-3 w-3" />
+                  <Button variant="outline" className="h-12 md:h-14 px-6 md:px-8 rounded-full border-white/20 bg-white/5 text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300 backdrop-blur-sm group">
+                    <span className="font-space-grotesk tracking-widest text-[10px] md:text-xs">INITIATE PROJECT</span>
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 p-8 mt-15">
+            {/* Right: Minimal Image Display - Hidden on very small mobile if desired, or kept responsive */}
+            <div className="lg:col-span-5 relative mt-8 lg:mt-0">
+              <div className="aspect-[4/5] relative rounded-none overflow-hidden border border-white/10 bg-white/5 group">
                 <Image
                   src={service.heroImage || "/placeholder.svg"}
                   alt={service.title}
-                  width={600}
-                  height={600}
-                  className="w-full h-full object-cover rounded-xl"
+                  fill
+                  className="object-cover opacity-60 transition-opacity duration-700 group-hover:opacity-80 grayscale group-hover:grayscale-0"
+                  priority // LCP optimization
                 />
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                
+                {/* Floating Badge */}
+                <div className="absolute bottom-6 left-6 right-6">
+                   <div className="flex flex-wrap gap-2">
+                    {service.features.slice(0, 3).map((feature) => (
+                      <span
+                        key={feature}
+                        className="px-3 py-1 text-[10px] font-space-grotesk uppercase tracking-wider text-white border border-white/20 bg-black/50 backdrop-blur-md"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                   </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Detailed Description */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-left mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {"Why Choose Our "}
-                {service.title}
-                {"?"}
+      {/* --- WHY CHOOSE: MINIMAL GRID --- */}
+      <section className="py-20 md:py-32 border-t border-white/5 px-4 md:px-8">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+            
+            {/* Sticky Header */}
+            <div className="lg:col-span-4 lg:sticky lg:top-32 h-fit mb-8 lg:mb-0">
+              <span className="font-space-grotesk text-xs uppercase tracking-[0.2em] text-white/40 block mb-4">
+                The Advantage
+              </span>
+              <h2 className="font-playfair text-3xl md:text-5xl text-white mb-6 md:mb-8 text-balance">
+                Why Arcnetic for {service.title}?
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="font-space-grotesk text-white/50 leading-relaxed text-sm">
                 {service.longDescription}
               </p>
             </div>
 
-            {/* Minimal feature list with dividers instead of boxed cards */}
-            <div className="divide-y divide-border">
-              {service.features.map((feature) => (
-                <div key={feature} className="py-4">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-0.5 h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      {/* Using same Check icon already imported at top of file */}
-                      <Check className="h-3.5 w-3.5 text-primary" />
+            {/* Feature Grid */}
+            <div className="lg:col-span-8">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-12">
+                {service.features.map((feature, i) => (
+                  <div key={feature} className="group border-t border-white/10 pt-6 transition-colors hover:border-white/40">
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="font-space-grotesk text-xs text-white/30">0{i + 1}</span>
+                      <Check className="h-4 w-4 text-white/40 group-hover:text-white transition-colors" />
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium leading-tight">{feature}</h4>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {"Professional "}
-                        {feature.toLowerCase()}
-                        {" services tailored to your needs."}
-                      </p>
-                    </div>
+                    <h4 className="font-playfair text-xl md:text-2xl text-white mb-2">{feature}</h4>
+                    <p className="font-space-grotesk text-sm text-white/50">
+                      Professional {feature.toLowerCase()} services engineered for scale and performance.
+                    </p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Sub-Services - Proper Accordion */}
-      <section className="py-24 bg-gradient-to-br from-muted/20 via-background to-muted/10 relative">
-        {/* Background decoration */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            {/* Left-aligned header */}
-            <div className="mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-                Our Service Offerings
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
-                Comprehensive solutions designed to meet all your{" "}
-                {service.title.toLowerCase()} needs. Each offering is crafted
-                with precision and delivered with excellence.
-              </p>
-            </div>
-
-            {/* Accordion with proper collapsible functionality */}
-            <Accordion type="single" collapsible className="space-y-6">
-              {service.subServices.map((subService, index) => (
-                <AccordionItem
-                  key={subService.title}
-                  value={`item-${index}`}
-                  className="border-l-4 border-primary/20 hover:border-primary/40 transition-all duration-300 border-b-0"
-                >
-                  <div className="pl-8 relative">
-                    {/* Connector dot */}
-                    <div className="absolute -left-2 top-6 w-4 h-4 bg-primary/20 group-hover:bg-primary/40 rounded-full border-4 border-background transition-colors duration-300" />
-
-                    <AccordionTrigger className="hover:no-underline pb-0 pt-4">
-                      <div className="flex items-center gap-3 text-left w-full">
-                        <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <div className="flex-1">
-                          <h3 className="text-2xl md:text-3xl font-bold text-foreground hover:text-primary transition-colors duration-300">
-                            {subService.title}
-                          </h3>
-                          <p className="text-lg text-muted-foreground leading-relaxed mt-2 text-left">
-                            {subService.description}
-                          </p>
-                        </div>
-                      </div>
-                    </AccordionTrigger>
-
-                    <AccordionContent className="pb-8 pt-4">
-                      <div className="space-y-6 ml-4">
-                        {/* Features grid */}
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {subService.features.map((feature) => (
-                            <div
-                              key={feature}
-                              className="flex items-start gap-3 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/20 hover:bg-primary/5 transition-all duration-300"
-                            >
-                              <div className="w-6 h-6 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <Check className="h-4 w-4 text-primary" />
-                              </div>
-                              <span className="text-sm font-medium text-foreground leading-relaxed">
-                                {feature}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Service highlight */}
-                        <div className="p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl border border-primary/10">
-                          <p className="text-sm text-muted-foreground">
-                            <span className="font-medium text-primary">
-                              Why choose this service:
-                            </span>
-                            {" " + getServiceHighlight(subService.title)}
-                          </p>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </div>
-                </AccordionItem>
-              ))}
-            </Accordion>
-
-            {/* Bottom accent */}
-            <div className="mt-16 pt-8 border-t border-gradient-to-r from-transparent via-primary/20 to-transparent">
-              <p className="text-center text-muted-foreground">
-                Need a custom solution?
-                <Link
-                  href="/contact"
-                  className="text-primary hover:underline font-medium ml-1"
-                >
-                  Let's discuss your requirements
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              {"Technologies We Use"}
+      {/* --- OFFERINGS: ULTRA CLEAN ACCORDION --- */}
+      <section className="py-20 md:py-32 bg-[#050505] px-4 md:px-8">
+        <div className="container mx-auto max-w-5xl">
+          <div className="mb-12 md:mb-20 text-center">
+            <h2 className="font-playfair text-4xl md:text-6xl text-white mb-6">
+              Capabilities
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {
-                "We leverage cutting-edge technologies and industry best practices to deliver exceptional results."
-              }
+            <p className="font-space-grotesk text-white/50 max-w-2xl mx-auto px-4">
+              Comprehensive solutions designed to meet all your {service.title.toLowerCase()} needs. 
+              Precision engineered for the modern enterprise.
             </p>
           </div>
 
-          {/* Using the minimal, subtle group display */}
-          <div className="max-w-5xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-4">
+            {service.subServices.map((subService, index) => (
+              <AccordionItem
+                key={subService.title}
+                value={`item-${index}`}
+                className="border border-white/10 bg-white/[0.02] px-4 md:px-6 py-2 transition-all duration-300 hover:bg-white/[0.05] data-[state=open]:bg-white/[0.08] data-[state=open]:border-white/20"
+              >
+                <AccordionTrigger className="hover:no-underline py-6 group text-left">
+                  <div className="flex items-center gap-4 md:gap-6 text-left">
+                    <span className="font-space-grotesk text-xs text-white/30 group-hover:text-white transition-colors shrink-0">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-playfair text-xl md:text-3xl text-white group-hover:tracking-wide transition-all">
+                      {subService.title}
+                    </h3>
+                  </div>
+                </AccordionTrigger>
+
+                <AccordionContent className="pb-8">
+                  <div className="pl-0 md:pl-12 grid md:grid-cols-2 gap-8 md:gap-12 pt-4">
+                    <div className="space-y-6">
+                      <p className="font-space-grotesk text-white/70 leading-relaxed text-base md:text-lg">
+                        {subService.description}
+                      </p>
+                      <div className="p-6 border border-white/10 bg-black/40">
+                        <p className="font-space-grotesk text-sm text-white/60">
+                          <span className="block text-xs uppercase tracking-widest text-white/30 mb-2">Highlight</span>
+                          {getServiceHighlight(subService.title)}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <span className="font-space-grotesk text-xs uppercase tracking-widest text-white/30 block mb-4">Includes</span>
+                      {subService.features.map((feature) => (
+                        <div key={feature} className="flex items-center gap-3 group/item">
+                          <div className="h-px w-4 bg-white/20 group-hover/item:w-6 transition-all" />
+                          <span className="font-space-grotesk text-sm text-white/70 group-hover/item:text-white">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* --- TECH STACK: DARK MODE --- */}
+      <section className="py-20 md:py-32 border-t border-white/5 px-4 md:px-8">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-8">
+            <div className="max-w-xl">
+              <h2 className="font-playfair text-3xl md:text-4xl text-white mb-4">
+                Architecture & Tech
+              </h2>
+              <p className="font-space-grotesk text-white/50 text-sm md:text-base">
+                We leverage cutting-edge technologies and industry best practices to deliver exceptional results.
+              </p>
+            </div>
+            <div className="h-px flex-1 bg-white/10 hidden md:block mx-8 mb-2" />
+          </div>
+
+          <div className="max-w-6xl mx-auto">
             <TechStackDisplay
               techStack={service.techStack}
               showCategories={true}
@@ -280,68 +261,32 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="mb-8">
-              <Shield className="h-16 w-16 text-primary mx-auto mb-6" />
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {service.cta.title}
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                {service.cta.description}
-              </p>
-            </div>
+      {/* --- CTA: MINIMAL --- */}
+      <section className="py-24 md:py-40 relative overflow-hidden px-4">
+        {/* Abstract Background */}
+        <div className="absolute inset-0 bg-white/[0.02]" />
+        
+        <div className="container mx-auto relative z-10 text-center">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <Shield className="h-10 w-10 md:h-12 md:w-12 text-white/20 mx-auto" />
+            
+            <h2 className="font-playfair text-4xl md:text-7xl text-white leading-tight">
+              {service.cta.title}
+            </h2>
+            
+            <p className="font-space-grotesk text-base md:text-lg text-white/50 max-w-xl mx-auto">
+              {service.cta.description}
+            </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="text-md px-6 py-4">
-                  {service.cta.buttonText}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+            <div className="pt-8">
+              <Link href="/contact" className="inline-block group">
+                 <div className="relative overflow-hidden rounded-full border border-white/20 bg-white/5 px-8 md:px-12 py-4 md:py-6 backdrop-blur-sm transition-all duration-300 group-hover:bg-white group-hover:text-black">
+                    <span className="flex items-center gap-4 font-space-grotesk text-xs md:text-sm tracking-[0.2em] font-medium">
+                      {service.cta.buttonText.toUpperCase()}
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
+                 </div>
               </Link>
-            </div>
-
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                {
-                  number: "10+",
-                  label: "Years of Combined Expertise",
-                  desc: "Led by seasoned industry professionals",
-                },
-                {
-                  icon: Users,
-                  label: "Client-Centric Process",
-                  desc: "Collaborative, transparent, and agile",
-                },
-                {
-                  icon: Code,
-                  label: "Modern Tech Stack",
-                  desc: "Leveraging cutting-edge technologies",
-                },
-                {
-                  number: "24/7",
-                  label: "Support Available",
-                  desc: "Round-the-clock assistance",
-                },
-              ].map((stat, index) => (
-                <div key={index} className="text-center space-y-2">
-                  <div className="text-xl md:text-md font-bold text-primary">
-                    {stat.number ? (
-                      stat.number
-                    ) : stat.icon ? (
-                      <stat.icon className="mx-auto h-6 w-6 text-primary" />
-                    ) : null}
-                  </div>
-                  <div className="text-sm font-semibold text-foreground">
-                    {stat.label}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {stat.desc}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>

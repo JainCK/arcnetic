@@ -1,119 +1,82 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useInView,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export function HeroSection() {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true });
-
-  const { scrollYProgress } = useScroll();
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
+  
+  // Smooth Parallax: Text moves slower than background creates 3D depth
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]); 
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]); 
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, 50]); // Text drifts down slowly
 
   return (
     <section
-      ref={heroRef}
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      ref={targetRef}
+      className="relative h-screen w-full overflow-hidden bg-black text-white flex items-center justify-center"
     >
-      <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-      </motion.div>
+      {/* ... (background code) ... */}
+      <div className="absolute inset-0 z-0">
+         {/* OPTION A: If you downloaded a video to public/videos/hero-bg.mp4 */}
+         {/* ... */}
+         {/* OPTION B: CSS Fallback (The Dark Knight Void) */}
+         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#000000] to-[#000000] z-[-1]" />
+         
+         {/* Animated Fog/Noise Texture for depth */}
+         <div className="absolute inset-0 opacity-[0.2] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay animate-pulse" />
+      </div>
 
-      <div className="container mx-auto px-4 z-10 text-center relative max-w-7xl">
-        <div className="h-40 md:h-32" />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.5, ease: [0.25, 0.26, 0.35, 0.45] }}
+      {/* 2. Content with Smooth Parallax */}
+      <motion.div 
+        style={{ opacity, scale, y }}
+        className="relative z-10 flex flex-col items-center justify-center px-4 text-center"
+      >
+        {/* ... (Minimal Tagline) ... */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8"
         >
-          <motion.h1
-            className="text-6xl md:text-8xl lg:text-[10rem] font-bold mb-8 bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent leading-none font-playfair"
-            style={{ y: textY }}
-          >
-            Arcnetic
-          </motion.h1>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={heroInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
-            className="h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 max-w-4xl"
-          />
+          <span className="font-space-grotesk text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/40 border border-white/5 rounded-full px-6 py-3 bg-white/5 backdrop-blur-md shadow-2xl">
+            Next Generation Systems
+          </span>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-12"
-        >
-          <h2 className="text-2xl md:text-3xl font-light mb-8 text-muted-foreground leading-relaxed max-w-5xl mx-auto font-space-grotesk">
-            <span className="bg-primary bg-clip-text text-transparent font-semibold">
-              Driving Business Growth with Custom Software & AI Solutions
-            </span>
-          </h2>
-          <p className="text-md text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            As a premier software development partner in Kochi, we engineer
-            transformative custom software that delivers measurable results.
-            From AI-powered automation to enterprise-grade applications, we
-            build technology that secures your competitive advantage.
-          </p>
-        </motion.div>
+        {/* Massive Headline */}
+        <h1 className="font-playfair text-6xl sm:text-[11vw] md:text-[8vw] leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/20 select-none drop-shadow-2xl">
+          Automating<br />
+          The Future.
+        </h1>
 
-        <motion.div
-          className="flex justify-center items-center mb-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
+        {/* Floating CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+          className="mt-16"
         >
-          <Button
-            size="lg"
-            onClick={scrollToContact}
-            className="text-lg px-15 py-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-2xl hover:shadow-primary/40 rounded-2xl font-space-grotesk font-semibold"
-          >
-            Transform Your Business
-            <ArrowRight className="ml-3 h-6 w-6" />
-          </Button>
+          <Link href="/contact">
+            <Button 
+              variant="ghost" 
+              className="group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-10 py-8 text-white hover:bg-white hover:text-black hover:border-white transition-all duration-500 backdrop-blur-sm"
+            >
+              <span className="relative z-10 flex items-center gap-4 font-space-grotesk tracking-[0.2em] text-xs font-medium">
+                START EVOLUTION
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Button>
+          </Link>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground font-space-grotesk"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full" />
-            <span>Business Security</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-blue-500 rounded-full" />
-            <span>99.9% Uptime SLA</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-purple-500 rounded-full" />
-            <span>24/7 Expert Support</span>
-          </div>
-        </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

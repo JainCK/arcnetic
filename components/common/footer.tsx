@@ -1,182 +1,114 @@
 "use client";
 
-import { FC } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Linkedin, Twitter, ArrowRight, MapPin } from "lucide-react";
-import { usePublicConfig } from "@/hooks/usePublicConfig";
-import { FEATURE_FLAGS } from "@/lib/feature-flags";
+import { Linkedin, Twitter, Instagram } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { usePublicConfig } from "@/hooks/usePublicConfig";
 
 const solutions = [
-  { name: "Web & Full-Stack Development", slug: "web-development" },
-  { name: "Mobile Development", slug: "mobile-development" },
-  { name: "AI Solutions", slug: "ai-solutions" },
-  { name: "Cloud Infrastructure", slug: "cloud-infrastructure" },
-  { name: "Maintenance & Support", slug: "maintenance-support" },
-  { name: "Digital Transformation", slug: "digital-transformation" },
+  { name: "Web Development", href: "/services/web-development" },
+  { name: "Mobile Apps", href: "/services/mobile-development" },
+  { name: "AI Solutions", href: "/services/ai-solutions" },
+  { name: "Cloud Infra", href: "/services/cloud-infrastructure" },
+  { name: "Digital Transformation", href: "/services/digital-transformation" },
 ];
 
-const Footer: FC = () => {
+const studio = [
+  { name: "Our Mission", href: "/about#mission" },
+  { name: "Leadership", href: "/about#team" },
+  { name: "Careers", href: "/careers" },
+  { name: "Strategies", href: "/strategies" },
+  { name: "Blog", href: "/blog" },
+];
+
+export function FooterMinimal() {
   const { config } = usePublicConfig();
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-10 bg-gradient-to-t from-muted/20 to-background border-t border-border/50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            <div className="md:col-span-2">
-              <motion.div
-                className="flex items-center mb-2"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Image
-                  src="/images/arcnetic-logo.png"
-                  alt="Arcnetic Logo"
-                  width={120}
-                  height={34}
-                  className="h-10 w-auto mr-1"
-                />
-                <h3 className="text-3xl font-bold bg-primary bg-clip-text text-transparent font-playfair">
-                  Arcnetic
-                </h3>
-              </motion.div>
-              <p className="text-muted-foreground mb-6 max-w-md leading-relaxed font-space-grotesk">
-                Elite software solutions for forward-thinking businesses.
-              </p>
-
-              {/* Address Section */}
-              <div className="mb-6">
-                <div className="flex items-center mb-3">
-                  <MapPin className="h-5 w-5 text-primary mr-2" />
-                  <span className="text-muted-foreground text-sm font-medium">
-                    Location
-                  </span>
-                </div>
-                <address className="text-muted-foreground text-sm leading-relaxed not-italic">
-                  Beyond Co-working, VS-08, 90 A, South,
-                  <br />
-                  Canal Rd, Giri Nagar, Kadavanthra,
-                  <br />
-                  Kochi, Kerala 682020, India
-                </address>
-              </div>
-              <div className="flex space-x-4">
-                <motion.div
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="w-12 h-12 rounded-xl"
-                    asChild
-                  >
-                    <a
-                      href={`https://linkedin.com/${config?.social.linkedin || "company/arcnetic"}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="h-3 w-3" />
-                    </a>
-                  </Button>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="w-8 h-8 rounded-xl"
-                    asChild
-                  ></Button>
-                </motion.div>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-5 font-space-grotesk">Solutions</h4>
-              <div className="space-y-2">
-                {solutions.map((service) => (
-                  <motion.div key={service.slug} whileHover={{ x: 5 }}>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="block text-muted-foreground hover:text-primary transition-colors text-sm"
-                    >
-                      {service.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-5 font-space-grotesk">Company</h4>
-              <div className="space-y-2">
-                <motion.div whileHover={{ x: 5 }}>
-                  <Link
-                    href="/about"
-                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    About
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ x: 5 }}>
-                  <Link
-                    href="/careers"
-                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    Careers
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ x: 5 }}>
-                  <Link
-                    href="/faq"
-                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    FAQ
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ x: 5 }}>
-                  <Link
-                    href="/contact"
-                    className="block text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    Contact
-                  </Link>
-                </motion.div>
-                {FEATURE_FLAGS.PRICING_ENABLED && (
-                  <motion.div className="mt-6">
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="/pricing">
-                        View Pricing
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </motion.div>
-                )}
-              </div>
+    <footer className="bg-black border-t border-white/5 pt-32 pb-12 px-4 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-32">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-4 space-y-8">
+            <h2 className="font-playfair text-3xl font-bold text-white">Arcnetic.</h2>
+            <p className="font-space-grotesk text-sm text-white/40 leading-relaxed max-w-xs">
+              Engineering the next generation of digital enterprise. 
+              Based in Kochi, operating globally.
+            </p>
+            
+            {/* Social Icons */}
+            <div className="flex gap-4 pt-4">
+              <SocialIcon icon={Linkedin} href={`https://linkedin.com/${config?.social?.linkedin || "company/arcnetic"}`} />
+              <SocialIcon icon={Twitter} href={`https://twitter.com/${config?.social?.twitter || "arcnetic"}`} />
+              {/* <SocialIcon icon={Instagram} href={`https://instagram.com/${config?.social?.instagram || "arcnetic"}`} /> */}
             </div>
           </div>
 
-          <motion.div
-            className="border-t border-border/50 pt-4 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="text-muted-foreground font-space-grotesk">
-              © 2025-26 Arcnetic. All rights reserved. | Software Solutions
-            </p>
-          </motion.div>
+          {/* Links Column 1 */}
+          <div className="md:col-span-3 md:col-start-7">
+            <h3 className="font-space-grotesk text-xs uppercase tracking-[0.2em] text-white/30 mb-8">
+              Expertise
+            </h3>
+            <ul className="space-y-4">
+              {solutions.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-sm font-space-grotesk text-white/60 hover:text-white transition-colors block py-1">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Links Column 2 */}
+          <div className="md:col-span-3">
+            <h3 className="font-space-grotesk text-xs uppercase tracking-[0.2em] text-white/30 mb-8">
+              Studio
+            </h3>
+            <ul className="space-y-4">
+              {studio.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-sm font-space-grotesk text-white/60 hover:text-white transition-colors block py-1">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* BOTTOM BAR */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-t border-white/5 pt-12 gap-8">
+          <div className="space-y-1">
+             <p className="text-xs text-white/30 font-space-grotesk uppercase tracking-widest">© {currentYear} Arcnetic Pvt Ltd.</p>
+             <div className="flex gap-4 text-xs text-white/30 font-space-grotesk">
+               <Link href="/privacy" className="hover:text-white">Privacy</Link>
+               <Link href="/terms" className="hover:text-white">Terms</Link>
+             </div>
+          </div>
+          
+          <div className="text-right">
+             <p className="text-xs text-white/30 font-space-grotesk uppercase tracking-widest mb-1">System Status</p>
+             <div className="flex items-center gap-2 justify-end">
+               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+               <span className="text-xs text-white/60 font-space-grotesk">All Systems Operational</span>
+             </div>
+          </div>
         </div>
       </div>
     </footer>
   );
-};
+}
 
-export default Footer;
+const SocialIcon = ({ icon: Icon, href }: { icon: any, href: string }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-10 h-10 rounded-full bg-white/5 hover:bg-white border border-white/5 hover:border-white flex items-center justify-center text-white/60 hover:text-black transition-all duration-300"
+  >
+    <Icon className="h-4 w-4" />
+  </a>
+);

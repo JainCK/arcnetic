@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -81,79 +81,100 @@ export function SimpleContactForm() {
 
   if (sent) {
     return (
-      <div className="text-center py-12">
-        <div className="text-green-600 font-semibold text-xl mb-4">
-          Thank you for your message!
+      <div className="text-center py-20 px-8 rounded-2xl border border-white/10 bg-white/[0.02]">
+        <div className="text-3xl font-playfair text-white mb-4">
+          Message Received.
         </div>
-        <p className="text-muted-foreground">
-          We'll get back to you within 24 hours.
+        <p className="text-white/50 font-space-grotesk">
+          We will review your inquiry and respond within 24 hours.
         </p>
+        <Button 
+          variant="link" 
+          onClick={() => setSent(false)}
+          className="mt-8 text-primary font-space-grotesk"
+        >
+          Send another message
+        </Button>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {error && (
-        <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg border border-red-200">
+        <div className="text-red-400 text-center p-4 bg-red-500/10 rounded-lg border border-red-500/20 font-space-grotesk text-sm">
           {error}
         </div>
       )}
       <form className="space-y-6" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-white/40 font-space-grotesk ml-1">First Name</label>
+            <Input
+              name="firstName"
+              value={form.firstName}
+              onChange={handleChange}
+              required
+              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary/50 focus:bg-white/10 transition-all font-space-grotesk"
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-white/40 font-space-grotesk ml-1">Last Name</label>
+            <Input
+              name="lastName"
+              value={form.lastName}
+              onChange={handleChange}
+              required
+              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary/50 focus:bg-white/10 transition-all font-space-grotesk"
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-xs uppercase tracking-widest text-white/40 font-space-grotesk ml-1">Business Email</label>
           <Input
-            placeholder="First Name"
-            className="h-12"
-            name="firstName"
-            value={form.firstName}
+            type="email"
+            name="email"
+            value={form.email}
             onChange={handleChange}
             required
-          />
-          <Input
-            placeholder="Last Name"
-            className="h-12"
-            name="lastName"
-            value={form.lastName}
-            onChange={handleChange}
-            required
+            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary/50 focus:bg-white/10 transition-all font-space-grotesk"
           />
         </div>
-        <Input
-          placeholder="Business Email"
-          type="email"
-          className="h-12"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-        <Input
-          placeholder="Company Name"
-          className="h-12"
-          name="company"
-          value={form.company}
-          onChange={handleChange}
-        />
-        <Textarea
-          placeholder="Describe your business challenge and goals..."
-          className="min-h-[120px] resize-none"
-          name="message"
-          value={form.message}
-          onChange={handleChange}
-          required
-        />
+
+        <div className="space-y-2">
+          <label className="text-xs uppercase tracking-widest text-white/40 font-space-grotesk ml-1">Company (Optional)</label>
+          <Input
+            name="company"
+            value={form.company}
+            onChange={handleChange}
+            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary/50 focus:bg-white/10 transition-all font-space-grotesk"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-xs uppercase tracking-widest text-white/40 font-space-grotesk ml-1">Message</label>
+          <Textarea
+            name="message"
+            value={form.message}
+            onChange={handleChange}
+            required
+            className="min-h-[150px] resize-none bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary/50 focus:bg-white/10 transition-all font-space-grotesk"
+          />
+        </div>
+
         <Button
-          className="w-full h-12 text-lg font-semibold"
+          className="w-full h-14 bg-white text-black hover:bg-white/90 font-playfair font-bold text-lg rounded-xl"
           type="submit"
           disabled={loading}
         >
           {loading ? (
-            "Sending..."
+            <Loader2 className="h-5 w-5 animate-spin" />
           ) : (
-            <>
+            <span className="flex items-center gap-2">
               Send Message
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </>
+              <ArrowRight className="h-5 w-5" />
+            </span>
           )}
         </Button>
       </form>

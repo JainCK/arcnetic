@@ -1,162 +1,189 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Users, Code, Lightbulb, Globe } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, Users, Code, Lightbulb, Globe, ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
-
 
 // SEO Optimized Metadata
 export const metadata: Metadata = {
-  title: "Software Development Jobs & Tech Careers in India | Arcnetic",
+  title: "Careers | Arcnetic - Engineer The Future",
   description:
-    "Explore software engineering, AI/ML, and UI/UX design careers at Arcnetic. We're hiring for remote and hybrid tech jobs in India. Join our innovative team!",
+    "Join the team building the inevitable. Explore career opportunities in software engineering, AI, and design at Arcnetic.",
   openGraph: {
-    title: "Software Development Jobs & Tech Careers in India | Arcnetic",
+    title: "Careers | Arcnetic",
     description:
-      "Explore software engineering, AI/ML, and UI/UX design careers at Arcnetic. We're hiring for remote and hybrid tech jobs in India. Join our innovative team!",
+      "Join the team building the inevitable. Explore career opportunities in software engineering, AI, and design at Arcnetic.",
     type: "website",
     url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://arcnetic.com"}/careers`,
   },
   keywords: [
-    "software developer jobs india",
-    "tech careers india",
-    "it jobs",
-    "ai engineer jobs",
-    "full-stack developer jobs",
-    "remote developer jobs india",
+    "software developer jobs",
+    "tech careers",
+    "AI engineer jobs",
+    "remote tech jobs",
     "arcnetic careers",
   ],
 };
 
 const values = [
   {
-    icon: <Code className="h-8 w-8 text-primary" />,
-    title: "Technical Excellence",
+    icon: Code,
+    title: "Technical Mastery",
     description:
-      "We are dedicated to writing clean, efficient, and scalable code to build robust software solutions.",
+      "We don't just write code; we craft systems. We demand excellence, efficiency, and scalability in every commit.",
   },
   {
-    icon: <Lightbulb className="h-8 w-8 text-primary" />,
-    title: "Innovation & Problem-Solving",
+    icon: Lightbulb,
+    title: "Radical Innovation",
     description:
-      "We leverage cutting-edge technology and encourage creative approaches to solve complex challenges.",
+      "We solve problems others ignore. We leverage bleeding-edge technology to create unfair advantages for our clients.",
   },
   {
-    icon: <Users className="h-8 w-8 text-primary" />,
-    title: "Collaborative Team Culture",
+    icon: Users,
+    title: "Collective Genius",
     description:
-      "We foster a culture of teamwork, open communication, and knowledge sharing to achieve great results.",
+      "No lone wolves. We believe in the multiplier effect of high-trust, high-bandwidth collaboration.",
   },
   {
-    icon: <Globe className="h-8 w-8 text-primary" />,
+    icon: Globe,
     title: "Global Impact",
     description:
-      "Join us in building software that transforms businesses and makes a meaningful impact worldwide.",
+      "Your work will power enterprises around the world. We build software that matters.",
   },
 ];
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {/* Header */}
-      <header className="container mx-auto px-4 pt-8">
-        <Link href="/">
-          <Button variant="ghost" className="mb-8">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Button>
-        </Link>
-      </header>
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-40 pb-20 px-4 overflow-hidden border-b border-white/10">
+        {/* Background Void */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#111] via-[#000000] to-[#000000]" />
+          <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+        </div>
 
-      <main className="container mx-auto px-4">
-        {/* Hero Section */}
-        <section className="py-8 md:py-12">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-10 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent font-playfair">
-              Build the Future of Software With Us
+        <div className="container mx-auto relative z-10 max-w-7xl">
+          <div className="max-w-4xl">
+            <Link href="/">
+                <Button variant="ghost" className="mb-12 text-white/40 hover:text-white hover:bg-white/5 pl-0 transition-all group">
+                    <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                    Back to Base
+                </Button>
+            </Link>
+            
+            <span className="font-space-grotesk text-xs uppercase tracking-[0.3em] text-white/40 border border-white/10 rounded-full px-4 py-2 bg-white/5 backdrop-blur-sm mb-8 inline-block">
+              Join the Vanguard
+            </span>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-medium font-playfair text-white mb-8 tracking-tight leading-[0.9]">
+              Build The <br/> Inevitable.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-space-grotesk">
-              We are looking for passionate software engineers, developers, and
-              designers to join our team in India. Help us build innovative
-              solutions that drive business transformation.
+            <p className="text-xl text-white/50 max-w-2xl font-space-grotesk leading-relaxed">
+              We are looking for the obsessive, the curious, and the relentless. 
+              Help us engineer the next generation of digital infrastructure.
             </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Company Values Section */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 font-playfair">
-            Our Engineering Culture & Values
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {values.map((value) => (
-              <Card key={value.title} className="text-center border-border">
-                <CardHeader className="pb-4">
-                  <div className="flex justify-center mb-3 md:mb-4">
-                    {value.icon}
-                  </div>
-                  <h3 className="text-lg md:text-xl font-playfair font-semibold">
-                    {value.title}
-                  </h3>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm md:text-base text-muted-foreground font-space-grotesk">
-                    {value.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Application Section */}
-        <section className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl md:rounded-3xl p-6 md:p-12 mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 font-playfair">
-            Ready to Join Our Team?
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 font-space-grotesk max-w-4xl mx-auto">
-            We're always searching for talented people who share our passion for
-            technology. If you're a skilled developer, engineer, or designer,
-            we'd love to hear from you.
-          </p>
-
-          <div className="bg-card rounded-xl md:rounded-2xl p-6 md:p-8 max-w-3xl mx-auto mb-6 md:mb-8">
-            <h3 className="text-xl md:text-2xl font-bold mb-4 font-playfair">
-              How to Apply for a Job
-            </h3>
-            <div className="text-left space-y-3 md:space-y-4 font-space-grotesk">
-              <p className="text-sm md:text-base">
-                Send your job application to:{" "}
-                <strong>
-                  aswin.p@arcnetic.com or jainkuriakose@arcnetic.com
-                </strong>
-              </p>
-              <p className="text-sm md:text-base">
-                Please include the following in your email:
-              </p>
-              <ul className="list-disc list-inside ml-4 space-y-2 text-muted-foreground text-sm md:text-base">
-                <li>Your most recent resume or CV</li>
-                <li>
-                  A cover letter explaining your interest in a tech career at
-                  Arcnetic
-                </li>
-                <li>
-                  Links to your portfolio, GitHub profile, or relevant software
-                  projects
-                </li>
-                <li>
-                  Any additional work samples or case studies you'd like to
-                  share
-                </li>
-              </ul>
-              <p className="mt-4 md:mt-6 text-xs md:text-sm text-muted-foreground">
-                Our hiring team reviews all applications carefully and will
-                respond within 1-2 weeks if your profile is a good fit.
+      {/* --- CULTURE GRID --- */}
+      <section className="py-32 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div className="max-w-xl">
+              <h2 className="font-playfair text-4xl md:text-5xl text-white mb-6">
+                The Engineering Standard
+              </h2>
+              <p className="font-space-grotesk text-white/50 text-lg">
+                We don't hire for seats; we hire for standards. Here is what defines us.
               </p>
             </div>
+            <div className="h-px flex-1 bg-white/10 hidden md:block mx-8 mb-4" />
           </div>
-        </section>
-      </main>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <div 
+                key={value.title} 
+                className="group p-8 rounded-2xl border border-white/10 bg-[#0A0A0A] hover:bg-[#111] transition-all duration-500 hover:border-white/20"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-white/60 group-hover:text-white group-hover:bg-white/10 transition-colors">
+                  <value.icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-playfair text-white mb-4 group-hover:translate-x-1 transition-transform">
+                  {value.title}
+                </h3>
+                <p className="text-sm text-white/40 font-space-grotesk leading-relaxed group-hover:text-white/60 transition-colors">
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- APPLICATION SECTION --- */}
+      <section className="pb-32 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="relative rounded-3xl border border-white/10 bg-[#050505] overflow-hidden">
+            {/* Background Gradient */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[150px] pointer-events-none opacity-20" />
+            
+            <div className="grid lg:grid-cols-2 gap-12 p-8 md:p-16 relative z-10">
+              
+              <div className="space-y-8">
+                <h2 className="font-playfair text-4xl md:text-6xl text-white leading-tight">
+                  Ready to deploy?
+                </h2>
+                <p className="font-space-grotesk text-lg text-white/50 leading-relaxed max-w-md">
+                  We are always searching for exceptional talent. If you don't see a specific role but know you belong here, send us your signal.
+                </p>
+                
+                <div className="pt-4">
+                  <a href="mailto:careers@arcnetic.com" className="inline-block">
+                    <Button className="h-14 px-8 bg-white text-black hover:bg-white/90 rounded-full font-playfair font-bold text-lg">
+                      <Mail className="mr-3 h-5 w-5" />
+                      Apply Now
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-8 md:p-10 backdrop-blur-sm">
+                <h3 className="font-space-grotesk text-sm uppercase tracking-widest text-white/40 mb-6">
+                  Application Protocol
+                </h3>
+                
+                <div className="space-y-6 font-space-grotesk text-white/70">
+                  <p>
+                    Send your dossier to <span className="text-white border-b border-white/20">aswin.p@arcnetic.com or jainkuriakose@arcnetic.com</span> including:
+                  </p>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white mt-2 flex-shrink-0" />
+                      <span>Your resume / CV (PDF format preferred)</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white mt-2 flex-shrink-0" />
+                      <span>GitHub profile or Portfolio link</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white mt-2 flex-shrink-0" />
+                      <span>A brief cover letter on why you want to build the future with us</span>
+                    </li>
+                  </ul>
+                  <p className="text-sm text-white/30 pt-4 border-t border-white/5">
+                    Response time: 5-7 business days for qualified candidates.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

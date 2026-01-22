@@ -2,368 +2,219 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Moon, Sun, ChevronDown } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { QuoteFormPopup } from "@/components/forms/quote-form-popup";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Data for the navigation links
-const aboutLinks = [
-  {
-    title: "Our Mission",
-    href: "/about#mission",
-    description: "Learn what drives us.",
-  },
-  { title: "The Team", href: "/about#team", description: "Meet our experts." },
-  { title: "Careers", href: "/careers", description: "Join our growing team." },
+// --- 1. REORGANIZED MENU DATA ---
+const studioLinks = [
+  { title: "Mission & Vision", href: "/about" },
+  { title: "Careers", href: "/careers" },
+  { title: "Contact Us", href: "/contact" },
 ];
 
-const serviceCategories = [
-  {
-    title: "Web & Full Stack Development",
-    href: "/services/web-development",
-    description: "Custom web apps, APIs, and SaaS platforms.",
-  },
-  {
-    title: "Mobile Development",
-    href: "/services/mobile-development",
-    description: "Native iOS and Android applications.",
-  },
-  {
-    title: "AI Solutions",
-    href: "/services/ai-solutions",
-    description: "Integrate ML and AI into your business.",
-  },
-  {
-    title: "Cloud & Infrastructure",
-    href: "/services/cloud-infrastructure",
-    description: "Scalable solutions on AWS, Azure, and GCP.",
-  },
-  {
-    title: "Maintenance & Support",
-    href: "/services/maintenance-support",
-    description: "Keeping your applications running smoothly.",
-  },
-  {
-    title: "Digital Transformation",
-    href: "/services/digital-transformation",
-    description: "Modernize legacy systems and processes.",
-  },
+const insightLinks = [
+  { title: "Strategies", href: "/strategies" },
+  { title: "Blog", href: "/blog" },
+  { title: "FAQ", href: "/faq" },
 ];
 
-export function Navigation() {
+const serviceLinks = [
+  { title: "Web & Full Stack", href: "/services/web-development" },
+  { title: "Mobile Apps", href: "/services/mobile-development" },
+  { title: "AI Solutions", href: "/services/ai-solutions" },
+  { title: "Cloud Infra", href: "/services/cloud-infrastructure" },
+  { title: "Maintenance", href: "/services/maintenance-support" },
+  { title: "Transformation", href: "/services/digital-transformation" },
+];
+
+export function NavigationMinimal() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  // Handle scroll effect
   useEffect(() => {
-    setMounted(true);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleScrollTo = (id: string) => {
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   return (
-    <header
-      className="fixed-nav fixed top-0 left-0 right-0 w-full z-[9999] bg-gradient-to-br from-primary/.5 via-background to-secondary/5 "
-      style={{
-        position: "fixed !important" as any,
-        top: "0 !important" as any,
-        left: "0 !important" as any,
-        right: "0 !important" as any,
-        width: "100% !important" as any,
-        zIndex: "9999 !important" as any,
-      }}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            onClick={() => handleScrollTo("#home")}
-            className="flex items-center"
-          >
-            <Image
-              src="/images/arcnetic-logo.png"
-              alt="Arcnetic Logo"
-              width={140}
-              height={40}
-              className="h-12 w-auto"
-              priority
-            />
-          </Link>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 border-b ${
+          scrolled || isMenuOpen
+            ? "bg-black/80 backdrop-blur-xl border-white/10 py-4"
+            : "bg-transparent border-transparent py-6"
+        }`}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between">
+            
+            {/* --- LOGO + NAME (As requested) --- */}
+            <Link href="/" className="relative z-50 flex items-center gap-3 group">
+               <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110">
+                 {/* Ensure this path matches your public folder */}
+                 <Image 
+                   src="/images/arcnetic-logo.png" 
+                   alt="Arcnetic Logo" 
+                   fill
+                   className="object-contain"
+                 />
+               </div>
+               <span className="font-playfair text-xl md:text-2xl font-bold text-white tracking-tight">
+                Arcnetic<span className="text-primary">.</span>
+               </span>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2">
-            <NavItem href="/" onClick={() => handleScrollTo("#home")}>
-              Home
-            </NavItem>
+            {/* --- DESKTOP NAV (Condensed Groups) --- */}
+            <nav className="hidden md:flex items-center gap-10">
+              
+              {/* 1. Services Group */}
+              <HoverMenu title="Services" href="/services">
+                <div className="grid grid-cols-2 gap-x-12 gap-y-4 w-[500px] p-2">
+                  {serviceLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="group/link block"
+                    >
+                      <div className="text-sm font-space-grotesk text-white/60 group-hover/link:text-white transition-colors">
+                        {link.title}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </HoverMenu>
 
-            <HoverNavItem title="About">
-              <div className="p-2 w-64">
-                {aboutLinks.map((item) => (
-                  <NavLink
-                    key={item.title}
-                    href={item.href}
-                    title={item.title}
-                    className="block w-full text-left p-3 rounded-lg hover:bg-muted"
-                  />
-                ))}
-              </div>
-            </HoverNavItem>
+              {/* 3. Studio Group */}
+              <HoverMenu title="About Us">
+                <div className="flex flex-col gap-4 w-48 p-2">
+                  {studioLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="text-sm font-space-grotesk text-white/60 hover:text-white transition-colors"
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                </div>
+              </HoverMenu>
 
-            <HoverNavItem title="Services" mega>
-              <div className="grid grid-cols-2 gap-4 p-4 w-[36rem]">
-                {serviceCategories.map((item) => (
-                  <NavLink
-                    key={item.title}
-                    href={item.href}
-                    title={item.title}
-                    className="block w-full text-left p-3 rounded-lg hover:bg-muted"
-                  >
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </NavLink>
-                ))}
-              </div>
-            </HoverNavItem>
+              {/* 2. Insights Group */}
+              <HoverMenu title="Insights">
+                <div className="flex flex-col gap-4 w-48 p-2">
+                  {insightLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="text-sm font-space-grotesk text-white/60 hover:text-white transition-colors"
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                </div>
+              </HoverMenu>
 
-            <NavItem href="/strategies">Strategies</NavItem>
-            <NavItem href="/blog">Blog</NavItem>
-            <NavItem href="/contact">Contact</NavItem>
-          </nav>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" size="icon" onClick={toggleTheme}>
-              {mounted &&
-                (theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                ))}
-            </Button>
-            <Button onClick={() => setIsQuoteFormOpen(true)}>
-              Get a Quote
-            </Button>
-          </div>
+            </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
+            {/* --- ACTION BUTTON --- */}
+            <div className="hidden md:flex items-center">
+              <Link 
+                href="/contact"
+                className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-2 text-xs font-space-grotesk uppercase tracking-widest text-white transition-all hover:bg-white hover:text-black hover:border-white"
+              >
+                <span>Start Project</span>
+                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+
+            {/* --- MOBILE HAMBURGER --- */}
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden relative z-50 text-white p-2"
             >
-              {isMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* --- MOBILE MENU OVERLAY --- */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="md:hidden absolute top-full left-0 w-full bg-background border-t border-border shadow-lg"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-[9998] bg-black pt-32 px-6 overflow-y-auto"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
-              <NavLink
-                href="/"
-                onClick={() => handleScrollTo("#home")}
-                title="Home"
-                className="w-full text-left p-3 font-semibold"
-              />
-              <MobileAccordion
-                title="About"
-                links={aboutLinks}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
-              <MobileAccordion
-                title="Services"
-                links={serviceCategories}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
-              <NavLink
-                href="/strategies"
-                title="Strategies"
-                className="w-full text-left p-3 font-semibold"
-              />
-              <NavLink
-                href="/blog"
-                title="Blog"
-                className="w-full text-left p-3 font-semibold"
-              />
-              <NavLink
-                href="/contact"
-                title="Contact"
-                className="w-full text-left p-3 font-semibold"
-              />
-              <div className="border-t border-border mt-4 pt-4 flex justify-between items-center">
-                <Button
-                  className="flex-1"
-                  onClick={() => {
-                    setIsQuoteFormOpen(true);
-                    setIsMenuOpen(false);
-                  }}
+            <div className="flex flex-col gap-10 pb-20">
+              <MobileSection title="Studio" links={studioLinks} close={() => setIsMenuOpen(false)} />
+              <MobileSection title="Services" links={serviceLinks} close={() => setIsMenuOpen(false)} />
+              <MobileSection title="Insights" links={insightLinks} close={() => setIsMenuOpen(false)} />
+              
+              <div className="mt-8 pt-8 border-t border-white/10">
+                <Link 
+                  href="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-center w-full h-14 text-lg bg-white text-black hover:bg-white/90 font-playfair font-bold rounded-md"
                 >
-                  Get a Quote
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleTheme}
-                  className="ml-2"
-                >
-                  {mounted &&
-                    (theme === "dark" ? (
-                      <Sun className="h-5 w-5" />
-                    ) : (
-                      <Moon className="h-5 w-5" />
-                    ))}
-                </Button>
+                  Start a Project
+                </Link>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Quote Form Popup */}
-      <QuoteFormPopup
-        isOpen={isQuoteFormOpen}
-        onClose={() => setIsQuoteFormOpen(false)}
-      />
-    </header>
+    </>
   );
 }
 
-// Helper components for navigation items
-const NavItem = ({
-  children,
-  href,
-  onClick,
-}: {
-  children: React.ReactNode;
-  href?: string;
-  onClick?: () => void;
-}) => {
-  const content = (
-    <div className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-      {children}
-    </div>
-  );
-  return href ? (
-    <Link href={href}>{content}</Link>
-  ) : (
-    <button onClick={onClick}>{content}</button>
-  );
-};
+// --- SUB-COMPONENTS ---
 
-const HoverNavItem = ({
-  children,
-  title,
-  mega,
-}: {
-  children: React.ReactNode;
-  title: string;
-  mega?: boolean;
-}) => (
-  <div className="group relative">
-    <div className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 cursor-default">
-      {title}{" "}
-      <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
-    </div>
-    <div
-      className={`absolute top-full pt-2 -translate-x-1/2 left-1/2 hidden group-hover:block ${mega ? "min-w-max" : ""}`}
-    >
-      <div className="bg-background rounded-lg border shadow-lg overflow-hidden">
+const HoverMenu = ({ title, children, href }: { title: string; children: React.ReactNode; href?: string }) => (
+  <div className="group relative h-10 flex items-center justify-center">
+    {href ? (
+      <Link 
+        href={href}
+        className="flex items-center gap-1 text-sm font-space-grotesk uppercase tracking-wide text-white/70 group-hover:text-white transition-colors"
+      >
+        {title}
+        <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180 opacity-50" />
+      </Link>
+    ) : (
+      <button className="flex items-center gap-1 text-sm font-space-grotesk uppercase tracking-wide text-white/70 group-hover:text-white transition-colors">
+        {title}
+        <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180 opacity-50" />
+      </button>
+    )}
+    
+    {/* Dropdown Panel - Centered */}
+    <div className="absolute top-8 left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top group-hover:translate-y-0 translate-y-2">
+      <div className="bg-[#050505] border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-2xl ring-1 ring-white/5">
         {children}
       </div>
     </div>
   </div>
 );
 
-const NavLink = React.forwardRef<
-  any,
-  {
-    href: string;
-    title: string;
-    className?: string;
-    onClick?: () => void;
-    children?: React.ReactNode;
-  }
->(({ href, title, className, children, ...props }, ref) => {
-  return (
-    <Link href={href} ref={ref} className={className} {...props}>
-      <div className="font-semibold text-foreground">{title}</div>
-      {children}
-    </Link>
-  );
-});
-NavLink.displayName = "NavLink";
-
-const MobileAccordion = ({
-  title,
-  links,
-  closeMenu,
-}: {
-  title: string;
-  links: { title: string; href: string }[];
-  closeMenu: () => void;
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center p-3 font-semibold"
-      >
-        {title}
-        <ChevronDown
-          className={`h-5 w-5 transition-transform ${isOpen ? "rotate-180" : ""}`}
-        />
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden pl-4"
-          >
-            {links.map((link) => (
-              <NavLink
-                key={link.href}
-                href={link.href}
-                title={link.title}
-                onClick={closeMenu}
-                className="block w-full text-left py-2 px-3 text-muted-foreground"
-              />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+const MobileSection = ({ title, links, close }: { title: string, links: any[], close: () => void }) => (
+  <div className="space-y-4">
+    <h3 className="text-white/30 font-space-grotesk text-xs uppercase tracking-[0.2em]">{title}</h3>
+    <div className="flex flex-col gap-3">
+      {links.map((link) => (
+        <Link 
+          key={link.href} 
+          href={link.href} 
+          onClick={close}
+          className="text-2xl font-playfair text-white/80 hover:text-white hover:translate-x-2 transition-all"
+        >
+          {link.title}
+        </Link>
+      ))}
     </div>
-  );
-};
+  </div>
+);

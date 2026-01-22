@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 
 interface TechItem {
   name: string;
@@ -13,14 +12,6 @@ interface TechStackDisplayProps {
   techStack: TechItem[];
   showCategories?: boolean;
 }
-
-const categoryColors = {
-  frontend: "bg-blue-100 text-blue-800 border-blue-200",
-  backend: "bg-green-100 text-green-800 border-green-200",
-  database: "bg-purple-100 text-purple-800 border-purple-200",
-  cloud: "bg-orange-100 text-orange-800 border-orange-200",
-  tools: "bg-gray-100 text-gray-800 border-gray-200",
-};
 
 const categoryLabels = {
   frontend: "Frontend",
@@ -49,18 +40,16 @@ export function TechStackDisplay({
 
   if (showCategories) {
     return (
-      <div className="space-y-8">
+      <div className="space-y-16">
         {Object.entries(groupedTech).map(([category, techs]) => (
-          <div key={category} className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Badge
-                variant="outline"
-                className={`px-3 py-1 font-medium ${categoryColors[category as keyof typeof categoryColors]}`}
-              >
+          <div key={category} className="space-y-6">
+            <div className="flex items-center gap-4">
+              <span className="px-4 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-space-grotesk uppercase tracking-widest text-white/70">
                 {categoryLabels[category as keyof typeof categoryLabels]}
-              </Badge>
-              <div className="h-px bg-border flex-1" />
+              </span>
+              <div className="h-px bg-white/10 flex-1" />
             </div>
+            
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {techs.map((tech) => (
                 <TechCard key={tech.name} tech={tech} />
@@ -83,24 +72,21 @@ export function TechStackDisplay({
 
 function TechCard({ tech }: { tech: TechItem }) {
   return (
-    <div className="group p-4 rounded-lg border bg-card hover:shadow-md transition-all duration-300 hover:border-primary/30">
-      <div className="flex flex-col items-center text-center space-y-3">
-        <div className="w-12 h-12 relative flex items-center justify-center">
+    <div className="group relative p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300">
+      <div className="flex flex-col items-center text-center space-y-4">
+        <div className="w-10 h-10 relative flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
           <Image
             src={tech.logo}
             alt={`${tech.name} logo`}
-            width={48}
-            height={48}
-            className="object-contain group-hover:scale-110 transition-transform duration-300"
+            width={40}
+            height={40}
+            className="object-contain"
           />
         </div>
         <div className="space-y-1">
-          <h4 className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
+          <h4 className="font-space-grotesk text-xs text-white/80 group-hover:text-white transition-colors">
             {tech.name}
           </h4>
-          <Badge variant="secondary" className="text-xs px-2 py-0.5">
-            {categoryLabels[tech.category]}
-          </Badge>
         </div>
       </div>
     </div>

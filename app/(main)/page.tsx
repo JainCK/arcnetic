@@ -2,16 +2,10 @@ import type { Metadata } from "next";
 import { homeMetadata } from "@/lib/metadata";
 import { OrganizationStructuredData } from "@/components/seo/structured-data";
 
-import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { TrustIndicators } from "@/components/sections/trust-indicator";
-
-const AboutSummary = dynamic(() => import("@/components/sections/AboutSummary").then(mod => mod.AboutSummary));
-const ServicesSummary = dynamic(() => import("@/components/sections/ServicesSummary").then(mod => mod.ServicesSummary));
-const StrategySummary = dynamic(() => import("@/components/sections/strategy-summary").then(mod => mod.StrategySummary));
-const FaqPreview = dynamic(() => import("@/components/sections/FaqPreview").then(mod => mod.FaqPreview));
-const ContactSummary = dynamic(() => import("@/components/sections/ContactSummary").then(mod => mod.ContactSummary));
-import { SectionDivider } from "@/components/section-divider";
+import { ContactMinimal as ContactSummary } from "@/components/sections/ContactSummary";
+import { ServicesBento } from "@/components/sections/ServicesBento";
+import { Manifesto } from "@/components/sections/Manifesto";
 
 export const metadata: Metadata = homeMetadata;
 
@@ -66,16 +60,8 @@ export default function HomePage() {
 
       <main className="overflow-x-hidden">
         <HeroSection />
-        <SectionDivider variant="waves" />
-        <TrustIndicators />
-        <SectionDivider variant="geometric" />
-        <AboutSummary />
-        <ServicesSummary />
-        <SectionDivider variant="geometric" />
-        <StrategySummary />
-        <SectionDivider variant="geometric" />
-        <FaqPreview />
-        <SectionDivider variant="waves" />
+        <Manifesto />
+        <ServicesBento />
         <ContactSummary />
       </main>
     </>
