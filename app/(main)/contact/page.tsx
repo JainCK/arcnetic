@@ -1,215 +1,149 @@
 import type { Metadata } from "next";
 import { contactMetadata } from "@/lib/metadata";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { SimpleContactForm } from "@/components/forms/simple-contact-form";
-import { MapPin, Phone, Mail, Clock, Globe } from "lucide-react";
+import { MapPin, Phone, Mail, Globe } from "lucide-react";
 
 export const metadata: Metadata = contactMetadata;
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="max-w-full mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent mb-6">
-            Get in Touch
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-            Ready to transform your business with cutting-edge technology? Let's
-            discuss your project and explore how we can help you achieve your
-            goals.
-          </p>
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-40 pb-20 px-4 overflow-hidden border-b border-white/10">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#111] via-[#000000] to-[#000000]" />
+          <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
         </div>
-      </section>
 
-      {/* Contact Form */}
-      <section className="pb-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <Card className="shadow-lg border bg-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-card-foreground">
-                Send us a Message
-              </CardTitle>
-              <CardDescription className="text-muted-foreground">
-                Fill out the form below and we'll get back to you within 24
-                hours.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <SimpleContactForm />
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Office Locations */}
-      <section className="pb-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Our Offices
-            </h2>
-            <p className="text-muted-foreground">
-              Visit us at our locations in India and Canada
+        <div className="container mx-auto relative z-10 max-w-7xl">
+          <div className="max-w-4xl">
+            <span className="font-space-grotesk text-xs uppercase tracking-[0.3em] text-white/40 border border-white/10 rounded-full px-4 py-2 bg-white/5 backdrop-blur-sm mb-8 inline-block">
+              Contact Us
+            </span>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-medium font-playfair text-white mb-8 tracking-tight leading-[0.9]">
+              Start the <br/> Conversation.
+            </h1>
+            <p className="text-xl text-white/50 max-w-2xl font-space-grotesk leading-relaxed">
+              Ready to engineer the inevitable? Let's discuss how Arcnetic can transform your business with cutting-edge technology.
             </p>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* India Office */}
-            <Card className="shadow-lg border bg-card">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-3 text-xl font-bold text-card-foreground">
-                  <Globe className="w-6 h-6 text-primary" />
-                  India Office (Headquarters)
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-card-foreground">
-                      {process.env.BUSINESS_LEGAL_NAME || "Arcnetic PVT LTD"}
-                    </p>
-                    <p className="text-muted-foreground">
-                      {process.env.BUSINESS_ADDRESS ||
-                        "Beyond Co-working, VS-08, 90 A, South, Canal Rd, Giri Nagar, Kadavanthra"}
-                      <br />
-                      {process.env.BUSINESS_CITY || "Kochi"},{" "}
-                      {process.env.BUSINESS_STATE || "Kerala"}{" "}
-                      {process.env.BUSINESS_ZIP || "682020"}
-                      <br />
-                      {process.env.BUSINESS_COUNTRY || "India"}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    {process.env.PHONE || "+91-7558952771"}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    support@arcnetic.com
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Mon - Fri: 9:00 AM - 6:00 PM IST
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Canada Office */}
-            <Card className="shadow-lg border bg-card">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-3 text-xl font-bold text-card-foreground">
-                  <Globe className="w-6 h-6 text-primary" />
-                  Canada Office
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-card-foreground">
-                      Arcnetic Technologies Inc
-                    </p>
-                    <p className="text-muted-foreground">
-                      Coming Soon
-                      <br />
-                      Canada
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">Coming Soon</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    support@arcnetic.com
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">Coming Soon</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </section>
 
-      {/* Google Map */}
-      <section className="pb-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <Card className="shadow-lg border bg-card">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-xl font-bold text-card-foreground">
-                Find Our India Office
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="aspect-video rounded-lg overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4998.9443487481985!2d76.29866968062858!3d9.962951712250177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08733b6ee513b3%3A0x50318f647a0c9b6d!2sArcnetic!5e0!3m2!1sen!2sin!4v1757759832372!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-lg"
-                />
+      {/* --- MAIN CONTENT GRID --- */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-12 gap-16">
+            
+            {/* LEFT COLUMN: INFO & LOCATIONS */}
+            <div className="lg:col-span-5 space-y-12">
+              
+              {/* Direct Contact */}
+              <div>
+                <h3 className="text-2xl font-playfair text-white mb-6">Direct Channels</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4 group">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:text-black transition-all duration-300">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-white/30 font-space-grotesk mb-1">Email Us</p>
+                      <a href="mailto:aswin.p@arcnetic.com" className="text-lg text-white hover:underline font-playfair">
+                        support@arcnetic.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 group">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:text-black transition-all duration-300">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-white/30 font-space-grotesk mb-1">Call Us</p>
+                      <a href={`tel:${process.env.PHONE || "+917558952771"}`} className="text-lg text-white hover:underline font-playfair">
+                        {process.env.PHONE || "+91-7558952771"}
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground mt-3 text-center">
-                {process.env.BUSINESS_CITY || "Kochi"},{" "}
-                {process.env.BUSINESS_STATE || "Kerala"} - Our technology hub in
-                India
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="bg-primary py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-3xl mx-auto">
-            Join hundreds of businesses that trust Arcnetic to deliver
-            exceptional technology solutions.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:support@arcnetic.com"
-              className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary bg-primary-foreground rounded-lg hover:bg-primary-foreground/90 transition-colors"
-            >
-              Email Us Directly
-            </a>
-            <a
-              href={`tel:${process.env.PHONE || "+917558952771"}`}
-              className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary-foreground border-2 border-primary-foreground rounded-lg hover:bg-primary-foreground hover:text-primary transition-colors"
-            >
-              Call Now
-            </a>
+              <div className="h-px bg-white/10 w-full" />
+
+              {/* Locations */}
+              <div>
+                <h3 className="text-2xl font-playfair text-white mb-6">Headquarters</h3>
+                <div className="p-8 rounded-2xl border border-white/10 bg-[#0A0A0A] space-y-6">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <div className="font-space-grotesk text-sm text-white/60 leading-relaxed">
+                      <strong className="text-white block mb-1 font-playfair text-lg">India Office</strong>
+                      {process.env.BUSINESS_ADDRESS || "Beyond Co-working, VS-08, 90 A, South, Canal Rd"}<br />
+                      Giri Nagar, Kadavanthra<br />
+                      {process.env.BUSINESS_CITY || "Kochi"}, {process.env.BUSINESS_STATE || "Kerala"} {process.env.BUSINESS_ZIP || "682020"}
+                    </div>
+                  </div>
+                  
+                  {/* Dark Map Embed */}
+                  <div className="w-full h-48 rounded-lg overflow-hidden border border-white/10 relative grayscale hover:grayscale-0 transition-all duration-500">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4998.9443487481985!2d76.29866968062858!3d9.962951712250177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08733b6ee513b3%3A0x50318f647a0c9b6d!2sArcnetic!5e0!3m2!1sen!2sin!4v1757759832372!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                    {/* Overlay to ensure clicks work but style is maintained */}
+                    <div className="absolute inset-0 pointer-events-none bg-black/20" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Canada Office (Coming Soon) */}
+              <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] flex items-center justify-between opacity-60">
+                <div className="flex items-center gap-4">
+                  <Globe className="w-5 h-5 text-white/40" />
+                  <div>
+                    <strong className="text-white block font-playfair">Canada Office</strong>
+                    <span className="text-xs text-white/40 font-space-grotesk">Global Expansion</span>
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-white/5 text-[10px] uppercase tracking-widest text-white/40 border border-white/5">
+                  Coming Soon
+                </span>
+              </div>
+
+            </div>
+
+            {/* RIGHT COLUMN: CONTACT FORM */}
+            <div className="lg:col-span-7">
+              <div className="sticky top-32">
+                <div className="p-8 md:p-12 rounded-3xl border border-white/10 bg-[#050505] shadow-2xl relative overflow-hidden">
+                  {/* Subtle decorative gradient */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+                  
+                  <div className="relative z-10 mb-8">
+                    <h2 className="text-3xl md:text-4xl font-playfair text-white mb-2">Send a Message</h2>
+                    <p className="text-white/40 font-space-grotesk">
+                      Tell us a bit about yourself, and we'll tell you how we can help.
+                    </p>
+                  </div>
+
+                  <div className="relative z-10">
+                    <SimpleContactForm />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
+
     </div>
   );
 }
