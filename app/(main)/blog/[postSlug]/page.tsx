@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 import { CalendarDays, User, ArrowLeft, Clock } from "lucide-react";
@@ -13,6 +12,15 @@ import {
   urlFor,
 } from "@/lib/sanity";
 
+// Define a more specific type for the image if it differs from the base BlogPost type
+interface BlogPostWithCaption extends BlogPost {
+  mainImage: {
+    asset: { _ref: string };
+    alt?: string;
+    caption?: string; // Explicitly add caption
+  };
+}
+
 // Revalidate every 60 seconds for fresh content
 export const revalidate = 60;
 
@@ -22,7 +30,7 @@ interface BlogPostPageProps {
   }>;
 }
 
-async function getBlogPost(slug: string): Promise<BlogPost | null> {
+async function getBlogPost(slug: string): Promise<BlogPostWithCaption | null> {
   try {
     return await previewClient.fetch(blogPostBySlugQuery, { slug });
   } catch (error) {
@@ -90,128 +98,145 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const readTime = calculateReadTime(post.body || []);
 
   return (
-    <div className="min-h-screen">
-      {/* Back to Blog */}
-      {/* <div className="border-b border-border/50">
-        <div className="container mx-auto px-4 py-4">
-          <Link href="/blog">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Blog
-            </Button>
-          </Link>
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a1a1a] via-black to-black opacity-80" />
+          <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
         </div>
-      </div> */}
 
-      {/* Hero Section */}
-      <section className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            
+            {/* Navigation / Back */}
+            <div className="mb-12 flex justify-center">
+                <Link href="/blog" className="group inline-flex items-center gap-2 text-xs font-space-grotesk uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors">
+                    <ArrowLeft className="h-3 w-3 transition-transform group-hover:-translate-x-1" />
+                    Back to Insights
+                </Link>
+            </div>
+
             {/* Categories */}
             {post.categories && post.categories.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
                 {post.categories.map((category) => (
-                  <Badge key={category._id} variant="secondary">
+                  <span 
+                    key={category._id} 
+                    className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-space-grotesk uppercase tracking-widest text-white/70 backdrop-blur-md"
+                  >
                     {category.title}
-                  </Badge>
+                  </span>
                 ))}
               </div>
             )}
 
             {/* Title */}
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight font-playfair">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-playfair font-medium text-white mb-8 leading-[1.1] tracking-tight">
               {post.title}
             </h1>
 
-            {/* Excerpt */}
-            {/* {post.excerpt && (
-              <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-                {post.excerpt}
-              </p>
-            )} */}
-
             {/* Meta Information */}
-            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-white/40 font-space-grotesk border-t border-white/10 pt-8 max-w-2xl mx-auto">
               {/* Author */}
               <div className="flex items-center gap-3">
                 {post.author.image && (
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
+                  <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10">
                     <Image
-                      src={urlFor(post.author.image).width(40).height(40).url()}
+                      src={urlFor(post.author.image).width(64).height(64).url()}
                       alt={post.author.name}
-                      width={40}
-                      height={40}
-                      className="w-full h-full object-cover"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover grayscale"
                     />
                   </div>
                 )}
-                <div className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  <span className="font-medium">{post.author.name}</span>
-                </div>
+                <span className="text-white/60">{post.author.name}</span>
               </div>
+
+              {/* Divider */}
+              <div className="w-1 h-1 rounded-full bg-white/20" />
 
               {/* Date */}
               <div className="flex items-center gap-2">
-                <CalendarDays className="h-4 w-4" />
+                <CalendarDays className="h-3 w-3" />
                 <span>{formatDate(post.publishedAt)}</span>
               </div>
 
+              {/* Divider */}
+              <div className="w-1 h-1 rounded-full bg-white/20" />
+
               {/* Read Time */}
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
+                <Clock className="h-3 w-3" />
                 <span>{readTime} min read</span>
               </div>
             </div>
-
-            {/* Featured Image */}
-            {post.mainImage && (
-              <div className="aspect-video md:aspect-[21/9] overflow-hidden rounded-2xl mb-12">
-                <Image
-                  src={urlFor(post.mainImage).width(1200).height(600).url()}
-                  alt={post.mainImage.alt || post.title}
-                  width={1200}
-                  height={600}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </div>
-            )}
           </div>
         </div>
       </section>
 
-      {/* Blog Content */}
-      <section className="pb-20">
-        <div className="container mx-auto px-2">
-          <div className="max-w-4xl mx-auto">
+      {/* --- FEATURED IMAGE --- */}
+      {post.mainImage && (
+        <section className="px-4 mb-20 md:mb-32">
+            <div className="container mx-auto max-w-6xl">
+                <div className="aspect-video md:aspect-[21/9] overflow-hidden rounded-sm border border-white/10 bg-white/5 relative group">
+                    <Image
+                    src={urlFor(post.mainImage).width(1600).height(900).url()}
+                    alt={post.mainImage.alt || post.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                    priority
+                    />
+                    {/* Cinematic Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+                </div>
+                {/* Safe check for caption */}
+                {(post.mainImage as any).caption && (
+                    <p className="text-center text-xs text-white/30 font-space-grotesk mt-4 italic">
+                        {(post.mainImage as any).caption}
+                    </p>
+                )}
+            </div>
+        </section>
+      )}
+
+      {/* --- BLOG CONTENT --- */}
+      <section className="pb-32 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto">
             {post.body && <PortableTextRenderer content={post.body} />}
           </div>
         </div>
       </section>
 
-      {/* Author Bio */}
+      {/* --- AUTHOR BIO --- */}
       {post.author.bio && (
-        <section className="py-12 bg-muted/20 border-t border-border/50">
+        <section className="py-20 border-t border-white/10 bg-[#020202]">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex gap-6">
+            <div className="max-w-3xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-8 p-8 rounded-2xl border border-white/5 bg-white/[0.02]">
                 {post.author.image && (
-                  <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                  <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border border-white/10">
                     <Image
-                      src={urlFor(post.author.image).width(64).height(64).url()}
+                      src={urlFor(post.author.image).width(128).height(128).url()}
                       alt={post.author.name}
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-cover"
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
                 )}
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold mb-2">
-                    About {post.author.name}
+                <div className="flex-1 text-center md:text-left">
+                  <span className="text-xs font-space-grotesk uppercase tracking-widest text-white/30 block mb-2">Written By</span>
+                  <h3 className="text-xl font-playfair text-white mb-4">
+                    {post.author.name}
                   </h3>
-                  <PortableTextRenderer content={post.author.bio} />
+                  <div className="text-white/50 text-sm font-space-grotesk">
+                    <PortableTextRenderer content={post.author.bio} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -219,13 +244,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </section>
       )}
 
-      {/* Back to Blog CTA */}
-      <section className="py-12 text-center border-t border-border/50">
+      {/* --- NEXT STEPS --- */}
+      <section className="py-20 border-t border-white/5 text-center">
         <div className="container mx-auto px-4">
+          <h3 className="text-2xl font-playfair text-white mb-8">Continue Reading</h3>
           <Link href="/blog">
-            <Button size="lg" variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Read More Articles
+            <Button variant="outline" className="h-14 px-8 rounded-full border-white/10 bg-transparent text-white hover:bg-white hover:text-black transition-all duration-300 group">
+              <span className="font-space-grotesk tracking-widest text-xs flex items-center gap-3">
+                <ArrowLeft className="h-4 w-4" />
+                VIEW ALL INSIGHTS
+              </span>
             </Button>
           </Link>
         </div>
