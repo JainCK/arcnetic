@@ -1,168 +1,81 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion"; // Added motion and useInView imports
-import { Target, ArrowRight, Play } from "lucide-react"; // Added Target, ArrowRight, Play imports
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function StrategyHeroSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, 50]);
 
   const scrollToApproach = () => {
     const approachSection = document.getElementById("strategy-approach");
     if (approachSection) {
-      approachSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      approachSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const stats = [
-    {
-      metric: "100%",
-      label: "Commitment to Success",
-    },
-    {
-      metric: "ROI-Driven",
-      label: "Development Process",
-    },
-    {
-      metric: "Expert-Led",
-      label: "Strategic Planning",
-    },
-    {
-      metric: "Future-Proof",
-      label: "Technology Stack",
-    },
-  ];
-
   return (
     <section
-      ref={ref}
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted/20 py-16"
+      ref={containerRef}
+      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-black"
     >
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="mb-6"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6 mt-5">
-              <Target className="h-4 w-4" />
-              Strategic Excellence
-            </div>
-          </motion.div>
-
-          <motion.h1
-            className="text-4xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent font-playfair text-balance"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            Strategic Innovation
-            <br />
-            <span className="text-primary">That Transforms</span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            We don't just build solutions—we craft comprehensive strategies that
-            align technology with your business vision to create sustainable
-            competitive advantages.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16 px-4"
-          >
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground group"
-              onClick={scrollToApproach}
-            >
-              Explore Our Approach
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary/20 hover:bg-primary/10 group bg-transparent"
-            >
-              <Play className="mr-2 h-4 w-4" />
-              Watch Strategy Overview
-            </Button>
-          </motion.div>
-
-          {/* Stats Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto px-4"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-lg md:text-xl font-bold text-primary mb-2 font-playfair">
-                  {stat.metric}
-                </div>
-                <div className="text-xs text-muted-foreground font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+      {/* Background Void */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#111] via-[#000000] to-[#000000]" />
+        <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl hidden md:block"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl hidden md:block"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/3 to-secondary/3 rounded-full blur-3xl hidden md:block"></div>
-      </div>
+      <motion.div 
+        style={{ opacity, scale, y }}
+        className="relative z-10 container mx-auto px-4 text-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-8"
+        >
+          <span className="font-space-grotesk text-xs uppercase tracking-[0.3em] text-white/40 border border-white/10 rounded-full px-6 py-2 bg-white/5 backdrop-blur-sm">
+            The Master Framework
+          </span>
+        </motion.div>
 
-      {/* Floating Elements */}
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 5, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 left-10 w-16 h-16 bg-primary/10 rounded-2xl hidden lg:block"
-      />
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-          rotate: [0, -5, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-        className="absolute bottom-20 right-10 w-12 h-12 bg-secondary/10 rounded-full hidden lg:block"
-      />
+        <h1 className="font-playfair text-6xl md:text-[7vw] leading-[1.1] md:leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/30 select-none drop-shadow-2xl mb-8">
+          Strategic<br />
+          Innovation.
+        </h1>
+
+        <p className="font-space-grotesk text-base md:text-lg text-white/50 max-w-2xl mx-auto leading-relaxed mb-12 px-2 md:px-0">
+          We don't just build software. We engineer outcomes.
+          Aligning technology with vision to create the inevitable.
+        </p>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+        >
+          <Button 
+            onClick={scrollToApproach}
+            variant="ghost" 
+            className="group rounded-full border border-white/10 bg-white/5 px-8 py-6 text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+          >
+            <span className="flex items-center gap-3 font-space-grotesk tracking-[0.2em] text-xs">
+              EXPLORE THE PROCESS
+              <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-1" />
+            </span>
+          </Button>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

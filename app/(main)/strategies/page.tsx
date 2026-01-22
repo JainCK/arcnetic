@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { StrategyHeroSection } from "@/components/strategy/strategy-hero-section";
 import { StrategyApproachSection } from "@/components/strategy/strategy-approach-section";
-import { StrategyCaseStudiesSection } from "@/components/strategy/strategy-case-studies-section";
-import { SectionDivider } from "@/components/section-divider";
 
 export const metadata: Metadata = {
   title:
     "Strategic Innovation | Arcnetic - Transforming Business Through Technology",
   description:
-    "Discover Arcnetic's proven strategic methodologies for delivering exceptional digital solutions. Our comprehensive approach transforms business vision into measurable results.",
+    "Discover our proven 5-phase strategic process that transforms vision into measurable results.",
   keywords: [
     "strategic innovation",
     "business strategy",
@@ -37,13 +35,12 @@ export const metadata: Metadata = {
 };
 
 export default function StrategiesPage() {
+  // Force recompile
   return (
-    <main className="min-h-screen bg-background text-foreground p-5">
+    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
       <StrategyHeroSection />
-      <SectionDivider variant="geometric" />
+      <div className="h-px bg-white/10 w-full" />
       <StrategyApproachSection />
-      {/* <SectionDivider variant="geometric" />
-      <StrategyCaseStudiesSection /> */}
     </main>
   );
 }
