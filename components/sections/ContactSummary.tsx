@@ -56,8 +56,8 @@ export function ContactMinimal() {
         {/* Phone - New Addition */}
         <div className="space-y-2">
           <h3 className="font-space-grotesk text-xs uppercase tracking-widest text-white/40">Phone</h3>
-          <a href="tel:+917558952771" className="block font-playfair text-xl text-white hover:text-white/70 transition-colors">
-            +91 7558 952 771
+          <a href="tel:+919995007616" className="block font-playfair text-xl text-white hover:text-white/70 transition-colors">
+            +91 9995 007 616
           </a>
         </div>
 

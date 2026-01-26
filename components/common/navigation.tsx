@@ -132,9 +132,10 @@ export function NavigationMinimal() {
             </div>
 
             {/* --- MOBILE HAMBURGER --- */}
-            <button
+            <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden relative z-50 text-white p-2"
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X /> : <Menu />}
             </button>
