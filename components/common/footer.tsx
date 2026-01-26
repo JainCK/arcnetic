@@ -14,9 +14,8 @@ const solutions = [
 
 const studio = [
   { name: "Our Mission", href: "/about#mission" },
-  { name: "Leadership", href: "/about#team" },
-  { name: "Careers", href: "/careers" },
   { name: "Strategies", href: "/strategies" },
+  { name: "Careers", href: "/careers" },
   { name: "Blog", href: "/blog" },
 ];
 
@@ -40,9 +39,9 @@ export function FooterMinimal() {
             
             {/* Social Icons */}
             <div className="flex gap-4 pt-4">
-              <SocialIcon icon={Linkedin} href={`https://linkedin.com/${config?.social?.linkedin || "company/arcnetic"}`} />
-              <SocialIcon icon={Twitter} href={`https://twitter.com/${config?.social?.twitter || "arcnetic"}`} />
-              {/* <SocialIcon icon={Instagram} href={`https://instagram.com/${config?.social?.instagram || "arcnetic"}`} /> */}
+              <SocialIcon icon={Linkedin} href={`https://linkedin.com/${config?.social?.linkedin || "company/arcnetic"}`} label="LinkedIn" />
+              <SocialIcon icon={Twitter} href={`https://twitter.com/${config?.social?.twitter || "arcneticpvtltd"}`} label="Twitter" />
+              {/* <SocialIcon icon={Instagram} href={`https://instagram.com/${config?.social?.instagram || "arcnetic"}`} label="Instagram" /> */}
             </div>
           </div>
 
@@ -102,11 +101,12 @@ export function FooterMinimal() {
   );
 }
 
-const SocialIcon = ({ icon: Icon, href }: { icon: any, href: string }) => (
+const SocialIcon = ({ icon: Icon, href, label }: { icon: any, href: string, label: string }) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
+    aria-label={label}
     className="w-10 h-10 rounded-full bg-white/5 hover:bg-white border border-white/5 hover:border-white flex items-center justify-center text-white/60 hover:text-black transition-all duration-300"
   >
     <Icon className="h-4 w-4" />
