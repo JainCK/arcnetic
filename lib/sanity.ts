@@ -41,6 +41,25 @@ export const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) 
   }
 }`;
 
+export const paginatedBlogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) [$start...$end] {
+  _id,
+  title,
+  slug,
+  excerpt,
+  mainImage,
+  publishedAt,
+  author->{
+    name,
+    image
+  },
+  categories[]->{
+    title,
+    slug
+  }
+}`;
+
+export const totalPostsCountQuery = `count(*[_type == "blogPost"])`;
+
 export const blogPostBySlugQuery = `*[_type == "blogPost" && slug.current == $slug][0] {
   _id,
   title,

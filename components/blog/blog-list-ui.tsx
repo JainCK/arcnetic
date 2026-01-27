@@ -1,14 +1,16 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { BlogPost } from "@/lib/sanity";
-import { ArrowRight, CalendarDays, Clock, Hash } from "lucide-react";
+import { ArrowRight, CalendarDays, Clock, Hash, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { loadMorePosts } from "@/app/actions/blog";
 
 interface BlogListUIProps {
-  posts: BlogPost[];
+  initialPosts: BlogPost[];
+  totalPosts: number;
 }
 
 function formatDate(dateString: string) {
@@ -29,8 +31,12 @@ function calculateReadTime(body: any[]): number {
   return Math.max(1, Math.ceil(textLength / 1000)); // Approx logic
 }
 
-export function BlogListUI({ posts }: BlogListUIProps) {
+export function BlogListUI({ initialPosts, totalPosts }: BlogListUIProps) {
   const containerRef = useRef(null);
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
+  const [offset, setOffset] = useState(initialPosts.length);
+  const [loading, setLoading] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -38,6 +44,19 @@ export function BlogListUI({ posts }: BlogListUIProps) {
 
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+  const handleLoadMore = async () => {
+    setLoading(true);
+    try {
+      const newPosts = await loadMorePosts(offset, offset + 9);
+      setPosts((prev) => [...prev, ...newPosts]);
+      setOffset((prev) => prev + 9);
+    } catch (error) {
+      console.error("Failed to load more posts", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black">
@@ -83,71 +102,92 @@ export function BlogListUI({ posts }: BlogListUIProps) {
               <p className="text-white/40 font-space-grotesk">We are crafting new insights. Check back soon.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {posts.map((post, index) => (
-                <motion.div
-                  key={post._id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Link href={`/blog/${post.slug.current}`} className="group block h-full">
-                    <article className="h-full flex flex-col bg-[#050505] border border-white/10 rounded-xl overflow-hidden hover:border-white/30 transition-all duration-500 hover:-translate-y-1">
-                      
-                      {/* Text-Only Content Layout */}
-                      <div className="p-8 flex flex-col flex-grow">
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {posts.map((post, index) => (
+                  <motion.div
+                    key={post._id}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  >
+                    <Link href={`/blog/${post.slug.current}`} className="group block h-full">
+                      <article className="h-full flex flex-col bg-[#050505] border border-white/10 rounded-xl overflow-hidden hover:border-white/30 transition-all duration-500 hover:-translate-y-1">
                         
-                        {/* Top Meta: Category & Date */}
-                        <div className="flex items-center justify-between mb-6">
-                          {post.categories && post.categories.length > 0 ? (
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-space-grotesk uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
-                              {post.categories[0].title}
-                            </span>
-                          ) : (
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-space-grotesk uppercase tracking-widest text-white/40">
-                              Article
-                            </span>
+                        {/* Text-Only Content Layout */}
+                        <div className="p-8 flex flex-col flex-grow">
+                          
+                          {/* Top Meta: Category & Date */}
+                          <div className="flex items-center justify-between mb-6">
+                            {post.categories && post.categories.length > 0 ? (
+                              <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-space-grotesk uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
+                                {post.categories[0].title}
+                              </span>
+                            ) : (
+                              <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-space-grotesk uppercase tracking-widest text-white/40">
+                                Article
+                              </span>
+                            )}
+                            
+                            <div className="flex items-center gap-2 text-xs text-white/30 font-space-grotesk">
+                              <CalendarDays className="h-3 w-3" />
+                              <span>{formatDate(post.publishedAt)}</span>
+                            </div>
+                          </div>
+
+                          {/* Title */}
+                          <h2 className="text-2xl font-playfair text-white mb-4 leading-tight group-hover:underline decoration-white/30 underline-offset-4 decoration-1 transition-all">
+                            {post.title}
+                          </h2>
+
+                          {/* Excerpt */}
+                          {post.excerpt && (
+                            <p className="text-white/50 text-sm leading-relaxed font-space-grotesk line-clamp-4 mb-8 flex-grow">
+                              {post.excerpt}
+                            </p>
                           )}
-                          
-                          <div className="flex items-center gap-2 text-xs text-white/30 font-space-grotesk">
-                            <CalendarDays className="h-3 w-3" />
-                            <span>{formatDate(post.publishedAt)}</span>
+
+                          {/* Footer Meta */}
+                          <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                            <div className="flex items-center gap-4 text-xs text-white/40 font-space-grotesk">
+                               <div className="flex items-center gap-2">
+                                  <Clock className="h-3 w-3" />
+                                  <span>{calculateReadTime(post.body || [])} min read</span>
+                               </div>
+                            </div>
+                            
+                            <span className="flex items-center gap-2 text-xs font-space-grotesk uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">
+                              Read Entry
+                              <ArrowRight className="h-3 w-3 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                            </span>
                           </div>
                         </div>
+                      </article>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
 
-                        {/* Title */}
-                        <h2 className="text-2xl font-playfair text-white mb-4 leading-tight group-hover:underline decoration-white/30 underline-offset-4 decoration-1 transition-all">
-                          {post.title}
-                        </h2>
-
-                        {/* Excerpt */}
-                        {post.excerpt && (
-                          <p className="text-white/50 text-sm leading-relaxed font-space-grotesk line-clamp-4 mb-8 flex-grow">
-                            {post.excerpt}
-                          </p>
-                        )}
-
-                        {/* Footer Meta */}
-                        <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
-                          <div className="flex items-center gap-4 text-xs text-white/40 font-space-grotesk">
-                             <div className="flex items-center gap-2">
-                                <Clock className="h-3 w-3" />
-                                <span>{calculateReadTime(post.body || [])} min read</span>
-                             </div>
-                          </div>
-                          
-                          <span className="flex items-center gap-2 text-xs font-space-grotesk uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">
-                            Read Entry
-                            <ArrowRight className="h-3 w-3 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                          </span>
-                        </div>
-                      </div>
-                    </article>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+              {/* Load More Button */}
+              {posts.length < totalPosts && (
+                <div className="flex justify-center mt-20">
+                  <Button
+                    onClick={handleLoadMore}
+                    disabled={loading}
+                    variant="outline"
+                    className="rounded-full border-white/10 bg-white/5 text-white hover:bg-white hover:text-black transition-all px-8 py-6"
+                  >
+                    {loading ? (
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    ) : null}
+                    <span className="font-space-grotesk tracking-widest text-xs">
+                      {loading ? "LOADING..." : "LOAD MORE STORIES"}
+                    </span>
+                  </Button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
