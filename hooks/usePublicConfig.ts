@@ -7,6 +7,7 @@ interface PublicConfig {
     twitter: string;
     facebook: string;
     linkedin: string;
+    instagram: string;
   };
   contact: {
     email: string;
@@ -37,6 +38,7 @@ export function usePublicConfig() {
             facebook: process.env.NEXT_PUBLIC_FACEBOOK_PAGE || "arcneticpvtltd",
             linkedin:
               process.env.NEXT_PUBLIC_LINKEDIN_PAGE || "company/arcnetic",
+            instagram: process.env.NEXT_PUBLIC_INSTAGRAM_PAGE || "arcnetic",
           },
           contact: {
             email: "aswin.p@arcnetic.com", // Fallback

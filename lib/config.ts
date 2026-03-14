@@ -22,6 +22,7 @@ export const serverConfig = {
     twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE,
     facebook: process.env.NEXT_PUBLIC_FACEBOOK_PAGE || "arcneticpvtltd",
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_PAGE || "company/arcnetic",
+    instagram: process.env.NEXT_PUBLIC_INSTAGRAM_PAGE || "arcnetic",
   },
 
   // Site Configuration

@@ -1,6 +1,6 @@
 "use client";
 
-import { Linkedin, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Twitter, Instagram, Facebook } from "lucide-react";
 import Link from "next/link";
 import { usePublicConfig } from "@/hooks/usePublicConfig";
 
@@ -41,7 +41,8 @@ export function FooterMinimal() {
             <div className="flex gap-4 pt-4">
               <SocialIcon icon={Linkedin} href={`https://linkedin.com/${config?.social?.linkedin || "company/arcnetic"}`} label="LinkedIn" />
               <SocialIcon icon={Twitter} href={`https://twitter.com/${config?.social?.twitter || "arcneticpvtltd"}`} label="Twitter" />
-              {/* <SocialIcon icon={Instagram} href={`https://instagram.com/${config?.social?.instagram || "arcnetic"}`} label="Instagram" /> */}
+              <SocialIcon icon={Instagram} href={`https://instagram.com/${config?.social?.instagram || "arcnetic.official"}`} label="Instagram" />
+              <SocialIcon icon={Facebook} href={`https://facebook.com/${config?.social?.facebook || "arcneticpvtltd"}`} label="Facebook" />
             </div>
           </div>
 
