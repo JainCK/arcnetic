@@ -103,19 +103,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Canada Office (Coming Soon) */}
-              <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] flex items-center justify-between opacity-60">
-                <div className="flex items-center gap-4">
-                  <Globe className="w-5 h-5 text-white/40" />
-                  <div>
-                    <strong className="text-white block font-playfair">Canada Office</strong>
-                    <span className="text-xs text-white/40 font-space-grotesk">Global Expansion</span>
-                  </div>
-                </div>
-                <span className="px-3 py-1 rounded-full bg-white/5 text-[10px] uppercase tracking-widest text-white/40 border border-white/5">
-                  Coming Soon
-                </span>
-              </div>
 
             </div>
 

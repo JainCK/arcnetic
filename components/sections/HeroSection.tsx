@@ -27,9 +27,22 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0">
          {/* OPTION A: If you downloaded a video to public/videos/hero-bg.mp4 */}
          {/* ... */}
-         {/* OPTION B: CSS Fallback (The Dark Knight Void) */}
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#000000] to-[#000000] z-[-1]" />
-         
+         {/* Breathing Matte Finish Background */}
+         <motion.div 
+           className="absolute inset-0 z-[-1]"
+           animate={{
+             background: [
+               "radial-gradient(circle at center, #111111 0%, #000000 100%)",
+               "radial-gradient(circle at center, #2a2a2a 0%, #050505 100%)",
+               "radial-gradient(circle at center, #111111 0%, #000000 100%)",
+             ]
+           }}
+           transition={{
+             duration: 3,
+             repeat: Infinity,
+             ease: "easeInOut"
+           }}
+         />         
          {/* Animated Fog/Noise Texture for depth */}
          <div className="absolute inset-0 opacity-[0.2] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay animate-pulse" />
       </div>

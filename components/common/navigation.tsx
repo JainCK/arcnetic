@@ -56,7 +56,7 @@ export function NavigationMinimal() {
                <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110">
                  {/* Ensure this path matches your public folder */}
                  <Image 
-                   src="/images/arcneticlogo.png" 
+                   src="/images/arclogo.png" 
                    alt="Arcnetic Logo" 
                    fill
                    className="object-contain"
