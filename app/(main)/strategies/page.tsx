@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { StrategyHeroSection } from "@/components/strategy/strategy-hero-section";
-import { StrategyApproachSection } from "@/components/strategy/strategy-approach-section";
+import { StrategyClient } from "@/components/strategy/strategy-client";
 
 export const metadata: Metadata = {
   title:
@@ -35,12 +34,9 @@ export const metadata: Metadata = {
 };
 
 export default function StrategiesPage() {
-  // Force recompile
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
-      <StrategyHeroSection />
-      <div className="h-px bg-white/10 w-full" />
-      <StrategyApproachSection />
+      <StrategyClient />
     </main>
   );
 }

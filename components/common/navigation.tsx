@@ -6,13 +6,7 @@ import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-// --- 1. REORGANIZED MENU DATA ---
-const studioLinks = [
-  { title: "Mission & Vision", href: "/about" },
-  { title: "Careers", href: "/careers" },
-  { title: "Contact Us", href: "/contact" },
-];
-
+// --- 1. MENU DATA ---
 const insightLinks = [
   { title: "Strategies", href: "/strategies" },
   { title: "Blog", href: "/blog" },
@@ -51,7 +45,7 @@ export function NavigationMinimal() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             
-            {/* --- LOGO + NAME (As requested) --- */}
+            {/* --- LOGO + NAME --- */}
             <Link href="/" className="relative z-50 flex items-center gap-3 group">
                <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110">
                  {/* Ensure this path matches your public folder */}
@@ -67,7 +61,7 @@ export function NavigationMinimal() {
                </span>
             </Link>
 
-            {/* --- DESKTOP NAV (Condensed Groups) --- */}
+            {/* --- DESKTOP NAV --- */}
             <nav className="hidden md:flex items-center gap-10">
               
               {/* 1. Services Group */}
@@ -87,22 +81,17 @@ export function NavigationMinimal() {
                 </div>
               </HoverMenu>
 
-              {/* 3. Studio Group */}
-              <HoverMenu title="About Us">
-                <div className="flex flex-col gap-4 w-48 p-2">
-                  {studioLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="text-sm font-space-grotesk text-white/60 hover:text-white transition-colors"
-                    >
-                      {link.title}
-                    </Link>
-                  ))}
-                </div>
-              </HoverMenu>
+              {/* 2. About Us - Direct Link */}
+              <div className="group relative h-10 flex items-center justify-center">
+                <Link 
+                  href="/about"
+                  className="flex items-center gap-1 text-sm font-space-grotesk uppercase tracking-wide text-white/70 hover:text-white transition-colors"
+                >
+                  About Us
+                </Link>
+              </div>
 
-              {/* 2. Insights Group */}
+              {/* 3. Insights Group */}
               <HoverMenu title="Insights">
                 <div className="flex flex-col gap-4 w-48 p-2">
                   {insightLinks.map((link) => (
@@ -117,11 +106,10 @@ export function NavigationMinimal() {
                 </div>
               </HoverMenu>
 
-
             </nav>
 
-            {/* --- ACTION BUTTON --- */}
-            <div className="hidden md:flex items-center">
+            {/* --- ACTION BUTTONS (Right Side) --- */}
+            <div className="hidden md:flex flex-col items-end gap-2">
               <Link 
                 href="/contact"
                 className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-2 text-xs font-space-grotesk uppercase tracking-widest text-white transition-all hover:bg-white hover:text-black hover:border-white"
@@ -153,7 +141,26 @@ export function NavigationMinimal() {
             className="fixed inset-0 z-[9998] bg-black pt-32 px-6 overflow-y-auto"
           >
             <div className="flex flex-col gap-10 pb-20">
-              <MobileSection title="Studio" links={studioLinks} close={() => setIsMenuOpen(false)} />
+              {/* About Us replacing the old Studio section */}
+              <div className="space-y-4">
+                <div className="flex flex-col gap-3">
+                  <Link 
+                    href="/about" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-2xl font-playfair text-white/80 hover:text-white hover:translate-x-2 transition-all"
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    href="/careers" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-2xl font-playfair text-white/80 hover:text-white hover:translate-x-2 transition-all"
+                  >
+                    Careers
+                  </Link>
+                </div>
+              </div>
+              
               <MobileSection title="Services" links={serviceLinks} close={() => setIsMenuOpen(false)} />
               <MobileSection title="Insights" links={insightLinks} close={() => setIsMenuOpen(false)} />
               
