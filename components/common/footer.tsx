@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePublicConfig } from "@/hooks/usePublicConfig";
 
 const solutions = [
-  { name: "Web Development", href: "/services/web-development" },
-  { name: "Mobile Apps", href: "/services/mobile-development" },
-  { name: "AI Solutions", href: "/services/ai-solutions" },
-  { name: "Cloud Infra", href: "/services/cloud-infrastructure" },
-  { name: "Digital Transformation", href: "/services/digital-transformation" },
+  { name: "Websites & SEO", href: "/services/custom-websites-seo" },
+  { name: "Mobile Platforms", href: "/services/react-native-mobile-development" },
+  { name: "AI Automations", href: "/services/ai-workflow-automation" },
+  { name: "Custom Software", href: "/services/custom-software-development" },
+  { name: "Digital Transformations", href: "/services/digital-transformation-consulting" },
 ];
 
 const studio = [
@@ -31,14 +31,17 @@ export function FooterMinimal() {
           
           {/* Brand Column */}
           <div className="md:col-span-4 space-y-8">
-            <h2 className="font-playfair text-3xl font-bold text-white">Arcnetic.</h2>
-            <p className="font-space-grotesk text-sm text-white/40 leading-relaxed max-w-xs">
-              Engineering the next generation of digital enterprise. 
-              Based in Kochi, operating globally.
-            </p>
-            
+            <div className="space-y-2">
+              <h2 className="font-playfair text-3xl font-bold text-white">Arcnetic.</h2>
+              <p className="text-xs text-white/30 font-space-grotesk uppercase tracking-widest">© {currentYear} Arcnetic Pvt Ltd.</p>
+              <div className="flex gap-4 text-xs text-white/30 font-space-grotesk">
+                <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+                <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+              </div>
+            </div>
+
             {/* Social Icons */}
-            <div className="flex gap-4 pt-4">
+            <div className="flex gap-4 pt-2">
               <SocialIcon icon={Linkedin} href={`https://linkedin.com/${config?.social?.linkedin || "company/arcnetic"}`} label="LinkedIn" />
               <SocialIcon icon={Twitter} href={`https://twitter.com/${config?.social?.twitter || "arcneticpvtltd"}`} label="Twitter" />
               <SocialIcon icon={Instagram} href={`https://instagram.com/${config?.social?.instagram || "arcnetic.official"}`} label="Instagram" />
@@ -79,24 +82,20 @@ export function FooterMinimal() {
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-t border-white/5 pt-12 gap-8">
-          <div className="space-y-1">
-             <p className="text-xs text-white/30 font-space-grotesk uppercase tracking-widest">© {currentYear} Arcnetic Pvt Ltd.</p>
-             <div className="flex gap-4 text-xs text-white/30 font-space-grotesk">
-               <Link href="/privacy" className="hover:text-white">Privacy</Link>
-               <Link href="/terms" className="hover:text-white">Terms</Link>
-             </div>
-          </div>
-          
-          <div className="text-right">
-             <p className="text-xs text-white/30 font-space-grotesk uppercase tracking-widest mb-1">System Status</p>
-             <div className="flex items-center gap-2 justify-end">
-               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-               <span className="text-xs text-white/60 font-space-grotesk">All Systems Operational</span>
-             </div>
-          </div>
-        </div>
+
+      </div>
+
+      {/* Huge Background Name */}
+      <div className="w-full flex justify-center items-center pointer-events-none select-none overflow-hidden mt-12 pb-4">
+        <span 
+          className="font-inter font-black text-[16vw] leading-none tracking-tighter whitespace-nowrap text-white"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.2))",
+            maskImage: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.2))"
+          }}
+        >
+          Arcnetic
+        </span>
       </div>
     </footer>
   );
