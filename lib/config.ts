@@ -13,8 +13,8 @@ export const serverConfig = {
 
   // Contact Information (server-side only)
   contact: {
-    email: process.env.CONTACT_EMAIL || "aswin.p@arcnetic.com",
-    phone: process.env.PHONE || "+91-7558952771",
+    email: process.env.CONTACT_EMAIL || "support@arcnetic.com",
+    phone: process.env.PHONE || "+91 9995 007 616",
   },
 
   // Social Media (safe to expose publicly)
