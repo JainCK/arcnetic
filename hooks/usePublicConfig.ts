@@ -41,8 +41,8 @@ export function usePublicConfig() {
             instagram: process.env.NEXT_PUBLIC_INSTAGRAM_PAGE || "arcnetic",
           },
           contact: {
-            email: "aswin.p@arcnetic.com", // Fallback
-            phone: "+91-9995007616", // Fallback
+            email: "support@arcnetic.com", // Fallback
+            phone: "+91 9995 007 616", // Fallback
           },
           site: {
             publicUrl:

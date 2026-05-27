@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { event } from "@/lib/analytics";
+import { usePublicConfig } from "@/hooks/usePublicConfig";
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/place/Arcnetic/@9.9629517,76.2986697,17z/data=!3m1!4b1!4m6!3m5!1s0x3b08733b6ee513b3:0x50318f647a0c9b6d!8m2!3d9.9629517!4d76.3012446!16s%2Fg%2F11y3v5m1rq";
@@ -23,6 +24,8 @@ async function sendContactEmail(data: Record<string, string>) {
 }
 
 export function ContactSection() {
+  const { config } = usePublicConfig();
+  const phone = config?.contact?.phone || "+91 9995 007 616";
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -114,17 +117,10 @@ export function ContactSection() {
               </a>
               <span className="text-white/20">•</span>
               <a
-                href="tel:+917558952771"
+                href={`tel:${phone}`}
                 className="hover:text-white transition-colors duration-200"
               >
-                +91 7558 952 771
-              </a>
-              <span className="text-white/20">•</span>
-              <a
-                href="mailto:aswin.p@arcnetic.com"
-                className="hover:text-white transition-colors duration-200"
-              >
-                aswin.p@arcnetic.com
+                {phone}
               </a>
             </div>
 

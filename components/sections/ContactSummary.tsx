@@ -3,8 +3,12 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { usePublicConfig } from "@/hooks/usePublicConfig";
 
 export function ContactMinimal() {
+  const { config } = usePublicConfig();
+  const phone = config?.contact?.phone || "+91 9995 007 616";
+  const email = config?.contact?.email || "support@arcnetic.com";
   return (
     <section className="bg-black py-20 md:py-40 px-4 min-h-[60vh] md:min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
       
@@ -48,16 +52,16 @@ export function ContactMinimal() {
         {/* Email */}
         <div className="space-y-2">
           <h3 className="font-space-grotesk text-xs uppercase tracking-widest text-white/40">Email</h3>
-          <a href="mailto:aswin.p@arcnetic.com" className="block font-playfair text-xl text-white hover:text-white/70 transition-colors">
-            support@arcnetic.com
+          <a href={`mailto:${email}`} className="block font-playfair text-xl text-white hover:text-white/70 transition-colors">
+            {email}
           </a>
         </div>
 
         {/* Phone - New Addition */}
         <div className="space-y-2">
           <h3 className="font-space-grotesk text-xs uppercase tracking-widest text-white/40">Phone</h3>
-          <a href="tel:+919995007616" className="block font-playfair text-xl text-white hover:text-white/70 transition-colors">
-            +91 9995 007 616
+          <a href={`tel:${phone}`} className="block font-playfair text-xl text-white hover:text-white/70 transition-colors">
+            {phone}
           </a>
         </div>
 
