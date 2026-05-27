@@ -9,7 +9,7 @@ const RESEND_VERIFIED_SENDER_EMAIL = process.env.RESEND_VERIFIED_SENDER_EMAIL; /
 
 // --- Resend Client Setup ---
 // Instantiate Resend client outside the handler to avoid re-creating on every request
-const resend = new Resend(RESEND_API_KEY);
+const resend = new Resend(RESEND_API_KEY || "re_dummy_key");
 
 // --- POST Handler for Contact Form Submissions ---
 export async function POST(request: Request) {

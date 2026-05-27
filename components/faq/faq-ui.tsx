@@ -1,15 +1,9 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageSquare, Phone, Plus, Minus } from "lucide-react";
+import { ArrowRight, MessageSquare, Plus, X } from "lucide-react";
 import Link from "next/link";
 
 const faqData = [
@@ -95,15 +89,18 @@ export function FaqUI() {
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
+  // All FAQ items collapsed by default
+  const [activeIndex, setActiveIndex] = useState<string | null>(null);
+
   return (
     <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black">
-      
+
       {/* --- HERO SECTION --- */}
-      <section ref={containerRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section ref={containerRef} className="relative min-h-[72vh] flex flex-col justify-start pt-40 md:pt-44 pb-16 items-center overflow-hidden">
         {/* Background Void */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#111] via-[#000000] to-[#000000]" />
-          <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+          <div className="absolute inset-0 opacity-[0.15] bg-[url('/noise.svg')] mix-blend-overlay" />
         </div>
 
         <motion.div style={{ y, opacity }} className="relative z-10 text-center px-4">
@@ -117,8 +114,8 @@ export function FaqUI() {
               Knowledge Base
             </span>
           </motion.div>
-          <h1 className="font-playfair text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight">
-            Common <br className="hidden md:block" /> Queries.
+          <h1 className="font-playfair text-6xl sm:text-[11vw] md:text-[8vw] font-bold text-white mb-6 tracking-tight leading-[0.9] whitespace-nowrap">
+            Common Queries.
           </h1>
           <p className="font-space-grotesk text-white/50 max-w-xl mx-auto text-lg leading-relaxed">
             Everything you need to know about our process, technology, and how we deliver value.
@@ -128,44 +125,122 @@ export function FaqUI() {
 
       {/* --- FAQ CONTENT --- */}
       <section className="relative z-10 pb-32 pt-10 px-4">
-        <div className="max-w-4xl mx-auto space-y-20">
+        <div className="max-w-4xl mx-auto space-y-24">
           {faqData.map((category, catIndex) => (
-            <div key={category.category} className="space-y-8">
-              {/* Category Header */}
-              <div className="flex items-center gap-4">
-                <span className="font-space-grotesk text-xs uppercase tracking-[0.2em] text-white/40">
-                  0{catIndex + 1}
-                </span>
-                <h3 className="font-playfair text-3xl text-white">
-                  {category.category}
-                </h3>
-                <div className="h-px flex-1 bg-white/10" />
-              </div>
+            <div key={category.category} className="space-y-12">
+              <div className="space-y-8">
+                {/* Category Header - Bold, Large Playfair Display with separating line */}
+                <div className="flex items-center gap-6 px-8 w-full">
+                  <span className="font-space-grotesk text-sm uppercase tracking-[0.2em] text-white/40 flex-shrink-0">
+                    0{catIndex + 1}
+                  </span>
+                  <h3 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                    {category.category}
+                  </h3>
+                  <div className="h-px flex-1 bg-white/10 min-w-[20px]" />
+                </div>
 
-              {/* Questions */}
-              <Accordion type="single" collapsible className="space-y-4">
-                {category.questions.map((faq, index) => (
-                  <AccordionItem
-                    key={index}
-                    value={`${category.category}-${index}`}
-                    className="border border-white/10 bg-[#0A0A0A] rounded-xl px-6 transition-all duration-300 hover:border-white/20 data-[state=open]:border-primary/30 data-[state=open]:bg-white/[0.02]"
-                  >
-                    <AccordionTrigger className="hover:no-underline py-6 group">
-                      <div className="flex items-center justify-between w-full text-left gap-6">
-                        <span className="font-space-grotesk text-lg text-white/90 group-hover:text-white transition-colors">
-                          {faq.question}
-                        </span>
-                        {/* Custom Icon handled by AccordionTrigger or CSS, but adding manual logic for visual flare */}
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="pb-6">
-                      <p className="font-space-grotesk text-white/50 leading-relaxed text-base border-t border-white/5 pt-4">
-                        {faq.answer}
-                      </p>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+                {/* Accordion list container */}
+                <div className="relative">
+                  <div className="space-y-6 py-2">
+                    {category.questions.map((faq, index) => {
+                      const itemId = `${category.category}-${index}`;
+                      const isOpen = activeIndex === itemId;
+
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => setActiveIndex(isOpen ? null : itemId)}
+                          className={`group relative w-full text-left transition-all duration-300 cursor-pointer ${isOpen
+                              ? "bg-white/[0.02] rounded-xl px-8 py-6"
+                              : "bg-transparent rounded-xl px-8 py-6 hover:bg-white/[0.01]"
+                            }`}
+                        >
+                          {/* Custom Dotted Border - Only shown when active, extended to outside on all 4 sides */}
+                          {isOpen && (
+                            <div className="absolute inset-0 pointer-events-none">
+                              {/* Left extended vertical line (extends -32px to +32px, 16px past horizontal lines) */}
+                              <div
+                                className="absolute -top-8 -bottom-8 left-[-16px] w-px"
+                                style={{
+                                  backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
+                                  backgroundSize: "1px 8px",
+                                  backgroundRepeat: "repeat-y"
+                                }}
+                              />
+
+                              {/* Right extended vertical line (extends -32px to +32px, 16px past horizontal lines) */}
+                              <div
+                                className="absolute -top-8 -bottom-8 right-[-16px] w-px"
+                                style={{
+                                  backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
+                                  backgroundSize: "1px 8px",
+                                  backgroundRepeat: "repeat-y"
+                                }}
+                              />
+
+                              {/* Top horizontal dotted line */}
+                              <div
+                                className="absolute top-[-16px] left-[-16px] right-[-16px] h-px"
+                                style={{
+                                  backgroundImage: "linear-gradient(to right, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
+                                  backgroundSize: "8px 1px",
+                                  backgroundRepeat: "repeat-x"
+                                }}
+                              />
+
+                              {/* Bottom horizontal dotted line */}
+                              <div
+                                className="absolute bottom-[-16px] left-[-16px] right-[-16px] h-px"
+                                style={{
+                                  backgroundImage: "linear-gradient(to right, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
+                                  backgroundSize: "8px 1px",
+                                  backgroundRepeat: "repeat-x"
+                                }}
+                              />
+                            </div>
+                          )}
+
+                          <div className="flex items-center justify-between w-full gap-6">
+                            <span className="font-playfair text-xl text-white font-semibold transition-colors">
+                              {faq.question}
+                            </span>
+
+                            {/* Dotted Theme Toggle Button */}
+                            <div className="text-white/40 group-hover:text-white transition-colors flex-shrink-0">
+                              {isOpen ? (
+                                <X className="h-5 w-5" />
+                              ) : (
+                                <Plus className="h-5 w-5" />
+                              )}
+                            </div>
+                          </div>
+
+                          <AnimatePresence initial={false}>
+                            {isOpen && (
+                              <motion.div
+                                initial="collapsed"
+                                animate="open"
+                                exit="collapsed"
+                                variants={{
+                                  open: { opacity: 1, height: "auto", marginTop: 16 },
+                                  collapsed: { opacity: 0, height: 0, marginTop: 0 }
+                                }}
+                                transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                className="overflow-hidden"
+                              >
+                                <p className="font-space-grotesk text-white/50 leading-relaxed text-base border-t border-white/5 pt-4">
+                                  {faq.answer}
+                                </p>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -181,11 +256,11 @@ export function FaqUI() {
             <p className="font-space-grotesk text-white/50 text-lg">
               Can't find the answer you're looking for? Our team is here to help you with any specific inquiries.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
               <Link href="/contact">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="h-14 px-8 rounded-full border-white/20 bg-white/5 text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300 group"
                 >
                   <span className="flex items-center gap-3 font-space-grotesk tracking-widest text-xs">
@@ -194,7 +269,7 @@ export function FaqUI() {
                   </span>
                 </Button>
               </Link>
-              
+
               <a href="mailto:hello@arcnetic.com" className="group">
                 <span className="flex items-center gap-3 font-space-grotesk tracking-widest text-xs text-white/60 group-hover:text-white transition-colors">
                   EMAIL US DIRECTLY
