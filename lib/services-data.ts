@@ -38,54 +38,68 @@ export interface ServiceData {
 
 export const servicesData: ServiceData[] = [
   {
-    slug: "web-development",
-    title: "Web & Full-Stack Development",
+    slug: "custom-websites-seo",
+    title: "Websites & SEO",
     shortDescription:
-      "High-performance, scalable web applications from database to user interface",
+      "Custom Web Development & Technical SEO designed to rank and convert.",
     longDescription:
-      "We architect and build high-performance, scalable web applications, from dynamic single-page apps to complex enterprise-level SaaS platforms. Our full-stack expertise ensures a seamless, robust solution from database to user interface, utilizing cutting-edge technologies and best practices to deliver exceptional user experiences.",
+      "Your website isn't just a digital brochure; it's a lead-generation engine. We don't rely on bloated templates. We engineer custom web architectures from the ground up, prioritizing core web vitals, accessibility, and frictionless user experiences that rank and convert.",
     heroImage: "/images/services/web-development.jpg",
     features: [
-      "Custom Web Applications",
-      "Progressive Web Apps (PWA)",
-      "E-commerce Platforms",
-      "Content Management Systems",
-      "API Development & Integration",
-      "Performance Optimization",
+      "Custom Web Development",
+      "Technical SEO Audits & Remediation",
+      "Headless CMS Integration",
+      "Conversion Rate Optimization (CRO)",
+      "Core Web Vitals Perfection",
+      "Dynamic WebGL Animations",
     ],
     subServices: [
       {
-        title: "Frontend Development",
+        title: "High-Performance Web Apps",
         description:
-          "Modern, responsive user interfaces that engage and convert",
+          "SSR and SSG architectures for sub-second load times and flawless user experiences.",
         features: [
-          "React, Next.js, Svelte Development",
-          "Mobile-First Responsive Design",
-          "Interactive UI/UX Implementation",
-          "Performance Optimization",
-          "Cross-Browser Compatibility",
+          "React & Next.js Frameworks",
+          "SSR & SSG Decoupled Delivery",
+          "Core Web Vitals Perfect Scores",
+          "Tailwind CSS & Clean UI Markup",
+          "Highly Responsive Layouts",
         ],
       },
       {
-        title: "Backend Development",
-        description: "Robust server-side solutions with scalable architecture",
+        title: "Technical SEO",
+        description:
+          "Deep-dive indexability optimization, schema markup, and site architecture restructuring.",
         features: [
-          "RESTful API Development",
-          "Database Design & Optimization",
-          "Authentication & Authorization",
-          "Third-Party Integrations",
-          "Microservices Architecture",
+          "Comprehensive Indexability Audits",
+          "Structured Data & Schema Markup",
+          "XML Sitemap & Robots.txt Rebuilding",
+          "URL Silo & Internal Link Structuring",
+          "Keyword Mapping & Rank Tracking",
         ],
       },
       {
-        title: "Full-Stack Solutions",
-        description: "End-to-end web applications with seamless integration",
+        title: "Headless CMS Integration",
+        description:
+          "Decoupled backends allowing your marketing team to move fast without breaking the frontend.",
         features: [
-          "Complete CRUD Applications",
-          "Real-time Features",
-          "Payment Gateway Integration",
-          "Admin Dashboards",
-          "Multi-tenant Applications",
+          "Sanity, Contentful & Strapi Connect",
+          "Custom Typing & Data Modeling",
+          "Block Content Visual Editors",
+          "Fast Edge API Implementations",
+          "Decoupled Preview Environments",
+        ],
+      },
+      {
+        title: "Conversion Rate Optimization CRO",
+        description:
+          "Data-backed UX tweaks that turn high-intent search traffic into qualified pipeline.",
+        features: [
+          "Frictionless Lead Funnel Designs",
+          "Interactive Forms & CTA Placement",
+          "A/B Testing of Search Engine CTRs",
+          "User Heatmap & Scroll Analytics",
+          "Speed-focused Funnel Checkout Paths",
         ],
       },
     ],
@@ -102,38 +116,18 @@ export const servicesData: ServiceData[] = [
         category: "frontend",
       },
       {
-        name: "Node.js",
-        logo: "/images/tech/node.js.svg",
-        category: "backend",
+        name: "Tailwind CSS",
+        logo: "/images/tech/tailwind.svg",
+        category: "frontend",
       },
       {
-        name: "Express",
-        logo: "/images/tech/express.svg",
-        category: "backend",
-      },
-      {
-        name: "Python",
-        logo: "/images/tech/python.svg",
-        category: "backend",
-      },
-      {
-        name: "FASTAPI",
-        logo: "/images/tech/fastapi.svg",
+        name: "Sanity.io",
+        logo: "/images/tech/sanity.svg",
         category: "backend",
       },
       {
         name: "PostgreSQL",
         logo: "/images/tech/postgresql.svg",
-        category: "database",
-      },
-      {
-        name: "mySQL",
-        logo: "/images/tech/mysql.svg",
-        category: "database",
-      },
-      {
-        name: "MongoDB",
-        logo: "/images/tech/mongodb.svg",
         category: "database",
       },
       { name: "AWS", logo: "/images/tech/aws.svg", category: "cloud" },
@@ -142,47 +136,44 @@ export const servicesData: ServiceData[] = [
         logo: "/images/tech/cloudflare.svg",
         category: "cloud",
       },
-      { name: "Docker", logo: "/images/tech/docker.svg", category: "tools" },
     ],
     pricing: {
       starter: {
-        price: "₹2,50,000",
+        price: "₹1,50,000",
         features: [
-          "5-10 Page Website",
-          "Responsive Design",
-          "Basic SEO Setup",
-          "Contact Forms",
-          "3 Months Support",
+          "Technical Audit & Diagnostics",
+          "Core Web Vitals Remediation",
+          "Sitemap & robots.txt Rebuilding",
+          "Initial Keyword Mapping",
+          "3 Months Plan Performance Support",
         ],
       },
       professional: {
-        price: "₹5,00,000",
+        price: "₹3,00,000",
         features: [
-          "Custom Web Application",
-          "User Authentication",
-          "Database Integration",
-          "Admin Dashboard",
-          "6 Months Support",
-          "API Integration",
+          "Custom Web Development",
+          "Competitor Keyword Gap Analysis",
+          "On-page Optimization (H1-H6 & Meta)",
+          "Headless CMS (Sanity) Setup",
+          "6 Months SEO Rank Support",
         ],
       },
       enterprise: {
-        price: "Custom Quote",
+        price: "₹5,00,000",
         features: [
-          "Large-scale Applications",
-          "Microservices Architecture",
-          "Advanced Security",
-          "Performance Optimization",
-          "12 Months Support",
-          "Dedicated Team",
+          "High-DR Backlink Acquisition",
+          "Rich Snippet Optimization",
+          "Continuous CTR A/B Testing",
+          "Advanced Lead Funnels (CRO)",
+          "12 Months Domination & Growth Plan",
         ],
       },
     },
     cta: {
-      title: "Ready to Build Your Web Application?",
+      title: "Ready to Dominate Search & Conversions?",
       description:
-        "Let's discuss your project requirements and create a custom solution that drives your business forward.",
-      buttonText: "Start Your Project",
+        "We combine modern web frameworks with rigorous SEO planning to ensure your brand captures high intent traffic and keeps users engaged.",
+      buttonText: "Initiate Strategy Consultation",
     },
   },
   {
@@ -299,7 +290,7 @@ export const servicesData: ServiceData[] = [
     },
   },
   {
-    slug: "ai-solutions",
+    slug: "ai-workflow-automation",
     title: "AI Solutions",
     shortDescription:
       "Integrate ML and AI into your business processes for enhanced efficiency",
@@ -412,116 +403,113 @@ export const servicesData: ServiceData[] = [
     },
   },
   {
-    slug: "cloud-infrastructure",
-    title: "Cloud & Infrastructure",
+    slug: "custom-software-development",
+    title: "Custom Software Solutions",
     shortDescription:
-      "Scalable solutions on AWS, Azure, and GCP for modern businesses",
+      "Bespoke CRMs, enterprise ERPs, microservices, and internal tooling built to scale your operations.",
     longDescription:
-      "We design and implement robust cloud infrastructure solutions that scale with your business needs. Our expertise spans across major cloud platforms including AWS, Azure, and Google Cloud Platform, ensuring optimal performance, security, and cost-effectiveness for your applications and data.",
-    heroImage: "/images/services/cloud-infrastructure.jpg",
+      "Off-the-shelf software forces your business to adapt to its limitations. We build custom software that adapts to you. From bespoke CRMs to complex enterprise resource planning systems, we architect secure, scalable solutions that eliminate operational bottlenecks and streamline data flows.",
+    heroImage: "/images/services/custom-software.jpg",
     features: [
-      "Cloud Migration Services",
-      "Infrastructure as Code",
-      "Auto-scaling Solutions",
-      "Disaster Recovery",
-      "Security & Compliance",
-      "Cost Optimization",
+      "Bespoke CRM & ERP Systems",
+      "Internal Dashboards & Portals",
+      "Legacy System Modernization",
+      "API Development & Integration",
+      "Microservice Architectures",
+      "Automated Workflows & Sync",
     ],
     subServices: [
       {
-        title: "Cloud Migration",
-        description: "Seamless migration of applications and data to the cloud",
+        title: "Bespoke CRM & ERP Systems",
+        description: "Centralizing your operations and data for total organizational visibility",
         features: [
-          "Migration Strategy Planning",
-          "Application Modernization",
-          "Data Migration",
-          "Performance Optimization",
-          "Minimal Downtime Migration",
+          "Custom Data Structuring",
+          "Automated Lead Pipelines",
+          "Comprehensive Resource Tracking",
+          "Inventory & Supply Chain Systems",
+          "Role-based Action Logging",
         ],
       },
       {
-        title: "Infrastructure Management",
-        description: "Comprehensive cloud infrastructure setup and management",
+        title: "Internal Dashboards & Portals",
+        description: "Clean, role-based interfaces that surface critical business metrics in real-time",
         features: [
-          "Infrastructure as Code",
-          "Automated Deployments",
-          "Monitoring & Alerting",
-          "Backup & Recovery",
-          "Security Configuration",
+          "Interactive Live Analytics",
+          "Multi-role Permissioning",
+          "Cross-system Data Consolidation",
+          "Automated Reporting",
+          "Secure Client Portals",
         ],
       },
       {
-        title: "DevOps & CI/CD",
-        description: "Streamlined development and deployment processes",
+        title: "Legacy System Modernization",
+        description: "Refactoring aging codebases into agile, microservice architectures",
         features: [
-          "Continuous Integration",
-          "Automated Testing",
-          "Deployment Pipelines",
-          "Container Orchestration",
-          "Performance Monitoring",
+          "Monolith Deconstruction",
+          "Agile Infrastructure Migration",
+          "Database Schema Normalization",
+          "Security Patching & Hardening",
+          "Zero-downtime Deployments",
+        ],
+      },
+      {
+        title: "API Development & Integration",
+        description: "Connecting disparate SaaS tools into a unified, synchronized ecosystem",
+        features: [
+          "High-performance REST & GraphQL",
+          "Third-party SaaS Connector Sync",
+          "Encrypted Webhook Pipelines",
+          "Rate-limited Scalable APIs",
+          "Comprehensive API Docs (Swagger)",
         ],
       },
     ],
     techStack: [
-      { name: "AWS", logo: "/images/tech/aws.svg", category: "cloud" },
-      {
-        name: "Google Cloud",
-        logo: "/images/tech/google-cloud.svg",
-        category: "cloud",
-      },
-      { name: "Docker", logo: "/images/tech/docker.svg", category: "tools" },
-      {
-        name: "Kubernetes",
-        logo: "/images/tech/kubernetes.svg",
-        category: "tools",
-      },
-      {
-        name: "Terraform",
-        logo: "/images/tech/terraform.svg",
-        category: "tools",
-      },
-      { name: "Jenkins", logo: "/images/tech/jenkins.svg", category: "tools" },
-      { name: "Ansible", logo: "/images/tech/ansible.svg", category: "tools" },
+      { name: "Node.js", logo: "/images/tech/nodejs.svg", category: "backend" },
+      { name: "Go (Golang)", logo: "/images/tech/go.svg", category: "backend" },
+      { name: "PostgreSQL", logo: "/images/tech/postgres.svg", category: "database" },
+      { name: "Redis", logo: "/images/tech/redis.svg", category: "database" },
+      { name: "Next.js", logo: "/images/tech/nextjs.svg", category: "frontend" },
     ],
     pricing: {
       starter: {
-        price: "₹2,00,000",
+        price: "₹3,00,000",
         features: [
-          "Basic Cloud Setup",
-          "Simple Architecture",
-          "Basic Monitoring",
-          "Documentation",
+          "Custom Internal Tooling",
+          "Basic Role Permissions",
+          "Single Database Setup",
+          "Comprehensive Documentation",
           "3 Months Support",
         ],
       },
       professional: {
-        price: "₹5,00,000",
+        price: "₹8,00,000",
         features: [
-          "Advanced Cloud Architecture",
-          "Auto-scaling Setup",
-          "CI/CD Pipeline",
-          "Security Configuration",
+          "Bespoke CRM & Core ERP",
+          "Advanced Analytics & Charts",
+          "Multi-system API Integrations",
+          "Legacy Code Refactoring",
           "6 Months Support",
-          "Performance Optimization",
+          "Performance Hardening",
         ],
       },
       enterprise: {
         price: "Custom Quote",
         features: [
-          "Enterprise Cloud Solutions",
-          "Multi-cloud Architecture",
-          "Advanced Security",
-          "Disaster Recovery",
+          "Complete Enterprise Suite",
+          "Distributed Microservices",
+          "Ultra-secure Audit Logging",
+          "High Availability Setup",
           "12 Months Support",
-          "24/7 Monitoring",
+          "Dedicated Architect Team",
         ],
       },
     },
     cta: {
-      title: "Ready to Scale in the Cloud?",
+      title: "Ready to Automate & Scale Operations?",
       description:
-        "Let us help you build a robust, scalable cloud infrastructure that grows with your business.",
-      buttonText: "Start Cloud Journey",
+        "Let us build high-performance custom systems tailored specifically to your unique business workflows.",
+      buttonText: "Initiate Software Strategy",
     },
   },
   {
@@ -753,12 +741,22 @@ export function getServiceBySlug(slug: string): ServiceData | undefined {
 }
 
 export function getAllServiceSlugs(): string[] {
-  return servicesData.map((service) => service.slug);
+  return servicesData
+    .map((service) => service.slug)
+    .filter((slug) => slug !== "custom-websites-seo");
 }
 
 // Helper function for service highlights
 export function getServiceHighlight(serviceTitle: string): string {
   const highlights: { [key: string]: string } = {
+    "High-Performance Web Apps":
+      "Engineering lightning-fast load speeds using Next.js, optimizing server response times, and ensuring perfect Lighthouse scores for maximum search visibility.",
+    "Technical SEO":
+      "Conducting extensive audits, optimizing crawl budget, and correcting site structural flaws to make search bots index and value your key pages.",
+    "Headless CMS Integration":
+      "Creating modular and secure editing suites that empower marketing teams to push content fast while maintaining an ultra-light decoupled frontend.",
+    "Conversion Rate Optimization CRO":
+      "Optimizing visual pipelines and deploying user tracking feedback loops to continuously increase search impressions to pipeline conversion rates.",
     "Frontend Development":
       "Create stunning, responsive interfaces that engage users and drive conversions across all devices and platforms.",
     "Backend Development":
