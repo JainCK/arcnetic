@@ -14,12 +14,11 @@ const insightLinks = [
 ];
 
 const serviceLinks = [
-  { title: "Web & Full Stack", href: "/services/web-development" },
-  { title: "Mobile Apps", href: "/services/mobile-development" },
-  { title: "AI Solutions", href: "/services/ai-solutions" },
-  { title: "Cloud Infra", href: "/services/cloud-infrastructure" },
-  { title: "Maintenance", href: "/services/maintenance-support" },
-  { title: "Transformation", href: "/services/digital-transformation" },
+  { title: "Websites & SEO", href: "/services/custom-websites-seo" },
+  { title: "Mobile Platforms", href: "/services/react-native-mobile-development" },
+  { title: "AI Automations", href: "/services/ai-workflow-automation" },
+  { title: "Custom Software", href: "/services/custom-software-development" },
+  { title: "Digital Transformations", href: "/services/digital-transformation-consulting" },
 ];
 
 export function NavigationMinimal() {
@@ -39,7 +38,7 @@ export function NavigationMinimal() {
         className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 border-b ${
           scrolled || isMenuOpen
             ? "bg-black/80 backdrop-blur-xl border-white/10 py-4"
-            : "bg-transparent border-transparent py-6"
+            : "bg-black/20 backdrop-blur-md border-transparent py-6"
         }`}
       >
         <div className="container mx-auto px-4">
@@ -53,7 +52,9 @@ export function NavigationMinimal() {
                    src="/images/arclogo.png" 
                    alt="Arcnetic Logo" 
                    fill
+                   sizes="40px"
                    className="object-contain"
+                   priority
                  />
                </div>
                <span className="font-playfair text-xl md:text-2xl font-bold text-white tracking-tight">
@@ -91,7 +92,17 @@ export function NavigationMinimal() {
                 </Link>
               </div>
 
-              {/* 3. Insights Group */}
+              {/* 3. Case Studies - Direct Link */}
+              <div className="group relative h-10 flex items-center justify-center">
+                <Link 
+                  href="/case-studies"
+                  className="flex items-center gap-1 text-sm font-space-grotesk uppercase tracking-wide text-white/70 hover:text-white transition-colors"
+                >
+                  Case Studies
+                </Link>
+              </div>
+
+              {/* 4. Insights Group */}
               <HoverMenu title="Insights">
                 <div className="flex flex-col gap-4 w-48 p-2">
                   {insightLinks.map((link) => (
@@ -150,6 +161,13 @@ export function NavigationMinimal() {
                     className="text-2xl font-playfair text-white/80 hover:text-white hover:translate-x-2 transition-all"
                   >
                     About Us
+                  </Link>
+                  <Link 
+                    href="/case-studies" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-2xl font-playfair text-white/80 hover:text-white hover:translate-x-2 transition-all"
+                  >
+                    Case Studies
                   </Link>
                   <Link 
                     href="/careers" 

@@ -69,7 +69,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#000000] to-[#000000]" />
-          <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+          <div className="absolute inset-0 opacity-[0.15] bg-[url('/noise.svg')] mix-blend-overlay" />
         </div>
 
         <div className="container mx-auto px-4 md:px-8 relative z-10">

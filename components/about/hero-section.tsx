@@ -23,11 +23,11 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={ref} className="pt-24 relative h-[90vh] flex items-center justify-center overflow-hidden bg-black">
+    <section ref={ref} className="pt-30 md:pt-36 pb-16 relative min-h-[80vh] flex flex-col justify-start items-center overflow-hidden bg-black">
       {/* Cinematic Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#111] via-[#000000] to-[#000000]" />
-        <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+        <div className="absolute inset-0 opacity-[0.15] bg-[url('/noise.svg')] mix-blend-overlay" />
       </div>
 
       <motion.div 
