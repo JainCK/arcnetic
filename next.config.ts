@@ -106,6 +106,26 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/services/web-development",
+        destination: "/services/custom-websites-seo",
+        permanent: true,
+      },
+      {
+        source: "/services/mobile-development",
+        destination: "/services/react-native-mobile-development",
+        permanent: true,
+      },
+      {
+        source: "/services/ai-solutions",
+        destination: "/services/ai-workflow-automation",
+        permanent: true,
+      },
+      {
+        source: "/services/digital-transformation",
+        destination: "/services/digital-transformation-consulting",
+        permanent: true,
+      },
     ];
   },
 

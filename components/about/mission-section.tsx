@@ -88,7 +88,7 @@ export function MissionSection() {
                   <div className="flex items-center gap-3">
                     <span className="h-px w-6 bg-white/20" />
                     <span className="font-space-grotesk text-[10px] uppercase tracking-widest text-white/30">
-                      Arcnetic PVT LTD · Est. 2022, Kochi
+                      Arcnetic PVT LTD
                     </span>
                   </div>
                 </div>

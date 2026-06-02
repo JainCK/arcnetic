@@ -51,37 +51,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Service Pages
     {
-      url: `${baseUrl}/services/web-development`,
+      url: `${baseUrl}/services/custom-websites-seo`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services/mobile-development`,
+      url: `${baseUrl}/services/react-native-mobile-development`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services/ai-solutions`,
+      url: `${baseUrl}/services/ai-workflow-automation`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services/cloud-infrastructure`,
+      url: `${baseUrl}/services/custom-software-development`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services/maintenance-support`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/digital-transformation`,
+      url: `${baseUrl}/services/digital-transformation-consulting`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.9,

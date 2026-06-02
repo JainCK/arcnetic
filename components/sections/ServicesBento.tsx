@@ -12,7 +12,7 @@ const services = [
     colSpan: "md:col-span-2",
   },
   {
-    id: "mobile-development",
+    id: "react-native-mobile-development",
     title: "Mobile Platforms",
     description: "Native and cross-platform mobile experiences.",
     colSpan: "md:col-span-1",
