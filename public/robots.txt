@@ -1,0 +1,44 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /private/
+Disallow: /internal/
+Disallow: *.js
+Disallow: *.css
+Disallow: *.json
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# LinkedInBot
+User-agent: LinkedInBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# facebookexternalhit
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Host
+Host: https://arcnetic.com
+
+# Sitemaps
+Sitemap: https://arcnetic.com/sitemap.xml
