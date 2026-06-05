@@ -22,6 +22,7 @@ import {
   Users
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // ==========================================================
 // 1. HERO ANIMATION: Holistic Orbit
@@ -533,9 +534,11 @@ function StorylineNarrative() {
                     <div className="flex-1 w-full h-full relative overflow-hidden group">
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
                       
-                      <img 
+                      <Image 
                         src={item.image}
                         alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 800px"
                         className="w-full h-full object-cover opacity-90 transition-transform duration-[8s] scale-100 group-hover:scale-105"
                       />
                       

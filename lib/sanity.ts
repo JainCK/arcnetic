@@ -1,18 +1,21 @@
 import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "dummy-project-id";
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+
 // Default client with CDN (for most content)
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId,
+  dataset,
   useCdn: process.env.NODE_ENV === "production",
   apiVersion: "2024-01-01",
 });
 
 // Client without CDN (for fresh blog content)
 export const previewClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId,
+  dataset,
   useCdn: false, // Always fetch fresh data
   apiVersion: "2024-01-01",
 });

@@ -96,7 +96,7 @@ export function FaqUI() {
     <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black">
 
       {/* --- HERO SECTION --- */}
-      <section ref={containerRef} className="relative min-h-[72vh] flex flex-col justify-start pt-40 md:pt-44 pb-16 items-center overflow-hidden">
+      <section ref={containerRef} className="relative min-h-[90vh] lg:min-h-screen flex flex-col justify-center pt-28 sm:pt-32 pb-16 items-center overflow-hidden">
         {/* Background Void */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#111] via-[#000000] to-[#000000]" />
@@ -114,10 +114,10 @@ export function FaqUI() {
               Knowledge Base
             </span>
           </motion.div>
-          <h1 className="font-playfair text-6xl sm:text-[11vw] md:text-[8vw] font-bold text-white mb-6 tracking-tight leading-[0.9] whitespace-nowrap">
+          <h1 className="font-playfair text-5xl sm:text-6xl md:text-[8vw] font-bold text-white mb-6 tracking-tight leading-[0.9] whitespace-normal sm:whitespace-nowrap">
             Common Queries.
           </h1>
-          <p className="font-space-grotesk text-white/50 max-w-xl mx-auto text-lg leading-relaxed">
+          <p className="font-space-grotesk text-white/50 max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
             Everything you need to know about our process, technology, and how we deliver value.
           </p>
         </motion.div>
@@ -130,7 +130,7 @@ export function FaqUI() {
             <div key={category.category} className="space-y-12">
               <div className="space-y-8">
                 {/* Category Header - Bold, Large Playfair Display with separating line */}
-                <div className="flex items-center gap-6 px-8 w-full">
+                <div className="flex items-center gap-6 px-4 sm:px-8 w-full">
                   <span className="font-space-grotesk text-sm uppercase tracking-[0.2em] text-white/40 flex-shrink-0">
                     0{catIndex + 1}
                   </span>
@@ -152,8 +152,8 @@ export function FaqUI() {
                           key={index}
                           onClick={() => setActiveIndex(isOpen ? null : itemId)}
                           className={`group relative w-full text-left transition-all duration-300 cursor-pointer ${isOpen
-                              ? "bg-white/[0.02] rounded-xl px-8 py-6"
-                              : "bg-transparent rounded-xl px-8 py-6 hover:bg-white/[0.01]"
+                              ? "bg-white/[0.02] rounded-xl px-4 sm:px-8 py-5 sm:py-6"
+                              : "bg-transparent rounded-xl px-4 sm:px-8 py-5 sm:py-6 hover:bg-white/[0.01]"
                             }`}
                         >
                           {/* Custom Dotted Border - Only shown when active, extended to outside on all 4 sides */}
@@ -161,7 +161,7 @@ export function FaqUI() {
                             <div className="absolute inset-0 pointer-events-none">
                               {/* Left extended vertical line (extends -32px to +32px, 16px past horizontal lines) */}
                               <div
-                                className="absolute -top-8 -bottom-8 left-[-16px] w-px"
+                                className="absolute -top-8 -bottom-8 left-[-12px] sm:left-[-16px] w-px"
                                 style={{
                                   backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
                                   backgroundSize: "1px 8px",
@@ -171,7 +171,7 @@ export function FaqUI() {
 
                               {/* Right extended vertical line (extends -32px to +32px, 16px past horizontal lines) */}
                               <div
-                                className="absolute -top-8 -bottom-8 right-[-16px] w-px"
+                                className="absolute -top-8 -bottom-8 right-[-12px] sm:right-[-16px] w-px"
                                 style={{
                                   backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
                                   backgroundSize: "1px 8px",
@@ -181,7 +181,7 @@ export function FaqUI() {
 
                               {/* Top horizontal dotted line */}
                               <div
-                                className="absolute top-[-16px] left-[-16px] right-[-16px] h-px"
+                                className="absolute top-[-12px] sm:top-[-16px] left-[-12px] sm:left-[-16px] right-[-12px] sm:right-[-16px] h-px"
                                 style={{
                                   backgroundImage: "linear-gradient(to right, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
                                   backgroundSize: "8px 1px",
@@ -191,7 +191,7 @@ export function FaqUI() {
 
                               {/* Bottom horizontal dotted line */}
                               <div
-                                className="absolute bottom-[-16px] left-[-16px] right-[-16px] h-px"
+                                className="absolute bottom-[-12px] sm:bottom-[-16px] left-[-12px] sm:left-[-16px] right-[-12px] sm:right-[-16px] h-px"
                                 style={{
                                   backgroundImage: "linear-gradient(to right, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0) 0%)",
                                   backgroundSize: "8px 1px",
@@ -202,7 +202,7 @@ export function FaqUI() {
                           )}
 
                           <div className="flex items-center justify-between w-full gap-6">
-                            <span className="font-playfair text-xl text-white font-semibold transition-colors">
+                            <span className="font-playfair text-lg sm:text-xl text-white font-semibold transition-colors">
                               {faq.question}
                             </span>
 

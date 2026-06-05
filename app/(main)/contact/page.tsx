@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { contactMetadata } from "@/lib/metadata";
-import { MapPin, Phone, Mail } from "lucide-react";
 import { ContactSection } from "@/components/forms/simple-contact-form";
 
 export const metadata: Metadata = contactMetadata;
@@ -9,8 +8,8 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
 
-      {/* ─── ORIGINAL HERO SECTION (unchanged) ─── */}
-      <section className="relative pt-40 pb-20 px-4 overflow-hidden border-b border-white/10">
+      {/* ─── HERO SECTION ─── */}
+      <section className="relative min-h-screen flex flex-col justify-center pt-28 pb-16 px-4 overflow-hidden border-b border-white/10">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#111] via-[#000000] to-[#000000]" />

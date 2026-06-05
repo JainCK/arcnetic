@@ -78,7 +78,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-20 px-4 relative">
+    <section id="contact-form" className="py-20 px-4 relative scroll-mt-24">
       {/* Subtle dot-grid background */}
       <div
         className="absolute inset-0 opacity-[0.025] pointer-events-none"

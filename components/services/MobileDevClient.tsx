@@ -21,6 +21,7 @@ import {
   Camera
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // ==========================================================
 // 1. HERO ANIMATION: Code entering and splitting to iOS/Android
@@ -422,9 +423,11 @@ function CarouselSection() {
             >
               {/* Background Stock Image with Gradient Overlay */}
               <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
-                <img
+                <Image
                   src={benefit.image}
                   alt={benefit.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="w-full h-full object-cover opacity-[0.14] mix-blend-luminosity transition-transform duration-700 ease-out scale-100 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#080808]/85 to-[#080808]" />

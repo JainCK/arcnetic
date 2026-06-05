@@ -1,8 +1,42 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+
+function LeaderAvatar({ src, name, priority = false }: { src: string; name: string; priority?: boolean }) {
+  const [imgSrc, setImgSrc] = useState(src);
+  return (
+    <Image 
+      src={imgSrc} 
+      alt={name}
+      fill
+      sizes="(max-width: 768px) 240px, 240px"
+      priority={priority}
+      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+      onError={() => {
+        setImgSrc(`https://api.dicebear.com/7.x/avataaars/svg?seed=${name.split(' ')[0]}&eyebrows=defaultNatural&mouth=smile`);
+      }}
+    />
+  );
+}
+
+function TeamMemberAvatar({ src, name }: { src: string; name: string }) {
+  const [imgSrc, setImgSrc] = useState(src);
+  return (
+    <Image 
+      src={imgSrc} 
+      alt={name}
+      width={56}
+      height={56}
+      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+      onError={() => {
+        setImgSrc(`https://api.dicebear.com/7.x/avataaars/svg?seed=${name.split(' ')[0]}&eyebrows=defaultNatural&mouth=smile`);
+      }}
+    />
+  );
+}
 
 interface TeamMember {
   name: string;
@@ -86,15 +120,7 @@ export function TeamSection() {
               <div className="absolute inset-4 border border-white/30 rounded-full scale-95 shadow-[0_0_20px_rgba(255,255,255,0.03)]" />
               {/* Image Container */}
               <div className="absolute inset-6 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors duration-500 bg-zinc-950">
-                <img 
-                  src="/images/team/Aswin.png" 
-                  alt="Aswin P kalyan"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.currentTarget.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=Aswin&eyebrows=defaultNatural&mouth=smile`;
-                  }}
-                />
+                <LeaderAvatar src="/images/team/Aswin.png" name="Aswin P kalyan" />
               </div>
             </div>
             <h3 className="font-playfair text-2xl text-white mb-1 tracking-wide group-hover:text-white transition-colors duration-300">
@@ -124,15 +150,7 @@ export function TeamSection() {
               <div className="absolute inset-4 border border-white/30 rounded-full scale-95 shadow-[0_0_20px_rgba(255,255,255,0.03)]" />
               {/* Image Container */}
               <div className="absolute inset-6 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors duration-500 bg-zinc-950">
-                <img 
-                  src="/images/team/Jain.png" 
-                  alt="Jain C Kuriakose"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.currentTarget.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=Jain&eyebrows=defaultNatural&mouth=smile`;
-                  }}
-                />
+                <LeaderAvatar src="/images/team/Jain.png" name="Jain C Kuriakose" />
               </div>
             </div>
             <h3 className="font-playfair text-2xl text-white mb-1 tracking-wide group-hover:text-white transition-colors duration-300">
@@ -175,15 +193,7 @@ export function TeamSection() {
               >
                 {/* Member Avatar */}
                 <div className="w-14 h-14 rounded-xl overflow-hidden bg-zinc-900 border border-white/10 flex-shrink-0 flex items-center justify-center shadow-lg">
-                  <img 
-                    src={member.avatar} 
-                    alt={member.name} 
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.currentTarget.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${member.name.split(' ')[0]}&eyebrows=defaultNatural&mouth=smile`;
-                    }}
-                  />
+                  <TeamMemberAvatar src={member.avatar} name={member.name} />
                 </div>
 
                 {/* Member Info - Split into Name and Role stack */}
