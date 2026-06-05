@@ -180,16 +180,8 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
         </div>
 
         {/* Zone 2: Description Section (Images speed past this) */}
-        <div className="h-[100vh] w-full flex flex-col justify-center items-center pointer-events-auto relative z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.5 }}
-            className="max-w-7xl mx-auto px-4 md:px-8 w-full"
-          >
-            <Manifesto />
-          </motion.div>
+        <div className="h-[100vh] w-full pointer-events-auto relative z-20">
+          <Manifesto />
         </div>
 
         {/* Zone 3: Looping Section (Empty space here lets the waiting images take center stage) */}

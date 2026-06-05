@@ -20,7 +20,7 @@ export function Manifesto() {
   };
 
   return (
-    <section className="bg-black py-20 md:py-40 px-4 min-h-[50vh] md:min-h-[80vh] flex items-center justify-center">
+    <section className="w-full h-full bg-transparent flex items-center justify-center px-4 md:px-8 py-12">
       <motion.div
         variants={container}
         initial="hidden"
