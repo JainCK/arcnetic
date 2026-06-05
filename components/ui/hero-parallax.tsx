@@ -131,9 +131,20 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
         }}
         className="absolute top-0 left-0 w-full h-[100vh] flex flex-col justify-center items-center z-10"
       >
-        <motion.div style={{ x: finalX1 }} className="flex flex-row-reverse mb-8 md:mb-12 will-change-transform transform-gpu">
+        <motion.div 
+          style={{ x: finalX1, marginBottom: "clamp(2rem, 3vw, 5rem)" }} 
+          className="flex flex-row-reverse will-change-transform transform-gpu"
+        >
           {Array.from({ length: mounted ? 4 : 1 }).map((_, setIdx) => (
-            <div key={`set-${setIdx}`} ref={setIdx === 0 ? rowRef : null} className="flex flex-row-reverse gap-8 md:gap-12 pl-8 md:pl-12">
+            <div 
+              key={`set-${setIdx}`} 
+              ref={setIdx === 0 ? rowRef : null} 
+              style={{
+                gap: "clamp(2rem, 3vw, 5rem)",
+                paddingLeft: "clamp(2rem, 3vw, 5rem)"
+              }}
+              className="flex flex-row-reverse"
+            >
               {row1Base.map((product, idx) => (
                 <ProductCard product={product} key={`row-1-${setIdx}-${idx}`} priority={setIdx === 0 && idx < 4} />
               ))}
@@ -143,7 +154,14 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
 
         <motion.div style={{ x: finalX2 }} className="flex flex-row will-change-transform transform-gpu">
           {Array.from({ length: mounted ? 4 : 1 }).map((_, setIdx) => (
-            <div key={`set-${setIdx}`} className="flex flex-row gap-8 md:gap-12 pr-8 md:pr-12">
+            <div 
+              key={`set-${setIdx}`} 
+              style={{
+                gap: "clamp(2rem, 3vw, 5rem)",
+                paddingRight: "clamp(2rem, 3vw, 5rem)"
+              }}
+              className="flex flex-row"
+            >
               {row2Base.map((product, idx) => (
                 <ProductCard product={product} key={`row-2-${setIdx}-${idx}`} />
               ))}
@@ -162,15 +180,15 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
         </div>
 
         {/* Zone 2: Description Section (Images speed past this) */}
-        <div className="h-[100vh] w-full flex flex-col justify-center items-start pointer-events-auto relative z-20">
+        <div className="h-[100vh] w-full flex flex-col justify-center items-center pointer-events-auto relative z-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.5 }}
-            className="w-full pl-4 md:pl-16"
+            className="max-w-7xl mx-auto px-4 md:px-8 w-full"
           >
-            <Manifesto compact />
+            <Manifesto />
           </motion.div>
         </div>
 
@@ -185,7 +203,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto px-4 w-full flex flex-col items-start">
+    <div className="max-w-7xl relative mx-auto px-4 md:px-8 w-full flex flex-col items-start">
       {/* Badge / Pill */}
       <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6 shadow-xl">
         <span className="font-space-grotesk text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/40">
@@ -237,7 +255,11 @@ export const ProductCard: React.FC<{
   return (
     <motion.div
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group/product h-[10rem] w-[16rem] md:h-[16rem] md:w-[26rem] relative flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-[#050505] hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-[border-color,box-shadow,transform] duration-500 transform-gpu will-change-transform"
+      style={{
+        width: "clamp(16rem, 28vw, 60rem)",
+        height: "clamp(10rem, 17.5vw, 37.5rem)"
+      }}
+      className="group/product relative flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-[#050505] hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-[border-color,box-shadow,transform] duration-500 transform-gpu will-change-transform"
     >
       <a
         href={product.link}
@@ -252,7 +274,7 @@ export const ProductCard: React.FC<{
             isCentered ? "object-center" : "object-left-top"
           } absolute inset-0 group-hover/product:scale-110 group-hover/product:opacity-80 transition-all duration-700 rounded-2xl opacity-60`}
           fill
-          sizes="(max-width: 768px) 256px, 416px"
+          sizes="(max-width: 768px) 256px, (max-width: 1536px) 500px, 960px"
           priority={priority}
           loading={priority ? undefined : "lazy"}
           decoding="async"
